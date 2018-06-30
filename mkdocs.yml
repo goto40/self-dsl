@@ -1,0 +1,12 @@
+site_name: self-dsl
+theme: readthedocs
+markdown_extensions:
+ - codehilite
+ - plantuml
+pages:
+ - 'index.md'
+ - 'motivation.md'
+ - 'basics.md'
+ - 'references.md'
+
+
