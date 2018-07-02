@@ -5,7 +5,7 @@ The references are summarized in the following sections.
 
 ### Toolsets / Language Workbenches
  * [Xtext](https://www.eclipse.org/Xtext/) - a grammar based language workbench for java/Xtend/eclipse.
- * [textX](http://www.igordejanovic.net/textX/) - a grammar based language workbench for Python.
+ * [TextX](http://www.igordejanovic.net/textX/) - a grammar based language workbench for Python.
 
 ### Programming languages
 
@@ -22,5 +22,5 @@ The references are summarized in the following sections.
  * (Rentz-Reichert, 2017) H. Rentz-Reichert (Protos Software): "Entwicklung domänenspezifischer Sprachen und Code-Generatoren mit Xtext und Xtend" (german course, Regensburg, 2017/05;
     architect of [eTrice (ROOM based modeling tool)](http://www.eclipse.org/etrice/) (2017/06)
 
-### textX related stuff
+### TextX related stuff
  * (Dejanović et al. 2017) Dejanović I., Vaderna R., Milosavljević G., Vuković Ž. (2017). TextX: A Python tool for Domain-Specific Languages implementation. Knowledge-Based Systems, 115, 1-4.

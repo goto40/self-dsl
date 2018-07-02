@@ -58,7 +58,7 @@ example_program *-- l
 A summary of different aspects to be specified by the meta model is given
 as follows. This list is inspired by the grammar based toolset
 [Xtext](https://www.eclipse.org/Xtext/)
-and [textX](http://www.igordejanovic.net/textX/).
+and [TextX](http://www.igordejanovic.net/textX/).
 
   * Which __domain objects__ exist (__glossary__)?
   * How are objects identified (__named__)?
