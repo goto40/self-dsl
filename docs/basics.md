@@ -100,7 +100,7 @@ class Birthday {
 }
 ::end-uml::
 
-Note: Domain objects in the meta-model represent a blueprint or a class of a
+Note: Domain objects in the meta model represent a blueprint or a class of a
 concrete instances of such objects in a concrete model.
 
 ## Composing objects
@@ -157,7 +157,7 @@ other objects__. This is especially of importance, when some default visibility
 is not valid (most default scoping mechanisms allow all identifiable objects to be
 referenced globally).
 
-Assume the following meta-model snippet, where a "Scenario" is composed of
+Assume the following meta model snippet, where a "Scenario" is composed of
 "Configurations" and a "Testcase" references "Scenarios" and "Configurations":
 
 ::uml:: format="svg" classes="uml MetaModelExample" alt="Meta Model Example"
@@ -232,10 +232,10 @@ test_T1 o- config_B
 ## Combining meta models
 
 To foster modularization, meta models can be splitted and still allow to
-reference domain objects from one meta model to the other. In our last example
-we could define a meta model for "Testcases" and one meta-model for
+reference domain objects of one meta model from the other meta model. In our last example
+we could define a meta model for "Testcases" and one meta model for
 "Scenarios". This feature is more demanding to the underlying technology but
-allows a __modularization of the meta-model and, thus, the glossary__.
+allows a __modularization of the meta model and, thus, the glossary__.
 
 ## Interoperability with other toolsets or software components
 
@@ -265,4 +265,123 @@ Testcase o- Attribute
 
 ## Validation
 
-TODO
+The validation of a model consists of __additional checks on top of structural
+consistency__ defined by the grammar and scoping. Error in the structure
+result in classical syntax errors ("__expected__ 'XY' instead of 'AB'").
+Scoping, in turn, defines the possible references in some context and,
+thus, yields errors of the catergory "referenced element 'XY' __not found__.".
+The __validation__ described in this section is about additional
+__logical checks__, once the model is correctly parsed and all
+references resolved. This additional checks typically have a
+__strong relation to the domain__.
+
+__Example:__ Assume a model where "testcases" reference "configurations of
+scenarios" which have certain "aspects". On the other hand a "testcase" may
+need certain aspects. If any of the "Aspects" required by a "testcase" is not
+availabe in the referenced "configuration", a logical error is reported
+(validation error).
+
+__Rationale__ for choosing a validation over a scoping solution in this case:
+When modeling a situation where a "configuration" is chosen by a "testcase"
+without providing the correct "aspects", one would not like to get a
+"configuration ot found", which would result if only "configurations" with matching
+"aspects" are defined in the __scope__ of a "testcase". In contrast, the
+__validation__ will allow all "configurations" of the selected "scenario" of
+a "testcase" to be visible, but some of them will produce a
+__meaningful domain error__, such as
+"configuration 'config_B' does not provide the aspect 'aspect_A' required
+by testcase 'test_T1'".
+
+The structure defined in the meta model is shown as follows:
+
+::uml:: format="svg" classes="uml MetaModelExample" alt="Meta Model Example"
+class Aspect {
+  name
+}
+class Scenario {
+  name
+}
+class Configuration {
+  name
+}
+class Testcase {
+ name
+}
+Scenario *- "n" Configuration
+Testcase o-- "1" Scenario
+Testcase o-- "1" Configuration
+Configuration o-- "n" Aspect: haves
+Testcase o-- "n" Aspect: needs
+::end-uml::
+
+A model with validation error (__"configuration 'config_B' does not provide the aspect 'aspect_A' required
+by testcase 'test_T1'"__) is shown as follows:
+
+    scenario scenario_001 {
+        configuration config_A has {aspect_X}
+        configuration config_B has {aspect_Y}
+    }
+    testcase test_T1 {
+        use scenario_001 with config_B
+        and needs {aspect_X}
+    }
+
+::uml:: format="svg" classes="uml MetaModelExample" alt="Meta Model Example"
+object scenario_001 {
+}
+object config_A {
+}
+object config_B {
+}
+object test_T1 {
+}
+object aspect_X {
+}
+object aspect_Y {
+}
+
+scenario_001 *-- config_A
+scenario_001 *-- config_B
+test_T1 o- scenario_001: use
+test_T1 o-[bold,#red]- config_B: with
+test_T1 o-[bold,#red]- aspect_X: needs
+config_A o- aspect_X: haves
+config_B o- aspect_Y: haves
+config_B o-[bold,dashed,#red]- aspect_X : not part of haves
+::end-uml::
+
+
+A model without validation error is shown as follows:
+
+    scenario scenario_001 {
+        configuration config_A has {aspect_X}
+        configuration config_B has {aspect_Y, aspect_X}
+    }
+    testcase test_T1 {
+        use scenario_001 with config_B
+        and needs {aspect_X}
+    }
+
+::uml:: format="svg" classes="uml MetaModelExample" alt="Meta Model Example"
+object scenario_001 {
+}
+object config_A {
+}
+object config_B {
+}
+object test_T1 {
+}
+object aspect_X {
+}
+object aspect_Y {
+}
+
+scenario_001 *-- config_A
+scenario_001 *-- config_B
+test_T1 o- scenario_001: use
+test_T1 o-[bold,#green]- config_B: with
+test_T1 o-[bold,#green]- aspect_X: needs
+config_A o- aspect_X: haves
+config_B o- aspect_Y: haves
+config_B o-[bold,#green]- aspect_X : haves
+::end-uml::

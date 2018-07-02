@@ -28,14 +28,14 @@ source of information).
 
 ## Meta-model, model, and all that
 
-The meta-modeling toolsets utilized on this site typically allow to define
-__(1) a meta-model definition__, which defines what is modeled, e.g.,
+The meta modeling toolsets utilized on this site typically allow to define
+__(1) a meta model definition__, which defines what is modeled, e.g.,
 the basic layout of a data structure in terms of structures which have
-attributes. This meta-model can be compared to a _data base layout_.
+attributes. This meta model can be compared to a _data base layout_.
 It also can be compared to _glossary_ for a given domain.
-Using the meta-model __(2) model data__ can be defined by a user.
+Using the meta model __(2) model data__ can be defined by a user.
 This model data represents the concrete _data structures for a given domain_.
-__(3) Validation__: importantly, the meta-model definition allows to validate
+__(3) Validation__: importantly, the meta model definition allows to validate
 and check concrete models. Finally, __(4) code generators and
 model transformations__ represent primary end user tools to allow mass
 production based on a _single source_ of information (the model).

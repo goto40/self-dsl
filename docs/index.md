@@ -6,7 +6,7 @@ This is a tutorial site for the creation of domain specific languages.
     Why using a DSL? What is the value of it? What is MDSD?
 
  * [Basics of meta modeling](basics.md)
-    What is meta-modeled?
+    What is meta modeled?
 
  * [References](references.md)
 
