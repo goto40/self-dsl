@@ -270,14 +270,16 @@ Testcase o- Attribute
 ## Validation
 
 The validation of a model consists of __additional checks on top of structural
-consistency__ defined by the grammar and scoping. Error in the structure
-result in classical syntax errors ("__expected__ 'XY' instead of 'AB'").
-Scoping, in turn, defines the possible references in some context and,
-thus, yields errors of the catergory "referenced element 'XY' __not found__.".
-The __validation__ described in this section is about additional
-__logical checks__, once the model is correctly parsed and all
-references resolved. This additional checks typically have a
-__strong relation to the domain__.
+consistency__ defined by the grammar and scoping.
+
+  * Error in the structure
+    result in classical syntax errors ("__expected__ 'XY' instead of 'AB'").
+  * Scoping, in turn, defines the possible references in some context and,
+    thus, yields errors of the catergory "referenced element 'XY' __not found__.".
+  * The __validation__ described in this section is about additional
+    __logical checks__, once the model is correctly parsed and all
+    references resolved. This additional checks typically have a
+    __strong relation to the domain__.
 
 __Example:__ Assume a model where "testcases" reference "configurations of
 scenarios" which have certain "aspects". On the other hand a "testcase" may
@@ -293,7 +295,7 @@ without providing the correct "aspects", one would not like to get a
 __validation__ will allow all "configurations" of the selected "scenario" of
 a "testcase" to be visible, but some of them will produce a
 __meaningful domain error__, such as
-"configuration 'config_B' does not provide the aspect 'aspect_A' required
+"configuration 'config_B' does not provide the aspect 'aspect_X' required
 by testcase 'test_T1'".
 
 The structure defined in the meta model is shown as follows:
@@ -318,7 +320,7 @@ Configuration o-- "n" Aspect: haves
 Testcase o-- "n" Aspect: needs
 ::end-uml::
 
-A model with validation error (__"configuration 'config_B' does not provide the aspect 'aspect_A' required
+A model with validation error (__"configuration 'config_B' does not provide the aspect 'aspect_X' required
 by testcase 'test_T1'"__) is shown as follows:
 
     scenario scenario_001 {
