@@ -7,6 +7,10 @@ pages:
  - 'index.md'
  - 'motivation.md'
  - 'basics.md'
+ - Xtext:
+    - {'Xtext Project Setup':'xtext_project_setup.md'}
+ - textX:
+    - {'TextX Project Setup':'textx_project_setup.md'}
  - 'references.md'
 
 

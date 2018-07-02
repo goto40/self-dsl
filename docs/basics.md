@@ -4,6 +4,10 @@ In this section we describe typical meta modeling tasks.
 Meta modeling is the creation of a meta model.
 This defines what can be modeled in a model for that given meta model.
 
+All aspects identified here can be found in a tutorial style
+in corresponding sections for TextX and Xtext of this documentation.
+
+
 ## Introductory example
 
 An Example: A meta model for a programming language defines that, e.g.,
