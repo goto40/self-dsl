@@ -3,8 +3,8 @@
 The problem to be solved is two-fold: avoid problems with
 __communication__ and __consistency__.
 A _common language_ will be defined to ease __communication__ within and
-between teams. A _single source_ of information implies consistency, and in
-turn, prevents misunderstandings.
+between teams. A _single source_ of information implies __consistency__,
+and in turn, prevents misunderstandings.
 
 ![communication and consistency](images/communication_and_consistency.png)
 
