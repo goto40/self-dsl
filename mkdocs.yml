@@ -8,7 +8,9 @@ pages:
  - 'motivation.md'
  - 'basics.md'
  - Xtext:
+    - {'Eclipse':'xtext_eclipse.md'}
     - {'Xtext Project Setup':'xtext_project_setup.md'}
+    - {'A First Grammar':'xtext_a_first_grammar.md'}
  - TextX:
     - {'TextX Project Setup':'textx_project_setup.md'}
  - 'references.md'
