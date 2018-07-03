@@ -30,12 +30,19 @@ in the offline help of Eclipse: "Help" - "Help Contents".
 
 ## Root node of a model
 
+Take a look at the grammar initially created for our project:
+
+    Model:
+        greetings+=Greeting*;
+    Greeting:
+        'Hello' name=ID '!';
+
   * A grammar conists of __rules__, starting with the name of the rule,
     followed by a colon ":" and the rule itself,
     and is terminated by a semicolon ";".
   * The first rule in the grammar (e.g. "Model") is the root of the model.
-  * Instead of adding elements to the model of type "Greeting", we will
-    add elements of type "KPackage" (change the name "Greeting" to "KPackage").
+  * Instead of adding elements to the model of type "__Greeting__", we will
+    add elements of type "__KPackage__" (change the name "Greeting" to "KPackage").
   * See also [(Mooji et al., 2017a)](references.md#mooji2017a)
 
 
@@ -123,3 +130,50 @@ started via the Debug icon).
        by "|".
      * Common attributes are availabe in the base class (here: "name")
      * For more inforamtion see the [references list](references.md).
+
+## Editor
+
+After adding __ports__ ("KPort") to the __components__ ("KComponent")
+and __instances__ ("KInstance") to the __services__ ("KService"), you can test
+your langauge with the following snippet:
+
+    package test1 {
+        Component PC {
+            port_in in {}
+            port_out out {}
+        }
+        Component DF {
+            port_in in {}
+            port_out out {}
+            port_out debug {}
+        }
+        service MyService {
+            instance pc : PC
+            instance df : DF
+        }
+    }
+
+You can also edit the model with a __tree editor__:
+open wthe file with "Open With..." - "Sample Ecore Model Editor".
+
+![tree editor](images/xtext_tree_editor.png "tree editor")
+
+## More grammar stuff...
+
+There is much more not covered here. You can start with
+[(Mooji et al., 2017a)](references.md#mooji2017a).
+
+Of special interest could be
+  * Optional parts of the grammar with "?".
+  * Enums (initially set to the first enum state).
+
+
+## Visualize the meta model
+
+The ecore model deduced from the grammar can be visualized:
+see [(Mooji et al., 2017a)](references.md#mooji2017a),
+section "Optional: Ecore diagram" („Initialize Ecore Diagram ...“).
+Moreover a syntax tree can be rendered from the grammar:
+see [(Mooji et al., 2017a)](references.md#mooji2017a),
+section "Optional: View Diagram of Xtext Grammar"
+(Window/Show View/Other.../Xtext/Xtext Syntax Graph).
