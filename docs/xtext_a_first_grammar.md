@@ -99,7 +99,7 @@ started via the Debug icon).
   * type=[KComponent]
      * "type" is an attribute in the meta model.
      * "[KComponent]" is a __reference__ to a "KComponent" element.
-     * for more inforamtion see the [references list](references.md).
+     * For more inforamtion see the [references list](references.md).
 
 
 ## Specialization
@@ -122,4 +122,4 @@ started via the Debug icon).
      * Defines a base class (base rule) for the specializations separated
        by "|".
      * Common attributes are availabe in the base class (here: "name")
-     * for more inforamtion see the [references list](references.md).
+     * For more inforamtion see the [references list](references.md).
