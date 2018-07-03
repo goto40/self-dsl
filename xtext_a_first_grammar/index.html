@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>A First Grammar - self-dsl</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "A First Grammar";
+    var mkdocs_page_input_path = "xtext_a_first_grammar.md";
+    var mkdocs_page_url = "/xtext_a_first_grammar/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> self-dsl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../motivation/">Motivation</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../basics/">Basics</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Xtext</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../xtext_eclipse/">Eclipse</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../xtext_project_setup/">Xtext Project Setup</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">A First Grammar</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#a-first-grammar">A First Grammar</a></li>
+                
+                    <li><a class="toctree-l4" href="#first-steps-after-project-initialization">First steps after project initialization</a></li>
+                
+                    <li><a class="toctree-l4" href="#root-node-of-a-model">Root node of a model</a></li>
+                
+                    <li><a class="toctree-l4" href="#attributes-composition">Attributes, Composition</a></li>
+                
+                    <li><a class="toctree-l4" href="#references">References</a></li>
+                
+                    <li><a class="toctree-l4" href="#specialization">Specialization</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>TextX</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../textx_project_setup/">TextX Project Setup</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../references/">References</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">self-dsl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Xtext &raquo;</li>
+        
+      
+    
+    <li>A First Grammar</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="a-first-grammar">A First Grammar</h1>
+<p>The goal of this exercise is to define a grammar for a structure as sketched in
+the image below: A <strong>Model</strong> shall contain <strong>Packages</strong>. Every <strong>Package</strong>
+can contain <strong>Component</strong> definitions and "Service" definitions.
+A "Service" can <strong>instantiate</strong> the Components.
+Moreover shall a Component definition contain <strong>input ports</strong>
+and <strong>output ports</strong>.</p>
+<p>All <strong>bold</strong> elements in the text above will be defined in our the grammar of
+our meta model.</p>
+<p><img alt="a first grammar" src="../images/a_first_grammar_plan.png" title="a first grammar: goal" /></p>
+<h2 id="first-steps-after-project-initialization">First steps after project initialization</h2>
+<p>A grammar describes the syntax (more or less without semantic) of our
+domain language describing domain models.
+Internally, Xtext deduces an ecore model from the grammar, which can be used
+to display the structure of the grammar (like the image in the first part of this
+page).
+The grammar remains the master (for maintenance) and the ecore model is recreated
+after every change.</p>
+<p>Note: Is is also possible to create a grammar based on an ecore model
+(via Eclipse Wizard).</p>
+<p>Additional information can be found in the <a href="../references/">references list</a> or
+in the offline help of Eclipse: "Help" - "Help Contents".</p>
+<h2 id="root-node-of-a-model">Root node of a model</h2>
+<ul>
+<li>A grammar conists of <strong>rules</strong>, starting with the name of the rule,
+    followed by a colon ":" and the rule itself,
+    and is terminated by a semicolon ";".</li>
+<li>The first rule in the grammar (e.g. "Model") is the root of the model.</li>
+<li>Instead of adding elements to the model of type "Greeting", we will
+    add elements of type "KPackage" (change the name "Greeting" to "KPackage").</li>
+<li>See also <a href="../references/#mooji2017a">(Mooji et al., 2017a)</a></li>
+</ul>
+<h2 id="attributes-composition">Attributes, Composition</h2>
+<p>A "KPackage" element, in turn, shall be composed of "KComponent" and "KService"
+elements:</p>
+<p><img alt="composition" src="../images/xtext_composition.png" title="composition" /></p>
+<p>The syntax for the composition is given as follows:</p>
+<div class="codehilite"><pre><span></span>KPackage: &#39;package&#39; name=ID &#39;{&#39;
+        (
+            components += KComponent |
+            services += KService
+        )*
+    &#39;}&#39;
+;
+</pre></div>
+
+
+<ul>
+<li>'package', '{', '}'<ul>
+<li>represent <strong>keywords</strong> of our language.</li>
+</ul>
+</li>
+<li>name=ID<ul>
+<li>"name" is an <strong>attribute</strong> in the meta mode (the attribute "name" has
+   a special meaning: it is used to <strong>indentify</strong> elements).</li>
+<li>"=" means: this is a scalar value (no list of values).</li>
+<li><strong>ID</strong> is a <strong>terminal</strong> (see grammar, and click "F3" on
+  "org.eclipse.xtext.common.Terminals" to see definition).</li>
+</ul>
+</li>
+<li>components += KComponent<ul>
+<li>"components" is an attribute in the meta model.</li>
+<li>"+=" means, this is a <strong>list of values</strong> (add one element to this list here)</li>
+<li>"KComponent" and "KService" are <strong>rule definitions</strong> like "KPackage"
+  (need to be added)</li>
+</ul>
+</li>
+<li>( ... | ... )*<ul>
+<li>Everything with the brackets can be repeated  0 to n times ("+" instead
+  of "*" means 1 to n times).</li>
+<li>"|" is a logical OR.</li>
+</ul>
+</li>
+</ul>
+<p>Modify the grammar to allow to enter the following model. Test the
+grammar with this example (run the grammar as described
+<a href="../xtext_project_setup/">in the previous section</a>): "Run As" -
+"Xtext Artifacts". The new Eclipse instance can easily be
+started via the Debug icon).</p>
+<div class="codehilite"><pre><span></span>package test1 {
+    Component PC {
+    }
+    Component DF {
+    }
+    service MyService {
+    }
+}
+</pre></div>
+
+
+<h2 id="references">References</h2>
+<p><img alt="reference" src="../images/xtext_reference.png" title="reference" /></p>
+<div class="codehilite"><pre><span></span><span class="nt">KInstance</span><span class="o">:</span> <span class="s1">&#39;instance&#39;</span> <span class="nt">name</span><span class="o">=</span><span class="nt">ID</span> <span class="s1">&#39;:&#39;</span> <span class="nt">type</span><span class="o">=</span><span class="cp">[</span><span class="nx">KComponent</span><span class="cp">]</span><span class="o">;</span>
+</pre></div>
+
+
+<ul>
+<li>type=[KComponent]<ul>
+<li>"type" is an attribute in the meta model.</li>
+<li>"[KComponent]" is a <strong>reference</strong> to a "KComponent" element.</li>
+<li>For more inforamtion see the <a href="../references/">references list</a>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="specialization">Specialization</h2>
+<p><img alt="specialization" src="../images/xtext_specialization.png" title="specialization" /></p>
+<div class="codehilite"><pre><span></span><span class="n">KPort</span><span class="o">:</span>
+    <span class="n">KPortIn</span><span class="o">|</span><span class="n">KPortOut</span>
+<span class="o">;</span>
+<span class="n">KPortIn</span><span class="o">:</span>
+    <span class="s1">&#39;port_in&#39;</span> <span class="n">name</span><span class="o">=</span><span class="n">ID</span> <span class="s1">&#39;{&#39;</span>
+    <span class="s1">&#39;}&#39;</span>
+<span class="o">;</span>
+<span class="n">KPortOut</span><span class="o">:</span>
+    <span class="s1">&#39;port_out&#39;</span> <span class="n">name</span><span class="o">=</span><span class="n">ID</span> <span class="s1">&#39;{&#39;</span>
+    <span class="s1">&#39;}&#39;</span>
+<span class="o">;</span>
+</pre></div>
+
+
+<ul>
+<li>Base: SpecialA|SpecialB;<ul>
+<li>Defines a base class (base rule) for the specializations separated
+   by "|".</li>
+<li>Common attributes are availabe in the base class (here: "name")</li>
+<li>For more inforamtion see the <a href="../references/">references list</a>.</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../textx_project_setup/" class="btn btn-neutral float-right" title="TextX Project Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../xtext_project_setup/" class="btn btn-neutral" title="Xtext Project Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../xtext_project_setup/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../textx_project_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

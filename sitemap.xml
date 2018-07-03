@@ -4,7 +4,7 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2018-07-02</lastmod>
+     <lastmod>2018-07-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>None/motivation/</loc>
-     <lastmod>2018-07-02</lastmod>
+     <lastmod>2018-07-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
      <loc>None/basics/</loc>
-     <lastmod>2018-07-02</lastmod>
+     <lastmod>2018-07-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,8 +28,20 @@
     
         
     <url>
+     <loc>None/xtext_eclipse/</loc>
+     <lastmod>2018-07-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/xtext_project_setup/</loc>
-     <lastmod>2018-07-02</lastmod>
+     <lastmod>2018-07-03</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/xtext_a_first_grammar/</loc>
+     <lastmod>2018-07-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -39,7 +51,7 @@
         
     <url>
      <loc>None/textx_project_setup/</loc>
-     <lastmod>2018-07-02</lastmod>
+     <lastmod>2018-07-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -48,7 +60,7 @@
     
     <url>
      <loc>None/references/</loc>
-     <lastmod>2018-07-02</lastmod>
+     <lastmod>2018-07-03</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
