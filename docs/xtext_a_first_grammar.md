@@ -2,8 +2,8 @@
 
 The goal of this exercise is to define a grammar for a structure as sketched in
 the image below: A __Model__ shall contain __Packages__. Every __Package__
-can contain __Component__ definitions and "Service" definitions.
-A "Service" can __instantiate__ the Components.
+can contain __Component__ definitions and __Service__ definitions.
+A Service can __instantiate__ the Components.
 Moreover shall a Component definition contain __input ports__
 and __output ports__.
 

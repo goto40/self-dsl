@@ -10,7 +10,7 @@ in corresponding sections for TextX and Xtext of this documentation.
 
 ## Introductory example
 
-An Example: A meta model for a programming language defines that, e.g.,
+An example: A meta model for a programming language defines that, e.g.,
 variables can be defined. The model, in turn, is a concrete programm
 with many variable definitions.
 
