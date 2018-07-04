@@ -99,12 +99,18 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#example">Example</a></li>
+            <li><a class="toctree-l4" href="#simple-example">Simple Example</a></li>
+        
+            <li><a class="toctree-l4" href="#xtend-template-engine">Xtend template engine</a></li>
         
         </ul>
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
                 </li>
     </ul>
 	    </li>
@@ -167,8 +173,8 @@ for code generation. It has a optimzed template engine (e.g., with
 automatic indentation support) and
 is fully integrated in the Eclipse IDE (auto completition
 for model data).</p>
-<h2 id="example">Example</h2>
-<p>Opne the *Generator.xtend file in your project, e.g.,
+<h2 id="simple-example">Simple Example</h2>
+<p>Open the *Generator.xtend file in your project, e.g.,
 kurs.xtext.dataflow.generator.DataFlowDslGenerator.xtend. 
 Here, you can implement your first code generator:
 You have model access (parameter "resource") and file system access
@@ -202,8 +208,87 @@ You have model access (parameter "resource") and file system access
 </pre></div>
 
 
-<p>TODO
-xxx</p>
+<p>In the last example we generate a text describing a list of components on 
+three different manners.</p>
+<ol>
+<li>A traditional for-each loop<ul>
+<li>Note: "auto-casting" happens; this mean if a type of an inctance is 
+  checked (if „instanceof“), 
+  the object is automatically casted to that type within the 
+  body of the if.</li>
+<li>Semicolons are optional.</li>
+<li>"var" und "val" are used to declare variable (val: final variables).</li>
+</ul>
+</li>
+<li>A filter/map/join combination with explicit lambda („[ param | code ]“)<ul>
+<li>The lambda function is directly defined with square brackets '['...']'.</li>
+<li>The brackets '('...')' of the function call are omitted.</li>
+<li>The parameter of the lambda function are stated before the "|"
+  within the '['..']'.</li>
+</ul>
+</li>
+<li>A filter/map/join combination with compact lambdas and class filters: <ul>
+<li>filter(Class) filters according to the passed class "Class".</li>
+<li>map: here, the parameter is implizit defined (and can be addressed 
+  with the name "it": e.g., it.name). 
+  Moreover, the implicit name of the parameter can be omitted,
+  thus, "name" corresponds to "it.name" here: 
+  "[a | a.name]" → "[name]" oder "[it.name]"</li>
+<li>"return" can be omitted: The last expression is the return value.</li>
+</ul>
+</li>
+</ol>
+<p>The generated files contain the text:</p>
+<div class="codehilite"><pre><span></span><span class="err">Component declarations: PC, DF</span>
+</pre></div>
+
+
+<h2 id="xtend-template-engine">Xtend template engine</h2>
+<p>Xtext and Xtend provide a powerful template engine. With this engine
+output text and code can be easily mixed. Moreover, indentations
+in this mixed code are separated between output indentation and logical
+template code indentation (see example: the indentation from the nested
+FOR statement are ignored in the output).</p>
+<div class="codehilite"><pre><span></span>    :::xtend
+    // -------------------------------------------
+    // Option 4:
+    val model = resource.contents.get(0) as Model
+    fsa.generateFile(&#39;Components4.txt&#39;, &#39;&#39;&#39;
+    The Components of the model are:
+    «FOR p: model.packages»
+        Package «p.name»
+        «FOR c: p.components»
+            KComponent «c.name»
+            «FOR port: c.ports SEPARATOR &quot;, &quot;» 
+            - with port «port.name»
+            «ENDFOR»
+        «ENDFOR»
+    «ENDFOR»
+    &#39;&#39;&#39;);
+</pre></div>
+
+
+<p>Such templates are defined with a multi line string bounded by
+three single qutation marks.
+Within the template special commands (like FOR-loops) can be 
+expressed with text bounded by french quotes.
+The editor supports many features, such as automatic completition of model
+data and displaying the actual indentation. </p>
+<p>Note:
+  * This example als illustrates how to get the
+    root of the model (val model=...).
+  * It also shows how to cast an object: „obj as Type“.</p>
+<p>Output (generated artefact; note the indentation in the template is omitted):</p>
+<div class="codehilite"><pre><span></span><span class="err">The Components of the model are:</span>
+<span class="err">Package test1</span>
+<span class="err">KComponent PC</span>
+<span class="err">- with port in, </span>
+<span class="err">- with port out</span>
+<span class="err">KComponent DF</span>
+<span class="err">- with port in, </span>
+<span class="err">- with port out, </span>
+<span class="err">- with port debug</span>
+</pre></div>
               
             </div>
           </div>
@@ -211,7 +296,7 @@ xxx</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../textx_project_setup/" class="btn btn-neutral float-right" title="TextX Project Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../xtext_xtend/" class="btn btn-neutral float-right" title="Xtend: Selected Aspects">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../xtext_quickfixes/" class="btn btn-neutral" title="Quickfixes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -243,7 +328,7 @@ xxx</p>
         <span><a href="../xtext_quickfixes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../textx_project_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../xtext_xtend/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

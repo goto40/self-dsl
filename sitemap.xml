@@ -51,6 +51,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>/xtext_xtend/</loc>
+     <lastmod>2018-07-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>/textx_project_setup/</loc>
      <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>

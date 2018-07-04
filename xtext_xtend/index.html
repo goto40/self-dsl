@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Eclipse - self-dsl</title>
+  <title>Xtend: Selected Aspects - self-dsl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Eclipse";
-    var mkdocs_page_input_path = "xtext_eclipse.md";
-    var mkdocs_page_url = "/xtext_eclipse/";
+    var mkdocs_page_name = "Xtend: Selected Aspects";
+    var mkdocs_page_input_path = "xtext_xtend.md";
+    var mkdocs_page_url = "/xtext_xtend/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -66,21 +66,9 @@
 		
     <span class="caption-text">Xtext</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Eclipse</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#xtext-and-eclipse">Xtext and Eclipse</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#download-and-install">Download and install</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../xtext_eclipse/">Eclipse</a>
                 </li>
                 <li class="">
                     
@@ -106,9 +94,27 @@
                     
     <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+    <a class="current" href="./">Xtend: Selected Aspects</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#xtend-selected-aspects">Xtend: Selected Aspects</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#extension-mechanism">Extension mechanism</a></li>
+        
+            <li><a class="toctree-l4" href="#dispatch-methods">Dispatch methods</a></li>
+        
+            <li><a class="toctree-l4" href="#misc">Misc</a></li>
+        
+            <li><a class="toctree-l4" href="#emf-parent-relationship-model-mavigation">EMF Parent Relationship (model mavigation)</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -155,7 +161,7 @@
         
       
     
-    <li>Eclipse</li>
+    <li>Xtend: Selected Aspects</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -165,29 +171,57 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="xtext-and-eclipse">Xtext and Eclipse</h1>
-<p>Xtext is integrated in Eclispe.
-To run this tutorial you need to install Eclipse with the appropriate
-plugins (current version: Oxygen).</p>
-<p>Note: The parser "Antlr" is not distributed with eclipse. You need to install
-it manually <a href="http://download.itemis.de/updates">(itemis update site)</a>,
-else it will be downloaded for every Xtext project you create.</p>
-<h2 id="download-and-install">Download and install</h2>
-<p>Download the package
-<a href="http://www.eclipse.org/downloads/packages/">"Eclipse Modeling"</a>.
-Unpack the archive to make eclipse available.</p>
-<div class="codehilite"><pre><span></span>root@xtext:~/Download# ls
-eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
-root@xtext:~/Download# tar xzf eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
-root@xtext:~/Download# mv eclipse /opt/
-root@xtext:~/Download# /opt/eclipse/eclipse &amp;
+                <h1 id="xtend-selected-aspects">Xtend: Selected Aspects</h1>
+<p>In addition to the features sketched in the
+<a href="../xtext_code_generation_xtend/">"code generation with Xtend" section</a>
+this section provides some selected aspects we found useful for our work.</p>
+<h2 id="extension-mechanism">Extension mechanism</h2>
+<p>Xtend has its name from the the fact that it allows to extend classes of
+the language without using inheritance. There are different possibilities
+to achieve this task. One simple example of such an extended class 
+is java.lang.String, which was extended by Xtend to provide 
+a method "toFirstUpper".</p>
+<p>A simple possibility to achieve such an extension is to define a locally
+visible method "<strong>f(</strong>TypeX x, <strong>...)</strong>" (see <a href="../references/">Xtend documentation</a>).
+With this, TypeX is extened by a method <strong>f(...)</strong>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">def</span> <span class="nf">printNTimes</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="n">println</span><span class="o">(</span><span class="n">s</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="o">...</span>     
+    <span class="s">&quot;Hello&quot;</span><span class="o">.</span><span class="n">printNTimes</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+<span class="o">...</span>
 </pre></div>
 
 
-<p>To complete the installation you need "Install Modeling Components" from the
-"Help" menu entry. Select the "Xtext" entry and "Finish" the installation by
-restarting eclipse.</p>
-<p><img alt="install dialog" src="../images/xtext_install.png" title="select the Xtext component" /></p>
+<p>Other possibilities (see <a href="../references/">Xtend documentation</a>) 
+allow to use static methods in a similar way ("extension imports") which can
+be imported by other modules: 
+"import static extension package.Type.printNTimes".</p>
+<h2 id="dispatch-methods">Dispatch methods</h2>
+<p>A method (used as extension of not) can be marked with the keyword 
+"<strong>dispatch</strong>". If such a method is defined multiple times with different 
+specialized types as argument, the correct version of the method if called
+depending what object is passed (runtime polymorphy). The code behaves if
+an "if obj instanceof TYPE" is called to determine which version has to be called.</p>
+<h2 id="misc">Misc</h2>
+<ul>
+<li>„==“ vs. „===“ (analog „!=“ vs. „!==“):<ul>
+<li>„==“ uses the method "equals" to determine the result.</li>
+<li>„===“ checks if the identical object is referenced (like a pointer comparison).</li>
+</ul>
+</li>
+<li>It is posisble to check if an optional modell element is present or not
+    by comparing it to null.</li>
+<li>It is possible to check if a model element is not yet loaded
+    (eIsProxy==true).</li>
+</ul>
+<h2 id="emf-parent-relationship-model-mavigation">EMF Parent Relationship (model mavigation)</h2>
+<p>Sometimes (while generating code or validating the model)
+it is useful to navigate to the parent of a model object.
+This can be done with the attribute "eContainer" of every model
+element. It may be necessary to cast this parent to an appropriate type
+(this can also happen via a dispatch method).</p>
               
             </div>
           </div>
@@ -195,10 +229,10 @@ restarting eclipse.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../xtext_project_setup/" class="btn btn-neutral float-right" title="Xtext Project Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../textx_project_setup/" class="btn btn-neutral float-right" title="TextX Project Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../basics/" class="btn btn-neutral" title="Basics of meta modeling for domain models"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../xtext_code_generation_xtend/" class="btn btn-neutral" title="Code Generation (with Xtend)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -224,10 +258,10 @@ restarting eclipse.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../basics/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../xtext_code_generation_xtend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../xtext_project_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../textx_project_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
