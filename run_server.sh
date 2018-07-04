@@ -1,2 +1,2 @@
 export PYTHONPATH=extensions
-mkdocs serve
+mkdocs serve --dirtyreload

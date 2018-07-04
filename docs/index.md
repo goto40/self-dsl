@@ -8,6 +8,8 @@ This is a tutorial site for the creation of domain specific languages.
  * [Basics of meta modeling](basics.md)
     What is meta modeled?
 
+ * Tutorial-like topics for Xtext and TextX (see sidebar).
+
  * [References](references.md)
 
 ## Employed software to generate this documentation
