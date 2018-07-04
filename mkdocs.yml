@@ -15,6 +15,7 @@ pages:
     - {'Model Validation':'xtext_model_validation.md'}
     - {'Quickfixes':'xtext_quickfixes.md'}
     - {'Code Generation (with Xtend)':'xtext_code_generation_xtend.md'}
+    - {'Xtend: Selected Aspects':'xtext_xtend.md'}
  - TextX:
     - {'TextX Project Setup':'textx_project_setup.md'}
  - 'references.md'
