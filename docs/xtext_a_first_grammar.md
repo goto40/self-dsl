@@ -164,6 +164,9 @@ open wthe file with "Open With..." - "Sample Ecore Model Editor".
 
 ![tree editor](images/xtext_tree_editor.png "tree editor")
 
+When editing the model graph, the model text is changed accordingly: 
+see [Auto Formatting](xtext_auto_formatting.md).
+
 ## More grammar stuff...
 
 There is much more not covered here. You can start with
@@ -183,3 +186,4 @@ Moreover a syntax tree can be rendered from the grammar:
 see [(Mooji et al., 2017a)](references.md#mooji2017a),
 section "Optional: View Diagram of Xtext Grammar"
 (Window/Show View/Other.../Xtext/Xtext Syntax Graph).
+
