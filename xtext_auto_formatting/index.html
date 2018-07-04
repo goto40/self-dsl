@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Auto Formatting - self-dsl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Auto Formatting";
+    var mkdocs_page_input_path = "xtext_auto_formatting.md";
+    var mkdocs_page_url = "/xtext_auto_formatting/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> self-dsl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Welcome to self-dsl</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../motivation/">Motivation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../basics/">Basics of meta modeling for domain models</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Xtext</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../xtext_eclipse/">Eclipse</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_project_setup/">Xtext Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_a_first_grammar/">A First Grammar</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Auto Formatting</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#auto-formatting">Auto Formatting</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#xtext-formatter">Xtext Formatter</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_quickfixes/">Quickfixes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">TextX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../textx_project_setup/">TextX Project Setup</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../references/">References</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">self-dsl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Xtext &raquo;</li>
+        
+      
+    
+    <li>Auto Formatting</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="auto-formatting">Auto Formatting</h1>
+<p>When you change the model (e.g. using the 
+<a href="../xtext_a_first_grammar/#Editor">tree editor</a>)
+and you save your changes, you will notice that the
+model text is updated, but does not contain any line breaks.
+Also, when invooking the auto-formatter of Eclipse 
+(CTRL-SHIFT-F in the text editor of Eclipse), the same
+effect occurs. This behavior can be controlled in Xtext
+with a special Xtext Formatter.</p>
+<h2 id="xtext-formatter">Xtext Formatter</h2>
+<p>Create a new class "kurs.xtext.dataflow.formatting.MyFormatter"
+in your Xtext project, which inherits from
+"org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter".</p>
+<p><img alt="new formatter class" src="../images/xtext_formatter.png" title="new formatter class" /></p>
+<p>In this class you can control, e.g., the formatting
+around '{' and '}'. More Information: e.g., 
+<a href="http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/formatting/impl/FormattingConfig.html">JavaDoc of FormattingConfig</a>.</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">org.eclipse.xtext.Keyword</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.formatting.impl.FormattingConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.util.Pair</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">kurs.xtext.dataflow.services.DataFlowDslGrammarAccess</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyFormatter</span> <span class="kd">extends</span> <span class="n">AbstractDeclarativeFormatter</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configureFormatting</span><span class="o">(</span><span class="n">FormattingConfig</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">DataFlowDslGrammarAccess</span> <span class="n">ga</span> <span class="o">=</span> <span class="o">(</span><span class="n">DataFlowDslGrammarAccess</span><span class="o">)</span> <span class="n">getGrammarAccess</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">Keyword</span><span class="o">,</span> <span class="n">Keyword</span><span class="o">&gt;</span> <span class="n">pair</span> <span class="o">:</span> <span class="n">ga</span><span class="o">.</span><span class="na">findKeywordPairs</span><span class="o">(</span><span class="s">&quot;{&quot;</span><span class="o">,</span> <span class="s">&quot;}&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">config</span><span class="o">.</span><span class="na">setLinewrap</span><span class="o">().</span><span class="na">after</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+            <span class="n">config</span><span class="o">.</span><span class="na">setIndentationIncrement</span><span class="o">().</span><span class="na">after</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+            <span class="n">config</span><span class="o">.</span><span class="na">setLinewrap</span><span class="o">().</span><span class="na">before</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
+            <span class="n">config</span><span class="o">.</span><span class="na">setIndentationDecrement</span><span class="o">().</span><span class="na">before</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
+            <span class="n">config</span><span class="o">.</span><span class="na">setLinewrap</span><span class="o">().</span><span class="na">after</span><span class="o">(</span><span class="n">pair</span><span class="o">.</span><span class="na">getSecond</span><span class="o">());</span>
+        <span class="o">}</span>       
+        <span class="n">config</span><span class="o">.</span><span class="na">setLinewrap</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">after</span><span class="o">(</span><span class="n">ga</span><span class="o">.</span><span class="na">getKInstanceRule</span><span class="o">());</span>       
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+
+
+<p>This new formatter must be registered for your meta model:
+edit the *RuntimeModule"-file
+"kurs.xtext.dataflow.DataFlowDslRuntimeModule.xtend" 
+and add the following code:</p>
+<div class="codehilite"><pre><span></span><span class="n">override</span> <span class="nf">bindIFormatter</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">MyFormatter</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>(Note: Xtend is a language which translates to Java.
+Thus, every Xtend class can also be written in Java.)</p>
+<p>Restart your Eclipse Runtime Workbench and test the new 
+formatter (CTRL-SHIFT-F).</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../xtext_model_validation/" class="btn btn-neutral float-right" title="Model Validation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../xtext_a_first_grammar/" class="btn btn-neutral" title="A First Grammar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../xtext_a_first_grammar/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../xtext_model_validation/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

@@ -1,68 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
     <url>
-     <loc>None/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
     <url>
-     <loc>None/motivation/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/motivation/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
     <url>
-     <loc>None/basics/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/basics/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-        
     <url>
-     <loc>None/xtext_eclipse/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/xtext_eclipse/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>None/xtext_project_setup/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/xtext_project_setup/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>None/xtext_a_first_grammar/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/xtext_a_first_grammar/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>None/textx_project_setup/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/xtext_auto_formatting/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
     <url>
-     <loc>None/references/</loc>
-     <lastmod>2018-07-03</lastmod>
+     <loc>/xtext_model_validation/</loc>
+     <lastmod>2018-07-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
+    <url>
+     <loc>/xtext_quickfixes/</loc>
+     <lastmod>2018-07-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/xtext_code_generation_xtend/</loc>
+     <lastmod>2018-07-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/textx_project_setup/</loc>
+     <lastmod>2018-07-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/references/</loc>
+     <lastmod>2018-07-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
 </urlset>

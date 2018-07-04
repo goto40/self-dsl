@@ -7,32 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  
-  <title>Basics - self-dsl</title>
-  
-
   <link rel="shortcut icon" href="../img/favicon.ico">
-
-  
+  <title>Basics of meta modeling for domain models - self-dsl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
-
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Basics";
+    var mkdocs_page_name = "Basics of meta modeling for domain models";
     var mkdocs_page_input_path = "basics.md";
     var mkdocs_page_url = "/basics/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
-
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
   
 </head>
 
@@ -52,108 +44,106 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
+	<ul class="current">
+	  
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="..">Home</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Welcome to self-dsl</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../motivation/">Motivation</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../motivation/">Motivation</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Basics</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#basics-of-meta-modeling-for-domain-models">Basics of meta modeling for domain models</a></li>
-                
-                    <li><a class="toctree-l4" href="#introductory-example">Introductory example</a></li>
-                
-                    <li><a class="toctree-l4" href="#overview-aspects-of-meta-modeling">Overview: aspects of meta modeling</a></li>
-                
-                    <li><a class="toctree-l4" href="#domain-objects-identification-and-attributes">Domain objects: identification and attributes</a></li>
-                
-                    <li><a class="toctree-l4" href="#composing-objects">Composing objects</a></li>
-                
-                    <li><a class="toctree-l4" href="#references-and-aggregation">References and Aggregation</a></li>
-                
-                    <li><a class="toctree-l4" href="#scoping">Scoping</a></li>
-                
-                    <li><a class="toctree-l4" href="#specialization-base-classesbase-rules">Specialization (base classes/base rules)</a></li>
-                
-                    <li><a class="toctree-l4" href="#modularization">Modularization</a></li>
-                
-                    <li><a class="toctree-l4" href="#combining-meta-models">Combining meta models</a></li>
-                
-                    <li><a class="toctree-l4" href="#interoperability-with-other-toolsets-or-software-components">Interoperability with other toolsets or software components</a></li>
-                
-                    <li><a class="toctree-l4" href="#validation">Validation</a></li>
-                
-            
-            </ul>
-        
-    </li>
-<li>
-          
-            <li>
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Basics of meta modeling for domain models</a>
     <ul class="subnav">
-    <li><span>Xtext</span></li>
-
-        
             
-    <li class="toctree-l1 ">
-        <a class="" href="../xtext_eclipse/">Eclipse</a>
+    <li class="toctree-l2"><a href="#basics-of-meta-modeling-for-domain-models">Basics of meta modeling for domain models</a></li>
+    
+        <ul>
         
-    </li>
+            <li><a class="toctree-l3" href="#introductory-example">Introductory example</a></li>
+        
+            <li><a class="toctree-l3" href="#overview-aspects-of-meta-modeling">Overview: aspects of meta modeling</a></li>
+        
+            <li><a class="toctree-l3" href="#domain-objects-identification-and-attributes">Domain objects: identification and attributes</a></li>
+        
+            <li><a class="toctree-l3" href="#composing-objects">Composing objects</a></li>
+        
+            <li><a class="toctree-l3" href="#references-and-aggregation">References and Aggregation</a></li>
+        
+            <li><a class="toctree-l3" href="#scoping">Scoping</a></li>
+        
+            <li><a class="toctree-l3" href="#specialization-base-classesbase-rules">Specialization (base classes/base rules)</a></li>
+        
+            <li><a class="toctree-l3" href="#modularization">Modularization</a></li>
+        
+            <li><a class="toctree-l3" href="#combining-meta-models">Combining meta models</a></li>
+        
+            <li><a class="toctree-l3" href="#interoperability-with-other-toolsets-or-software-components">Interoperability with other toolsets or software components</a></li>
+        
+            <li><a class="toctree-l3" href="#validation">Validation</a></li>
+        
+        </ul>
+    
 
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../xtext_project_setup/">Xtext Project Setup</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../xtext_a_first_grammar/">A First Grammar</a>
-        
-    </li>
-
-        
     </ul>
-<li>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Xtext</span>
     <ul class="subnav">
-    <li><span>TextX</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../textx_project_setup/">TextX Project Setup</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../xtext_eclipse/">Eclipse</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_project_setup/">Xtext Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_a_first_grammar/">A First Grammar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_auto_formatting/">Auto Formatting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_quickfixes/">Quickfixes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+                </li>
     </ul>
-<li>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../references/">References</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">TextX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../textx_project_setup/">TextX Project Setup</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../references/">References</a>
+	    </li>
           
         </ul>
       </div>
@@ -177,7 +167,7 @@
     
       
     
-    <li>Basics</li>
+    <li>Basics of meta modeling for domain models</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -194,7 +184,7 @@ This defines what can be modeled in a model for that given meta model.</p>
 <p>All aspects identified here can be found in a tutorial style
 in corresponding sections for TextX and Xtext of this documentation.</p>
 <h2 id="introductory-example">Introductory example</h2>
-<p>An Example: A meta model for a programming language defines that, e.g.,
+<p>An example: A meta model for a programming language defines that, e.g.,
 variables can be defined. The model, in turn, is a concrete programm
 with many variable definitions.</p>
 <p>A meta model may, thus, be sketched as follows:</p>
@@ -373,7 +363,7 @@ testcase test_T1 {
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
@@ -381,7 +371,7 @@ testcase test_T1 {
 
   </div>
 
-<div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -392,6 +382,10 @@ testcase test_T1 {
       
     </span>
 </div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
 
 </body>
 </html>
