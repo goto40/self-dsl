@@ -19,7 +19,7 @@ less without modifications:
 		]
 	}
 
-The [ID of the validation](xtext_validation.md) 
+The [ID of the validation](xtext_model_validation.md) 
 (here "INVALID_NAME") allows to identify the type of the
 issue to be fixed. 
 
