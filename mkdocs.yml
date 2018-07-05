@@ -17,7 +17,9 @@ pages:
     - {'Code Generation (with Xtend)':'xtext_code_generation_xtend.md'}
     - {'Xtend: Selected Aspects':'xtext_xtend.md'}
  - TextX:
+    - {'TextX Intro':'textx_intro.md'}
     - {'TextX Project Setup':'textx_project_setup.md'}
+    - {'TextX by Examples':'textx_by_examples.md'}
  - 'references.md'
 
 

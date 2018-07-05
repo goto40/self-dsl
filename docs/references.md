@@ -4,8 +4,8 @@ Many websites, books and persons influenced this work.
 The references are summarized in the following sections.
 
 ### Toolsets / Language Workbenches
- * [Xtext](https://www.eclipse.org/Xtext/) - a grammar based language workbench for java/Xtend/eclipse.
- * [TextX](http://www.igordejanovic.net/textX/) - a grammar based language workbench for Python.
+ *  <a name="xtext"></a> [Xtext](https://www.eclipse.org/Xtext/) - a grammar based language workbench for java/Xtend/eclipse.
+ *  <a name="textx"></a> [TextX](http://www.igordejanovic.net/textX/) - a grammar based language workbench for Python.
 
 ### Programming languages
 
@@ -23,4 +23,4 @@ The references are summarized in the following sections.
     architect of [eTrice (ROOM based modeling tool)](http://www.eclipse.org/etrice/) (2017/06)
 
 ### TextX related stuff
- * (Dejanović et al. 2017) Dejanović I., Vaderna R., Milosavljević G., Vuković Ž. (2017). TextX: A Python tool for Domain-Specific Languages implementation. Knowledge-Based Systems, 115, 1-4.
+ * <a name="dejanovic2017"></a> (Dejanović et al. 2017) Dejanović I., Vaderna R., Milosavljević G., Vuković Ž. (2017). TextX: A Python tool for Domain-Specific Languages implementation. Knowledge-Based Systems, 115, 1-4.
