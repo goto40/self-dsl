@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>TextX Intro - self-dsl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "TextX Intro";
+    var mkdocs_page_input_path = "textx_intro.md";
+    var mkdocs_page_url = "/textx_intro/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> self-dsl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Welcome to self-dsl</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../motivation/">Motivation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../basics/">Basics of meta modeling for domain models</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Xtext</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../xtext_eclipse/">Eclipse</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_project_setup/">Xtext Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_a_first_grammar/">A First Grammar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_auto_formatting/">Auto Formatting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_quickfixes/">Quickfixes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">TextX</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">TextX Intro</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#textx-intro">TextX Intro</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../textx_project_setup/">TextX Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../textx_by_examples/">TextX by Examples</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../references/">References</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">self-dsl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>TextX &raquo;</li>
+        
+      
+    
+    <li>TextX Intro</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="textx-intro">TextX Intro</h1>
+<p>TextX is a Python library to allow an easy creation of
+DSL validators and artifact generators:</p>
+<ul>
+<li>Reading model files (grammar based parsing, reference resolution and post processing).</li>
+<li>Validating the model.</li>
+<li>Generating output artifacts (e.g., code).</li>
+</ul>
+<p>A fundamental difference to Xtext is that the
+meta model classes (describing the model elements)
+are dynamically generated instead of generating code
+from them. Thus, a grammar in TextX in interpreted dynamically 
+and not compiled.</p>
+<p>TextX has only few dependencies and very compact 
+projects can be created. Details see
+<a href="../references/#dejanovic2017">(Dejanović et al. 2017)</a>
+and the <a href="../references/#textx">TextX project page</a>.</p>
+<p>Normally, a similar modularization as for Xtext projects 
+is employed to separate different responsibilities across
+software modules (e.g. modules for the 
+grammar, validation, and code generation). 
+However, it is possible to put an entire project
+including grammar and the validation into one file:
+the following code illustrates a meta model with an example model
+which is validated (similar to the example in the 
+<a href="../basics/#validation">introductory example of validation</a>).</p>
+<p><img alt="Meta Model Example" classes="uml MetaModelExample" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgaGVpZ2h0PSIzMzdweCIgc3R5bGU9IndpZHRoOjMxMnB4O2hlaWdodDozMzdweDsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMxMiAzMzciIHdpZHRoPSIzMTJweCI+PGRlZnM+PGZpbHRlciBoZWlnaHQ9IjMwMCUiIGlkPSJmMSIgd2lkdGg9IjMwMCUiIHg9Ii0xIiB5PSItMSI+PGZlR2F1c3NpYW5CbHVyIHJlc3VsdD0iYmx1ck91dCIgc3RkRGV2aWF0aW9uPSIyLjAiLz48ZmVDb2xvck1hdHJpeCBpbj0iYmx1ck91dCIgcmVzdWx0PSJibHVyT3V0MiIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIC40IDAiLz48ZmVPZmZzZXQgZHg9IjQuMCIgZHk9IjQuMCIgaW49ImJsdXJPdXQyIiByZXN1bHQ9ImJsdXJPdXQzIi8+PGZlQmxlbmQgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iYmx1ck91dDMiIG1vZGU9Im5vcm1hbCIvPjwvZmlsdGVyPjwvZGVmcz48Zz48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZjEpIiBoZWlnaHQ9IjYwLjgwNDciIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS41OyIgd2lkdGg9IjczIiB4PSIyMjEuNSIgeT0iMjY4Ii8+PGVsbGlwc2UgY3g9IjIzNi41IiBjeT0iMjg0IiBmaWxsPSIjQUREMUIyIiByeD0iMTEiIHJ5PSIxMSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBhdGggZD0iTTIzOS40Njg4LDI4OS42NDA2IFEyMzguODkwNiwyODkuOTM3NSAyMzguMjUsMjkwLjA4NTkgUTIzNy42MDk0LDI5MC4yMzQ0IDIzNi45MDYzLDI5MC4yMzQ0IFEyMzQuNDA2MywyOTAuMjM0NCAyMzMuMDg1OSwyODguNTg1OSBRMjMxLjc2NTYsMjg2LjkzNzUgMjMxLjc2NTYsMjgzLjgxMjUgUTIzMS43NjU2LDI4MC42ODc1IDIzMy4wODU5LDI3OS4wMzEzIFEyMzQuNDA2MywyNzcuMzc1IDIzNi45MDYzLDI3Ny4zNzUgUTIzNy42MDk0LDI3Ny4zNzUgMjM4LjI1NzgsMjc3LjUzMTMgUTIzOC45MDYzLDI3Ny42ODc1IDIzOS40Njg4LDI3Ny45ODQ0IEwyMzkuNDY4OCwyODAuNzAzMSBRMjM4Ljg0MzgsMjgwLjEyNSAyMzguMjUsMjc5Ljg1MTYgUTIzNy42NTYzLDI3OS41NzgxIDIzNy4wMzEzLDI3OS41NzgxIFEyMzUuNjg3NSwyNzkuNTc4MSAyMzUsMjgwLjY0ODQgUTIzNC4zMTI1LDI4MS43MTg4IDIzNC4zMTI1LDI4My44MTI1IFEyMzQuMzEyNSwyODUuOTA2MyAyMzUsMjg2Ljk3NjYgUTIzNS42ODc1LDI4OC4wNDY5IDIzNy4wMzEzLDI4OC4wNDY5IFEyMzcuNjU2MywyODguMDQ2OSAyMzguMjUsMjg3Ljc3MzQgUTIzOC44NDM4LDI4Ny41IDIzOS40Njg4LDI4Ni45MjE5IEwyMzkuNDY4OCwyODkuNjQwNiBaICIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjQxIiB4PSIyNTAuNSIgeT0iMjg4LjE1NDMiPkFzcGVjdDwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHgxPSIyMjIuNSIgeDI9IjI5My41IiB5MT0iMzAwIiB5Mj0iMzAwIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMzIiIHg9IjIyNy41IiB5PSIzMTQuMjEwNCI+bmFtZTwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHgxPSIyMjIuNSIgeDI9IjI5My41IiB5MT0iMzIwLjgwNDciIHkyPSIzMjAuODA0NyIvPjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMSkiIGhlaWdodD0iNjAuODA0NyIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB3aWR0aD0iODQiIHg9IjYiIHk9IjEzMCIvPjxlbGxpcHNlIGN4PSIyMSIgY3k9IjE0NiIgZmlsbD0iI0FERDFCMiIgcng9IjExIiByeT0iMTEiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxwYXRoIGQ9Ik0yMy45Njg4LDE1MS42NDA2IFEyMy4zOTA2LDE1MS45Mzc1IDIyLjc1LDE1Mi4wODU5IFEyMi4xMDk0LDE1Mi4yMzQ0IDIxLjQwNjMsMTUyLjIzNDQgUTE4LjkwNjMsMTUyLjIzNDQgMTcuNTg1OSwxNTAuNTg1OSBRMTYuMjY1NiwxNDguOTM3NSAxNi4yNjU2LDE0NS44MTI1IFExNi4yNjU2LDE0Mi42ODc1IDE3LjU4NTksMTQxLjAzMTMgUTE4LjkwNjMsMTM5LjM3NSAyMS40MDYzLDEzOS4zNzUgUTIyLjEwOTQsMTM5LjM3NSAyMi43NTc4LDEzOS41MzEzIFEyMy40MDYzLDEzOS42ODc1IDIzLjk2ODgsMTM5Ljk4NDQgTDIzLjk2ODgsMTQyLjcwMzEgUTIzLjM0MzgsMTQyLjEyNSAyMi43NSwxNDEuODUxNiBRMjIuMTU2MywxNDEuNTc4MSAyMS41MzEzLDE0MS41NzgxIFEyMC4xODc1LDE0MS41NzgxIDE5LjUsMTQyLjY0ODQgUTE4LjgxMjUsMTQzLjcxODggMTguODEyNSwxNDUuODEyNSBRMTguODEyNSwxNDcuOTA2MyAxOS41LDE0OC45NzY2IFEyMC4xODc1LDE1MC4wNDY5IDIxLjUzMTMsMTUwLjA0NjkgUTIyLjE1NjMsMTUwLjA0NjkgMjIuNzUsMTQ5Ljc3MzQgUTIzLjM0MzgsMTQ5LjUgMjMuOTY4OCwxNDguOTIxOSBMMjMuOTY4OCwxNTEuNjQwNiBaICIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjUyIiB4PSIzNSIgeT0iMTUwLjE1NDMiPlNjZW5hcmlvPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS41OyIgeDE9IjciIHgyPSI4OSIgeTE9IjE2MiIgeTI9IjE2MiIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjMyIiB4PSIxMiIgeT0iMTc2LjIxMDQiPm5hbWU8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB4MT0iNyIgeDI9Ijg5IiB5MT0iMTgyLjgwNDciIHkyPSIxODIuODA0NyIvPjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMSkiIGhlaWdodD0iNjAuODA0NyIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB3aWR0aD0iNzAiIHg9IjE2MCIgeT0iMTMwIi8+PGVsbGlwc2UgY3g9IjE3NSIgY3k9IjE0NiIgZmlsbD0iI0FERDFCMiIgcng9IjExIiByeT0iMTEiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxwYXRoIGQ9Ik0xNzcuOTY4OCwxNTEuNjQwNiBRMTc3LjM5MDYsMTUxLjkzNzUgMTc2Ljc1LDE1Mi4wODU5IFExNzYuMTA5NCwxNTIuMjM0NCAxNzUuNDA2MywxNTIuMjM0NCBRMTcyLjkwNjMsMTUyLjIzNDQgMTcxLjU4NTksMTUwLjU4NTkgUTE3MC4yNjU2LDE0OC45Mzc1IDE3MC4yNjU2LDE0NS44MTI1IFExNzAuMjY1NiwxNDIuNjg3NSAxNzEuNTg1OSwxNDEuMDMxMyBRMTcyLjkwNjMsMTM5LjM3NSAxNzUuNDA2MywxMzkuMzc1IFExNzYuMTA5NCwxMzkuMzc1IDE3Ni43NTc4LDEzOS41MzEzIFExNzcuNDA2MywxMzkuNjg3NSAxNzcuOTY4OCwxMzkuOTg0NCBMMTc3Ljk2ODgsMTQyLjcwMzEgUTE3Ny4zNDM4LDE0Mi4xMjUgMTc2Ljc1LDE0MS44NTE2IFExNzYuMTU2MywxNDEuNTc4MSAxNzUuNTMxMywxNDEuNTc4MSBRMTc0LjE4NzUsMTQxLjU3ODEgMTczLjUsMTQyLjY0ODQgUTE3Mi44MTI1LDE0My43MTg4IDE3Mi44MTI1LDE0NS44MTI1IFExNzIuODEyNSwxNDcuOTA2MyAxNzMuNSwxNDguOTc2NiBRMTc0LjE4NzUsMTUwLjA0NjkgMTc1LjUzMTMsMTUwLjA0NjkgUTE3Ni4xNTYzLDE1MC4wNDY5IDE3Ni43NSwxNDkuNzczNCBRMTc3LjM0MzgsMTQ5LjUgMTc3Ljk2ODgsMTQ4LjkyMTkgTDE3Ny45Njg4LDE1MS42NDA2IFogIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iMzgiIHg9IjE4OSIgeT0iMTUwLjE1NDMiPkNvbmZpZzwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHgxPSIxNjEiIHgyPSIyMjkiIHkxPSIxNjIiIHkyPSIxNjIiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIzMiIgeD0iMTY2IiB5PSIxNzYuMjEwNCI+bmFtZTwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHgxPSIxNjEiIHgyPSIyMjkiIHkxPSIxODIuODA0NyIgeTI9IjE4Mi44MDQ3Ii8+PHJlY3QgZmlsbD0iI0ZFRkVDRSIgZmlsdGVyPSJ1cmwoI2YxKSIgaGVpZ2h0PSI2MC44MDQ3IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHdpZHRoPSI4NCIgeD0iMTUzIiB5PSI4Ii8+PGVsbGlwc2UgY3g9IjE2OCIgY3k9IjI0IiBmaWxsPSIjQUREMUIyIiByeD0iMTEiIHJ5PSIxMSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBhdGggZD0iTTE3MC45Njg4LDI5LjY0MDYgUTE3MC4zOTA2LDI5LjkzNzUgMTY5Ljc1LDMwLjA4NTkgUTE2OS4xMDk0LDMwLjIzNDQgMTY4LjQwNjMsMzAuMjM0NCBRMTY1LjkwNjMsMzAuMjM0NCAxNjQuNTg1OSwyOC41ODU5IFExNjMuMjY1NiwyNi45Mzc1IDE2My4yNjU2LDIzLjgxMjUgUTE2My4yNjU2LDIwLjY4NzUgMTY0LjU4NTksMTkuMDMxMyBRMTY1LjkwNjMsMTcuMzc1IDE2OC40MDYzLDE3LjM3NSBRMTY5LjEwOTQsMTcuMzc1IDE2OS43NTc4LDE3LjUzMTMgUTE3MC40MDYzLDE3LjY4NzUgMTcwLjk2ODgsMTcuOTg0NCBMMTcwLjk2ODgsMjAuNzAzMSBRMTcwLjM0MzgsMjAuMTI1IDE2OS43NSwxOS44NTE2IFExNjkuMTU2MywxOS41NzgxIDE2OC41MzEzLDE5LjU3ODEgUTE2Ny4xODc1LDE5LjU3ODEgMTY2LjUsMjAuNjQ4NCBRMTY1LjgxMjUsMjEuNzE4OCAxNjUuODEyNSwyMy44MTI1IFExNjUuODEyNSwyNS45MDYzIDE2Ni41LDI2Ljk3NjYgUTE2Ny4xODc1LDI4LjA0NjkgMTY4LjUzMTMsMjguMDQ2OSBRMTY5LjE1NjMsMjguMDQ2OSAxNjkuNzUsMjcuNzczNCBRMTcwLjM0MzgsMjcuNSAxNzAuOTY4OCwyNi45MjE5IEwxNzAuOTY4OCwyOS42NDA2IFogIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iNTIiIHg9IjE4MiIgeT0iMjguMTU0MyI+VGVzdGNhc2U8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB4MT0iMTU0IiB4Mj0iMjM2IiB5MT0iNDAiIHkyPSI0MCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjMyIiB4PSIxNTkiIHk9IjU0LjIxMDQiPm5hbWU8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB4MT0iMTU0IiB4Mj0iMjM2IiB5MT0iNjAuODA0NyIgeTI9IjYwLjgwNDciLz48cGF0aCBkPSJNMTAzLjI1MzMsMTYwLjUgQzEyMi4xMDEsMTYwLjUgMTQwLjk0OCwxNjAuNSAxNTkuNzk1LDE2MC41ICIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBvbHlnb24gZmlsbD0iI0E4MDAzNiIgcG9pbnRzPSI5MC4yMDUxLDE2MC41LDk2LjIwNTEsMTY0LjUsMTAyLjIwNTEsMTYwLjUsOTYuMjA1MSwxNTYuNSw5MC4yMDUxLDE2MC41IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4IiB4PSIxNDQuMDc2NSIgeT0iMTU2LjEyMjYiPm48L3RleHQ+PHBhdGggZD0iTTE0OC40NTcsNzcuNDk1IEMxMjcuNjgsOTQuNDU1IDEwMy41NjY4LDExNC4xMzkgODQuMTczNSwxMjkuOTcxICIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBvbHlnb24gZmlsbD0iI0ZGRkZGRiIgcG9pbnRzPSIxNTguNjYzLDY5LjE2MywxNTEuNDg1NSw2OS44NTg2LDE0OS4zNjcsNzYuNzUxNCwxNTYuNTQ0NSw3Ni4wNTU5LDE1OC42NjMsNjkuMTYzIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4IiB4PSI4My4yMTE1IiB5PSIxMTguNzU0OSI+MTwvdGV4dD48cGF0aCBkPSJNMTk1LDgyLjM5MSBDMTk1LDk4LjA4IDE5NSwxMTUuNDczIDE5NSwxMjkuNzYyICIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBvbHlnb24gZmlsbD0iI0ZGRkZGRiIgcG9pbnRzPSIxOTUsNjkuMTYzLDE5MSw3NS4xNjMsMTk1LDgxLjE2MywxOTksNzUuMTYzLDE5NSw2OS4xNjMiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjgiIHg9IjE4Ni4xNzUiIHk9IjExOC45NzYxIj4xPC90ZXh0PjxwYXRoIGQ9Ik0yMTQuMjU1LDIwMy4wNjYgQzIyMy45MDMsMjIzLjg5NSAyMzUuMzY4LDI0OC42NDI4IDI0NC4xMzksMjY3LjU3OCAiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iMjA4LjY3LDE5MS4wMSwyMDcuNTYyNSwxOTguMTM1NiwyMTMuNzE0LDIwMS44OTg0LDIxNC44MjE1LDE5NC43NzI5LDIwOC42NywxOTEuMDEiIHN0eWxlPSJzdHJva2U6ICNBODAwMzY7IHN0cm9rZS13aWR0aDogMS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEzIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjM5IiB4PSIyMzIiIHk9IjIzNC4wNjY5Ij5oYXZlczwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4IiB4PSIyMzIuNDU1MiIgeT0iMjU2Ljc1NDIiPm48L3RleHQ+PHBhdGggZD0iTTIyMS4zMzMsODAuMzY1IEMyNDIuMjk0LDExNS44NzcgMjY5LjQ3OCwxNjkuNTU5IDI3OCwyMjEgQzI4MC42MDIsMjM2LjcxIDI3Ni43NCwyNTMuODg5OSAyNzEuNzM3LDI2Ny45ODIxICIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBvbHlnb24gZmlsbD0iI0ZGRkZGRiIgcG9pbnRzPSIyMTQuNDk5LDY5LjA0OCwyMTQuMTc2NCw3Ni4yNTE5LDIyMC43MDIsNzkuMzIwNCwyMjEuMDI0Niw3Mi4xMTY1LDIxNC40OTksNjkuMDQ4IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIzOSIgeD0iMjcyIiB5PSIxNjUuMDY2OSI+bmVlZHM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGxlbmd0aEFkanVzdD0ic3BhY2luZ0FuZEdseXBocyIgdGV4dExlbmd0aD0iOCIgeD0iMjY1Ljg2NyIgeT0iMjU2Ljc2ODUiPm48L3RleHQ+PC9nPjwvc3ZnPg==" title="" /></p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_str</span>
+<span class="kn">from</span> <span class="nn">textx.scoping.providers</span> <span class="kn">import</span> <span class="n">RelativeName</span><span class="p">,</span> <span class="n">FQN</span>
+<span class="kn">from</span> <span class="nn">textx.export</span> <span class="kn">import</span> <span class="n">model_export</span>
+<span class="c1"># ------------------------------------</span>
+<span class="c1"># GRAMMAR</span>
+<span class="c1">#</span>
+<span class="n">meta_model</span> <span class="o">=</span> <span class="n">metamodel_from_str</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    Model: aspects+=Aspect scenarios+=Scenario testcases+=Testcase;</span>
+<span class="s1">    Scenario: &#39;SCENARIO&#39; name=ID &#39;BEGIN&#39; </span>
+<span class="s1">        configs+=Config</span>
+<span class="s1">    &#39;END&#39;;</span>
+<span class="s1">    Config: &#39;CONFIG&#39; name=ID &#39;HAS&#39; &#39;(&#39; haves*=[Aspect] &#39;)&#39;;</span>
+<span class="s1">    Aspect: &#39;ASPECT&#39; name=ID;</span>
+<span class="s1">    Testcase: &#39;TESTCASE&#39; name=ID &#39;BEGIN&#39;</span>
+<span class="s1">        &#39;USES&#39; scenario=[Scenario] &#39;WITH&#39; config=[Config]</span>
+<span class="s1">        &#39;NEEDS&#39; &#39;(&#39; needs*=[Aspect] &#39;)&#39;</span>
+<span class="s1">    &#39;END&#39;;</span>
+<span class="s1">    Comment: /\/\/.*/;</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># ------------------------------------</span>
+<span class="c1"># SCOPING</span>
+<span class="c1">#</span>
+<span class="n">meta_model</span><span class="o">.</span><span class="n">register_scope_providers</span><span class="p">({</span>
+    <span class="s1">&#39;*.*&#39;</span><span class="p">:</span> <span class="n">FQN</span><span class="p">(),</span>
+    <span class="s1">&#39;Testcase.config&#39;</span><span class="p">:</span> <span class="n">RelativeName</span><span class="p">(</span><span class="s1">&#39;scenario.configs&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># ------------------------------------</span>
+<span class="c1"># VALIDATION</span>
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">check_testcase</span><span class="p">(</span><span class="n">testcase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    checks that the config used by the testcase fulfills its needs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">need</span> <span class="ow">in</span> <span class="n">testcase</span><span class="o">.</span><span class="n">needs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">need</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">testcase</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">haves</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;{}: {} not found in {}.{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">testcase</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">need</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> 
+                    <span class="n">testcase</span><span class="o">.</span><span class="n">scenario</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">testcase</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">name</span>
+                    <span class="p">))</span>
+
+<span class="n">meta_model</span><span class="o">.</span><span class="n">register_obj_processors</span><span class="p">({</span>
+        <span class="s1">&#39;Testcase&#39;</span><span class="p">:</span> <span class="n">check_testcase</span>
+<span class="p">})</span>
+
+<span class="c1"># ------------------------------------</span>
+<span class="c1"># EXAMPLE</span>
+<span class="c1">#</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">meta_model</span><span class="o">.</span><span class="n">model_from_str</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    ASPECT NetworkTraffic</span>
+<span class="s1">    ASPECT FileAccess</span>
+<span class="s1">    SCENARIO S001 BEGIN</span>
+<span class="s1">        CONFIG HeavyNetworkTraffic HAS (NetworkTraffic)</span>
+<span class="s1">        CONFIG NoNetworkTraffic HAS ()</span>
+<span class="s1">    END</span>
+<span class="s1">    SCENARIO S002 BEGIN</span>
+<span class="s1">        CONFIG WithFileAccess HAS (NetworkTraffic FileAccess)</span>
+<span class="s1">        CONFIG NoFileAccess HAS (NetworkTraffic)</span>
+<span class="s1">    END</span>
+<span class="s1">    TESTCASE T001 BEGIN</span>
+<span class="s1">        USES S001 WITH HeavyNetworkTraffic</span>
+<span class="s1">        NEEDS (NetworkTraffic)</span>
+<span class="s1">    END</span>
+<span class="s1">    TESTCASE T002 BEGIN</span>
+<span class="s1">        //USES S001 WITH NoNetworkTraffic // Error</span>
+<span class="s1">        USES S002 WITH NoFileAccess</span>
+<span class="s1">        NEEDS (NetworkTraffic)</span>
+<span class="s1">    END</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">model_export</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;model.dot&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="model.dot" src="../images/textx_simple_model_dot.svg" title="model.dot" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../textx_project_setup/" class="btn btn-neutral float-right" title="TextX Project Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../xtext_xtend/" class="btn btn-neutral" title="Xtend: Selected Aspects"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../xtext_xtend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../textx_project_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

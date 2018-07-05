@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Eclipse - self-dsl</title>
+  <title>TextX by Examples - self-dsl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Eclipse";
-    var mkdocs_page_input_path = "xtext_eclipse.md";
-    var mkdocs_page_url = "/xtext_eclipse/";
+    var mkdocs_page_name = "TextX by Examples";
+    var mkdocs_page_input_path = "textx_by_examples.md";
+    var mkdocs_page_url = "/textx_by_examples/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -66,21 +66,9 @@
 		
     <span class="caption-text">Xtext</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Eclipse</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#xtext-and-eclipse">Xtext and Eclipse</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#download-and-install">Download and install</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../xtext_eclipse/">Eclipse</a>
                 </li>
                 <li class="">
                     
@@ -125,9 +113,15 @@
                     
     <a class="" href="../textx_project_setup/">TextX Project Setup</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../textx_by_examples/">TextX by Examples</a>
+    <a class="current" href="./">TextX by Examples</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#textx-by-examples">TextX by Examples</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -159,11 +153,11 @@
     
       
         
-          <li>Xtext &raquo;</li>
+          <li>TextX &raquo;</li>
         
       
     
-    <li>Eclipse</li>
+    <li>TextX by Examples</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -173,29 +167,18 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="xtext-and-eclipse">Xtext and Eclipse</h1>
-<p>Xtext is integrated in Eclispe.
-To run this tutorial (using Xtext) you need to install Eclipse with the appropriate
-plugins (current version: Oxygen).</p>
-<p>Note: The parser "Antlr" is not distributed with eclipse. You need to install
-it manually <a href="http://download.itemis.de/updates">(itemis update site)</a>,
-else it will be downloaded for every Xtext project you create.</p>
-<h2 id="download-and-install">Download and install</h2>
-<p>Download the package
-<a href="http://www.eclipse.org/downloads/packages/">"Eclipse Modeling"</a>.
-Unpack the archive to make eclipse available.</p>
-<div class="codehilite"><pre><span></span>root@xtext:~/Download# ls
-eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
-root@xtext:~/Download# tar xzf eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
-root@xtext:~/Download# mv eclipse /opt/
-root@xtext:~/Download# /opt/eclipse/eclipse <span class="p">&amp;</span>
-</pre></div>
-
-
-<p>To complete the installation you need "Install Modeling Components" from the
-"Help" menu entry. Select the "Xtext" entry and "Finish" the installation by
-restarting eclipse.</p>
-<p><img alt="install dialog" src="../images/xtext_install.png" title="select the Xtext component" /></p>
+                <h1 id="textx-by-examples">TextX by Examples</h1>
+<p>The <a href="../references/#textx">TextX project page</a>
+gives a nice introduction to the concepts of TextX.
+Read the docs to explore different aspects, like
+the grammar or scoping. The unittests are
+also a great source of information, because they contain
+many examples for different topics.</p>
+<p>Note: validators are implemented as so-called object_processors.
+These object_processors are meant to post process the
+parsed model (possibly modifying the model). They can also
+be used to raise exceptions in order to indicate a logical
+domain error (as in the <a href="../textx_intro/">initial example</a>).</p>
               
             </div>
           </div>
@@ -203,10 +186,10 @@ restarting eclipse.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../xtext_project_setup/" class="btn btn-neutral float-right" title="Xtext Project Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../references/" class="btn btn-neutral float-right" title="References">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../basics/" class="btn btn-neutral" title="Basics of meta modeling for domain models"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../textx_project_setup/" class="btn btn-neutral" title="TextX Project Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -232,10 +215,10 @@ restarting eclipse.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../basics/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../textx_project_setup/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../xtext_project_setup/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../references/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

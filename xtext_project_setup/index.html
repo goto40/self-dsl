@@ -121,7 +121,15 @@
     <ul class="subnav">
                 <li class="">
                     
+    <a class="" href="../textx_intro/">TextX Intro</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../textx_project_setup/">TextX Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../textx_by_examples/">TextX by Examples</a>
                 </li>
     </ul>
 	    </li>
@@ -223,11 +231,10 @@ An example grammar definition is created and opened in the editor.</p>
     "Do you want to convert ... to an Xtext Project".</li>
 </ul>
 <p>Now you can play with your new language (type CTRL-Space to get auto
-completion). Enter the following exmaple:</p>
-<p><img alt="project list" src="../images/xtext_project_list.png" title="Xtext project list" /></p>
-<div class="codehilite"><pre><span></span>Hello Pierre!
-Hello Tim!
-Hello Markus!
+completion). Enter the following example:</p>
+<div class="codehilite"><pre><span></span><span class="err">Hello Pierre!</span>
+<span class="err">Hello Tim!</span>
+<span class="err">Hello Markus!</span>
 </pre></div>
 
 
@@ -235,12 +242,12 @@ Hello Markus!
 initialization) may look as follows. A "Model" contains "Greetings".
 Every "Greeting" consists of the Text 'Hello' and a name followed by '!'
 (details later).</p>
-<div class="codehilite"><pre><span></span><span class="k">grammar</span> <span class="n">org</span>.<span class="n">xtext</span>.<span class="n">example</span>.<span class="n">mydsl</span>.<span class="n">MyDsl</span> <span class="n">with</span> <span class="n">org</span>.<span class="n">eclipse</span>.<span class="n">xtext</span>.<span class="n">common</span>.<span class="n">Terminals</span>
-<span class="n">generate</span> <span class="n">myDsl</span> <span class="s">&quot;http://www.xtext.org/example/mydsl/MyDsl&quot;</span>
-<span class="n">Model:</span>
-    <span class="n">greetings</span>+=<span class="n">Greeting</span>*;
-<span class="n">Greeting:</span>
-    <span class="s">&#39;Hello&#39;</span> <span class="nb">name</span>=<span class="n">ID</span> <span class="s">&#39;!&#39;</span>;
+<div class="codehilite"><pre><span></span><span class="nl">grammar</span><span class="w"> </span><span class="err">org.xtext.example.mydsl.MyDsl</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">org.eclipse.xtext.common.Terminals</span><span class="w"></span>
+<span class="err">generate</span><span class="w"> </span><span class="err">myDsl</span><span class="w"> </span><span class="err">&quot;http</span><span class="p">:</span><span class="c">//www.xtext.org/example/mydsl/MyDsl&quot;</span><span class="w"></span>
+<span class="no">Model</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nv">greetings</span><span class="o">+=</span><span class="no">Greeting</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Greeting</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="s">&#39;Hello&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;!&#39;</span><span class="p">;</span><span class="w"></span>
 </pre></div>
               
             </div>
