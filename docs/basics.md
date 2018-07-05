@@ -290,7 +290,7 @@ availabe in the referenced "configuration", a logical error is reported
 __Rationale__ for choosing a validation over a scoping solution in this case:
 When modeling a situation where a "configuration" is chosen by a "testcase"
 without providing the correct "aspects", one would not like to get a
-"configuration ot found", which would result if only "configurations" with matching
+"configuration not found", which would result if only "configurations" with matching
 "aspects" are defined in the __scope__ of a "testcase". In contrast, the
 __validation__ will allow all "configurations" of the selected "scenario" of
 a "testcase" to be visible, but some of them will produce a
@@ -323,6 +323,7 @@ Testcase o-- "n" Aspect: needs
 A model with validation error (__"configuration 'config_B' does not provide the aspect 'aspect_X' required
 by testcase 'test_T1'"__) is shown as follows:
 
+    :::java
     scenario scenario_001 {
         configuration config_A has {aspect_X}
         configuration config_B has {aspect_Y}
@@ -359,6 +360,7 @@ config_B o-[bold,dashed,#red]- aspect_X : not part of haves
 
 A model without validation error is shown as follows:
 
+    :::java
     scenario scenario_001 {
         configuration config_A has {aspect_X}
         configuration config_B has {aspect_Y, aspect_X}

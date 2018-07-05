@@ -56,10 +56,9 @@ In the new Eclipse instance the new language can be used:
     "Do you want to convert ... to an Xtext Project".
 
 Now you can play with your new language (type CTRL-Space to get auto
-completion). Enter the following exmaple:
+completion). Enter the following example:
 
-![project list](images/xtext_project_list.png "Xtext project list")
-
+    :::raw
     Hello Pierre!
     Hello Tim!
     Hello Markus!
@@ -69,6 +68,7 @@ initialization) may look as follows. A "Model" contains "Greetings".
 Every "Greeting" consists of the Text 'Hello' and a name followed by '!'
 (details later).
 
+    :::antlr
     grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
     generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
     Model:
