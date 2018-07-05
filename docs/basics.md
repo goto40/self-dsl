@@ -357,7 +357,6 @@ config_B o- aspect_Y: haves
 config_B o-[bold,dashed,#red]- aspect_X : not part of haves
 ::end-uml::
 
-
 A model without validation error is shown as follows:
 
     :::java
