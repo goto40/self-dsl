@@ -1,0 +1,46 @@
+
+    digraph xtext {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+140361469578376 -> 140361470245464 [label="aspects:0" arrowtail=diamond dir=both]
+140361470245464[label="{NetworkTraffic:Aspect|}"]
+140361469578376 -> 140361470245128 [label="aspects:1" arrowtail=diamond dir=both]
+140361470245128[label="{FileAccess:Aspect|}"]
+140361469578376 -> 140361470246752 [label="scenarios:0" arrowtail=diamond dir=both]
+140361470246752 -> 140361470243840 [label="configs:0" arrowtail=diamond dir=both]
+140361470243840 -> 140361470245464 [label="haves:0" ]
+140361470243840[label="{HeavyNetworkTraffic:Config|}"]
+140361470246752 -> 140361470242888 [label="configs:1" arrowtail=diamond dir=both]
+140361470242888[label="{NoNetworkTraffic:Config|haves:list=[]\l}"]
+140361470246752[label="{S001:Scenario|}"]
+140361469578376 -> 140361470244680 [label="scenarios:1" arrowtail=diamond dir=both]
+140361470244680 -> 140361470243112 [label="configs:0" arrowtail=diamond dir=both]
+140361470243112 -> 140361470245464 [label="haves:0" ]
+140361470243112 -> 140361470245128 [label="haves:1" ]
+140361470243112[label="{WithFileAccess:Config|}"]
+140361470244680 -> 140361470243896 [label="configs:1" arrowtail=diamond dir=both]
+140361470243896 -> 140361470245464 [label="haves:0" ]
+140361470243896[label="{NoFileAccess:Config|}"]
+140361470244680[label="{S002:Scenario|}"]
+140361469578376 -> 140361470244960 [label="testcases:0" arrowtail=diamond dir=both]
+140361470244960 -> 140361470246752 [label="scenario" ]
+140361470244960 -> 140361470243840 [label="config" ]
+140361470244960 -> 140361470245464 [label="needs:0" ]
+140361470244960[label="{T001:Testcase|}"]
+140361469578376 -> 140361470243784 [label="testcases:1" arrowtail=diamond dir=both]
+140361470243784 -> 140361470244680 [label="scenario" ]
+140361470243784 -> 140361470243896 [label="config" ]
+140361470243784 -> 140361470245464 [label="needs:0" ]
+140361470243784[label="{T002:Testcase|}"]
+140361469578376[label="{:Model|}"]
+
+}
