@@ -3,6 +3,7 @@ theme: readthedocs
 markdown_extensions:
  - codehilite
  - plantuml
+ - shellcmd
 pages:
  - 'index.md'
  - 'motivation.md'
