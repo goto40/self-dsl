@@ -116,6 +116,16 @@
             
     <li class="toctree-l3"><a href="#textx-project-setup">TextX Project Setup</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l4" href="#file-structure">File structure</a></li>
+        
+            <li><a class="toctree-l4" href="#edit-run-and-test">Edit, Run and Test</a></li>
+        
+            <li><a class="toctree-l4" href="#installuninstall-the-language">Install/Uninstall the Language</a></li>
+        
+        </ul>
+    
 
     </ul>
                 </li>
@@ -176,7 +186,264 @@ the <strong>meta model structure</strong> (grammar), the <strong>scoping</strong
 and the <strong> artifact generation</strong>. Moreover, a 
 <strong>main</strong> and a <strong>setup</strong> script are added to control
 the software.</p>
-<p>TODO</p>
+<p>For this example we use Python 3. You need to install </p>
+<ul>
+<li>TextX (see <a href="../references/">references</a>).</li>
+<li>Arpeggio (see TextX in <a href="../references/">references</a>)</li>
+<li>pytest (for unittests)</li>
+</ul>
+<p>Using pip you can:</p>
+<div class="codehilite"><pre><span></span>pip3 install --upgrade textx arpeggio pytest
+</pre></div>
+
+
+<h2 id="file-structure">File structure</h2>
+<p>Although everything can be packed within one file
+(see <a href="../textx_intro/">"TextX Intro"</a>), the code
+is better structured into different modules 
+with individual responsibilities into different files.</p>
+<div class="codehilite"><pre><span></span>├── setup.py
+├── simple_dsl
+│   ├── codegen.py
+│   ├── console
+│   │   ├── __init__.py
+│   │   └── validate.py
+│   ├── __init__.py
+│   ├── metamodel.py
+│   └── validation.py
+└── tests
+    ├── models
+    │   ├── model_not_ok.dsl
+    │   └── model_ok.dsl
+    └── test_validation.py
+</pre></div>
+
+
+<p>We have chosen a distribution as follows:</p>
+<ul>
+<li>setup.py is the standard python project configuration</li>
+<li>simple_dsl contain all dsl related logic:<ul>
+<li>codegen.py: code generation.</li>
+<li>metamodel.py: the meta model (grammar, scoping and validation config;
+  the user classes are also stored herem but could be moved
+  elsewhere for more complex projects.   </li>
+<li>validation.py: validation logic.</li>
+<li>console/*.py: console programs (configured in setup.py).</li>
+<li>__init__.py represent module entry points.</li>
+</ul>
+</li>
+<li>tests contains unittests.</li>
+</ul>
+<h3 id="file-metamodelpy">File: metamodel.py</h3>
+<p>Here, we define the grammar. We allocate the scope providers to
+individual elements, and register validation code.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_str</span>
+<span class="kn">from</span> <span class="nn">textx.scoping.providers</span> <span class="kn">import</span> <span class="n">RelativeName</span><span class="p">,</span> <span class="n">FQN</span>
+<span class="kn">import</span> <span class="nn">simple_dsl.validation</span> <span class="kn">as</span> <span class="nn">validation</span>
+
+<span class="k">def</span> <span class="nf">get_metamodel</span><span class="p">():</span>
+    <span class="c1"># GRAMMAR</span>
+    <span class="c1"># (you also use metamodel_from_file with a *.tx file)</span>
+    <span class="n">meta_model</span> <span class="o">=</span> <span class="n">metamodel_from_str</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        Model: aspects+=Aspect scenarios+=Scenario testcases+=Testcase;</span>
+<span class="s1">        Scenario: &#39;SCENARIO&#39; name=ID &#39;BEGIN&#39; </span>
+<span class="s1">            configs+=Config</span>
+<span class="s1">        &#39;END&#39;;</span>
+<span class="s1">        Config: &#39;CONFIG&#39; name=ID &#39;HAS&#39; &#39;(&#39; haves*=[Aspect] &#39;)&#39;;</span>
+<span class="s1">        Aspect: &#39;ASPECT&#39; name=ID;</span>
+<span class="s1">        Testcase: &#39;TESTCASE&#39; name=ID &#39;BEGIN&#39;</span>
+<span class="s1">            &#39;USES&#39; scenario=[Scenario] &#39;WITH&#39; config=[Config]</span>
+<span class="s1">            &#39;NEEDS&#39; &#39;(&#39; needs*=[Aspect] &#39;)&#39;</span>
+<span class="s1">        &#39;END&#39;;</span>
+<span class="s1">        Comment: /\/\/.*/;</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">)</span>
+
+    <span class="c1"># SCOPING</span>
+    <span class="n">meta_model</span><span class="o">.</span><span class="n">register_scope_providers</span><span class="p">({</span>
+        <span class="s1">&#39;*.*&#39;</span><span class="p">:</span> <span class="n">FQN</span><span class="p">(),</span>
+        <span class="s1">&#39;Testcase.config&#39;</span><span class="p">:</span> <span class="n">RelativeName</span><span class="p">(</span><span class="s1">&#39;scenario.configs&#39;</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="c1"># ADD VALIDATION</span>
+    <span class="n">meta_model</span><span class="o">.</span><span class="n">register_obj_processors</span><span class="p">({</span>
+            <span class="s1">&#39;Testcase&#39;</span><span class="p">:</span> <span class="n">validation</span><span class="o">.</span><span class="n">check_testcase</span>
+    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">meta_model</span>
+</pre></div>
+
+
+<h3 id="file-validationpy">File:: validation.py</h3>
+<p>This file contains validation functions registered in the meta model.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx.exceptions</span> <span class="kn">import</span> <span class="n">TextXError</span>
+<span class="kn">from</span> <span class="nn">textx.scoping.tools</span> <span class="kn">import</span> <span class="n">get_location</span>
+
+<span class="k">def</span> <span class="nf">check_testcase</span><span class="p">(</span><span class="n">testcase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    checks that the config used by the testcase fulfills its needs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">need</span> <span class="ow">in</span> <span class="n">testcase</span><span class="o">.</span><span class="n">needs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">need</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">testcase</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">haves</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="p">(</span><span class="n">TextXError</span><span class="p">(</span><span class="s2">&quot;{}: {} not found in {}.{}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">testcase</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">need</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> 
+                    <span class="n">testcase</span><span class="o">.</span><span class="n">scenario</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">testcase</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">name</span>
+                    <span class="p">),</span>
+                <span class="o">**</span><span class="n">get_location</span><span class="p">(</span><span class="n">testcase</span><span class="p">)</span> <span class="c1"># unpack location info</span>
+            <span class="p">))</span>
+</pre></div>
+
+
+<h3 id="file-teststest_validationpy">File: tests/test_validation.py</h3>
+<p>This file is a unittest using the metamodel 
+(exposed via __init__.py) and checks the
+correct functionality of the validation code.</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">raises</span>
+<span class="kn">from</span> <span class="nn">simple_dsl</span> <span class="kn">import</span> <span class="n">get_metamodel</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
+<span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">get_children_of_type</span>
+
+<span class="k">def</span> <span class="nf">test_validation_ok</span><span class="p">():</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">get_metamodel</span><span class="p">()</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">mm</span><span class="o">.</span><span class="n">model_from_file</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+                            <span class="s1">&#39;models&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;model_ok.dsl&#39;</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="mi">2</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">get_children_of_type</span><span class="p">(</span><span class="s1">&#39;Aspect&#39;</span><span class="p">,</span><span class="n">m</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">test_validation_not_ok</span><span class="p">():</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">get_metamodel</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">raises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">,</span>
+                <span class="n">match</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;NetworkTraffic.*not found.*S001.*NoNetworkTraffic&#39;</span><span class="p">):</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">mm</span><span class="o">.</span><span class="n">model_from_file</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+                                <span class="s1">&#39;models&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;model_not_ok.dsl&#39;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>The two model files used in this tests are shown in the following 
+subsections.</p>
+<h4 id="model-testsmodelsmodel_okdsl">Model: tests/models/model_ok.dsl</h4>
+<div class="codehilite"><pre><span></span><span class="n">ASPECT</span> <span class="n">NetworkTraffic</span>
+<span class="n">ASPECT</span> <span class="n">FileAccess</span>
+<span class="n">SCENARIO</span> <span class="n">S001</span> <span class="n">BEGIN</span>
+    <span class="n">CONFIG</span> <span class="n">HeavyNetworkTraffic</span> <span class="nf">HAS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+    <span class="n">CONFIG</span> <span class="n">NoNetworkTraffic</span> <span class="nf">HAS</span> <span class="o">()</span>
+<span class="n">END</span>
+<span class="n">SCENARIO</span> <span class="n">S002</span> <span class="n">BEGIN</span>
+    <span class="n">CONFIG</span> <span class="n">WithFileAccess</span> <span class="nf">HAS</span> <span class="o">(</span><span class="n">NetworkTraffic</span> <span class="n">FileAccess</span><span class="o">)</span>
+    <span class="n">CONFIG</span> <span class="n">NoFileAccess</span> <span class="nf">HAS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+<span class="n">END</span>
+<span class="n">TESTCASE</span> <span class="n">T001</span> <span class="n">BEGIN</span>
+    <span class="n">USES</span> <span class="n">S001</span> <span class="n">WITH</span> <span class="n">HeavyNetworkTraffic</span>
+    <span class="nf">NEEDS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+<span class="n">END</span>
+<span class="n">TESTCASE</span> <span class="n">T002</span> <span class="n">BEGIN</span>
+    <span class="n">USES</span> <span class="n">S001</span> <span class="n">WITH</span> <span class="n">NoNetworkTraffic</span> <span class="c1">// Error</span>
+    <span class="c1">//USES S002 WITH NoFileAccess</span>
+    <span class="n">NEEDS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+<span class="n">END</span>
+</pre></div>
+
+
+<h4 id="model-testsmodelsmodel_not_okdsl">Model: tests/models/model_not_ok.dsl</h4>
+<div class="codehilite"><pre><span></span><span class="n">ASPECT</span> <span class="n">NetworkTraffic</span>
+<span class="n">ASPECT</span> <span class="n">FileAccess</span>
+<span class="n">SCENARIO</span> <span class="n">S001</span> <span class="n">BEGIN</span>
+    <span class="n">CONFIG</span> <span class="n">HeavyNetworkTraffic</span> <span class="nf">HAS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+    <span class="n">CONFIG</span> <span class="n">NoNetworkTraffic</span> <span class="nf">HAS</span> <span class="o">()</span>
+<span class="n">END</span>
+<span class="n">SCENARIO</span> <span class="n">S002</span> <span class="n">BEGIN</span>
+    <span class="n">CONFIG</span> <span class="n">WithFileAccess</span> <span class="nf">HAS</span> <span class="o">(</span><span class="n">NetworkTraffic</span> <span class="n">FileAccess</span><span class="o">)</span>
+    <span class="n">CONFIG</span> <span class="n">NoFileAccess</span> <span class="nf">HAS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+<span class="n">END</span>
+<span class="n">TESTCASE</span> <span class="n">T001</span> <span class="n">BEGIN</span>
+    <span class="n">USES</span> <span class="n">S001</span> <span class="n">WITH</span> <span class="n">HeavyNetworkTraffic</span>
+    <span class="nf">NEEDS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+<span class="n">END</span>
+<span class="n">TESTCASE</span> <span class="n">T002</span> <span class="n">BEGIN</span>
+    <span class="c1">//USES S001 WITH NoNetworkTraffic // Error</span>
+    <span class="n">USES</span> <span class="n">S002</span> <span class="n">WITH</span> <span class="n">NoFileAccess</span>
+    <span class="nf">NEEDS</span> <span class="o">(</span><span class="n">NetworkTraffic</span><span class="o">)</span>
+<span class="n">END</span>
+</pre></div>
+
+
+<h2 id="edit-run-and-test">Edit, Run and Test</h2>
+<p>Use an appropriate IDE (e.g., PyCharm) to run the tests and, thus, test and debug your 
+new language.</p>
+<h2 id="installuninstall-the-language">Install/Uninstall the Language</h2>
+<p>After all tests passed you can try to install your language.
+Do not forget to adapt setup.py:</p>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span><span class="n">find_packages</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;simple_dsl&#39;</span><span class="p">,</span>
+      <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+      <span class="n">description</span><span class="o">=</span><span class="s1">&#39;a simple model validator and artifact compiler&#39;</span><span class="p">,</span>
+      <span class="n">url</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+      <span class="n">author</span><span class="o">=</span><span class="s1">&#39;YOUR NAME&#39;</span><span class="p">,</span>
+      <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;YOUR.NAME@ADDRESS&#39;</span><span class="p">,</span>
+      <span class="n">license</span><span class="o">=</span><span class="s1">&#39;TODO&#39;</span><span class="p">,</span>
+      <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+      <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;*.tx&#39;</span><span class="p">,</span> <span class="s1">&#39;*.template&#39;</span><span class="p">,</span> <span class="s1">&#39;support_*_code/**/*&#39;</span><span class="p">]},</span>
+      <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;textx&quot;</span><span class="p">,</span><span class="s2">&quot;arpeggio&quot;</span><span class="p">],</span>
+      <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span>
+          <span class="s1">&#39;pytest&#39;</span><span class="p">,</span>
+      <span class="p">],</span>
+      <span class="n">keywords</span><span class="o">=</span><span class="s2">&quot;parser meta-language meta-model language DSL&quot;</span><span class="p">,</span>
+      <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+          <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="s1">&#39;simple_dsl_validate=simple_dsl.console.validate:validate&#39;</span><span class="p">,</span>
+          <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="p">)</span>
+
+
+<span class="c1"># to play around without installing: do &quot;export PYTHONPATH=.&quot;</span>
+</pre></div>
+
+
+<p>The registered console command (validate.py) contains:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">simple_dsl</span> <span class="kn">import</span> <span class="n">get_metamodel</span>
+
+<span class="k">def</span> <span class="nf">validate</span><span class="p">():</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">get_metamodel</span><span class="p">()</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;validate simple_dsl files.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;model_files&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;model_files&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;model filenames&#39;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">model_files</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;validating {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">mm</span><span class="o">.</span><span class="n">model_from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s1">&#39;  WARNING/ERROR: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">validate</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="installation">Installation</h3>
+<p><strong>Install</strong> the software <strong>permanently for all users</strong> (change directory
+to the folder with the setup.py file):</p>
+<div class="codehilite"><pre><span></span>sudo -H pip3 install --upgrade .
+</pre></div>
+
+
+<p>You can now start the new commands defined in the setup.py: </p>
+<div class="codehilite"><pre><span></span>simple_dsl_validate --help
+</pre></div>
+
+
+<h3 id="uninstallation">Uninstallation</h3>
+<p><strong>Uninstall</strong> the software:</p>
+<div class="codehilite"><pre><span></span>sudo -H pip3 uninstall simple_dsl
+</pre></div>
               
             </div>
           </div>
