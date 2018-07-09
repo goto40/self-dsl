@@ -13,6 +13,8 @@ like self-html... but for DSLs
 ## run live preview (locally)
 
     sh run_server.sh
+
+Then, open http://localhost:8000
    
 
 ## deploy new version
