@@ -41,5 +41,5 @@ The annotation "@Fix" marks a method as Quickfix-method and
 controls the mapping to the validation ID.
 
 Note: relevant details concerning Xtend are discussed in
-[this section](textx_xtend.md)
+[this section](xtext_xtend.md)
 (e.g., the meaning of „val“, „as“, etc.).
