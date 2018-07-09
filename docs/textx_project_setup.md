@@ -24,7 +24,7 @@ Using pip you can:
 ## File structure
 
 Although everything can be packed within one file
-(see [simple.py](examples/textx/simple/simple.py)), the code
+(see ["TextX Intro"](textx_intro.md)), the code
 is better structured into different modules 
 with individual responsibilities into different files.
 
@@ -89,3 +89,45 @@ cat docs/examples/textx/simple_project/tests/models/model_not_ok.dsl
 echo "::java"
 cat docs/examples/textx/simple_project/tests/models/model_ok.dsl
 ::shellcmd-end:: 
+
+## Edit, Run and Test
+
+Use an appropriate IDE (e.g., PyCharm) to run the tests and, thus, test and debug your 
+new language.
+
+## Install/Uninstall the Language
+
+After all tests passed you can try to install your language.
+Do not forget to adapt setup.py:
+
+::shellcmd-start:: 
+echo "::python"
+cat docs/examples/textx/simple_project/setup.py
+::shellcmd-end:: 
+
+The registered console command (validate.py) contains:
+
+::shellcmd-start:: 
+echo "::python"
+cat docs/examples/textx/simple_project/simple_dsl/console/validate.py
+::shellcmd-end:: 
+
+### Installation
+__Install__ the software __permanently for all users__ (change directory
+to the folder with the setup.py file):
+
+    ::shell
+    sudo -H pip3 install --upgrade .
+
+You can now start the new commands defined in the setup.py: 
+
+    ::shell
+    simple_dsl_validate --help
+
+### Uninstallation
+__Uninstall__ the software:
+
+    ::shell
+    sudo -H pip3 uninstall simple_dsl
+
+

@@ -17,7 +17,7 @@ A simple possibility to achieve such an extension is to define a locally
 visible method "__f(__TypeX x, __...)__" (see [Xtend documentation](references.md)).
 With this, TypeX is extened by a method __f(...)__.
 
-    :::xtend
+    ::xtend
 	def printNTimes(String s, int n) {
 		for(var i=0;i<n;i++) println(s)
 	}

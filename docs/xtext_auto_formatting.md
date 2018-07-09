@@ -21,7 +21,7 @@ In this class you can control, e.g., the formatting
 around '{' and '}'. More Information: e.g., 
 [JavaDoc of FormattingConfig](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/formatting/impl/FormattingConfig.html).
 
-    :::java
+    ::java
     import org.eclipse.xtext.Keyword;
     import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
     import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -53,7 +53,7 @@ edit the *RuntimeModule"-file
 "kurs.xtext.dataflow.DataFlowDslRuntimeModule.xtend" 
 and add the following code:
 
-    :::xtend
+    ::xtend
 	override bindIFormatter() {
 		MyFormatter
 	}

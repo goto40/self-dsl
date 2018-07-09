@@ -20,7 +20,7 @@ a new project), e.g.,
 "kurs.xtext.dataflow.validation.DataFlowDslValidator.xtend".
 Activate the commented code and modify it:
 
-    :::xtend
+    ::xtend
     package kurs.xtext.dataflow.validation
     
     import org.eclipse.xtext.validation.Check

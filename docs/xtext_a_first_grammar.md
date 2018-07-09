@@ -32,7 +32,7 @@ in the offline help of Eclipse: "Help" - "Help Contents".
 
 Take a look at the grammar initially created for our project:
 
-    :::antlr
+    ::antlr
     Model:
         greetings+=Greeting*;
     Greeting:
@@ -56,7 +56,7 @@ elements:
 
 The syntax for the composition is given as follows:
 
-    :::antlr
+    ::antlr
     KPackage: 'package' name=ID '{'
             (
                 components += KComponent |
@@ -89,7 +89,7 @@ grammar with this example (run the grammar as described
 "Xtext Artifacts". The new Eclipse instance can easily be
 started via the Debug icon).
 
-    :::java
+    ::java
     package test1 {
         Component PC {
         }
@@ -104,7 +104,7 @@ started via the Debug icon).
 
 ![reference](images/xtext_reference.png "reference")
 
-    :::antlr
+    ::antlr
     KInstance: 'instance' name=ID ':' type=[KComponent];
 
   * type=[KComponent]
@@ -117,7 +117,7 @@ started via the Debug icon).
 
 ![specialization](images/xtext_specialization.png "specialization")
 
-    :::antlr
+    ::antlr
     KPort:
         KPortIn|KPortOut
     ;
@@ -142,7 +142,7 @@ After adding __ports__ ("KPort") to the __components__ ("KComponent")
 and __instances__ ("KInstance") to the __services__ ("KService"), you can test
 your langauge with the following snippet:
 
-    :::java
+    ::java
     package test1 {
         Component PC {
             port_in in {}

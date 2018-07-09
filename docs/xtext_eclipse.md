@@ -15,7 +15,7 @@ Download the package
 ["Eclipse Modeling"](http://www.eclipse.org/downloads/packages/).
 Unpack the archive to make eclipse available.
 
-    :::bash
+    ::shell
     root@xtext:~/Download# ls
     eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
     root@xtext:~/Download# tar xzf eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz

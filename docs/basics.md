@@ -323,7 +323,7 @@ Testcase o-- "n" Aspect: needs
 A model with validation error (__"configuration 'config_B' does not provide the aspect 'aspect_X' required
 by testcase 'test_T1'"__) is shown as follows:
 
-    :::java
+    ::java
     scenario scenario_001 {
         configuration config_A has {aspect_X}
         configuration config_B has {aspect_Y}
@@ -359,7 +359,7 @@ config_B o-[bold,dashed,#red]- aspect_X : not part of haves
 
 A model without validation error is shown as follows:
 
-    :::java
+    ::java
     scenario scenario_001 {
         configuration config_A has {aspect_X}
         configuration config_B has {aspect_Y, aspect_X}

@@ -14,7 +14,7 @@ Here, you can implement your first code generator:
 You have model access (parameter "resource") and file system access
 (parameter "fsa").
 
-    :::xtend
+    ::xtend
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, 
 			IGeneratorContext context) {
 		// -------------------------------------------
@@ -68,7 +68,7 @@ three different manners.
     
 The generated files contain the text:
 
-    :::raw
+    ::raw
     Component declarations: PC, DF
 
 ## Xtend template engine
@@ -79,7 +79,7 @@ in this mixed code are separated between output indentation and logical
 template code indentation (see example: the indentation from the nested
 FOR statement are ignored in the output).
 
-        :::xtend
+        ::xtend
 		// -------------------------------------------
 		// Option 4:
 		val model = resource.contents.get(0) as Model
@@ -110,7 +110,7 @@ Note:
 
 Output (generated artefact; note the indentation in the template is omitted):
 
-    :::raw
+    ::raw
     The Components of the model are:
     Package test1
     KComponent PC
