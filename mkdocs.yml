@@ -4,6 +4,7 @@ markdown_extensions:
  - codehilite
  - plantuml
  - shellcmd
+ - namedref
 pages:
  - 'index.md'
  - 'motivation.md'

@@ -24,7 +24,7 @@ In Eclipse
     - "All Availabe Sites" and restart Eclipse.
 
 Finally, some projects are created in your workspace, from which we will
-only use a few of them at the moment (details: see [(Mooji et al., 2017a)](references.md#mooji2017a)).
+only use a few of them at the moment (details: see ::namedref::(references.md#mooji2017a)).
 An example grammar definition is created and opened in the editor.
 
 ![project list](images/xtext_project_list.png "Xtext project list")

@@ -1,7 +1,7 @@
 # Auto Formatting
 
 When you change the model (e.g. using the 
-[tree editor](xtext_a_first_grammar.md#Editor))
+::namedref::(xtext_a_first_grammar.md#tree_editor))
 and you save your changes, you will notice that the
 model text is updated, but does not contain any line breaks.
 Also, when invooking the auto-formatter of Eclipse 

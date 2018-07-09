@@ -15,8 +15,8 @@ and not compiled.
 
 TextX has only few dependencies and very compact 
 projects can be created. Details see
-[(Dejanović et al. 2017)](references.md#dejanovic2017)
-and the [TextX project page](references.md#textx).
+::namedref::(references.md#dejanovic2017)
+and the "TextX project page", see ::namedref::(references.md#textx).
 
 Normally, a similar modularization as for Xtext projects 
 is employed to separate different responsibilities across

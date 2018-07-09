@@ -5,9 +5,9 @@ These rules have to be define by the meta modeller
 in the meta model. Error and warning messages can be reported
 and attached to model elements or text location. These
 messages are displayed in the Eclipse model text editor.
-More Information, see [(Mooji et al., 2017a)](references.md#mooji2017a).
+More Information, see ::namedref::(references.md#mooji2017a).
 
-[(Renz-Reichert, 2017)](references.md#rentzReichert2017)
+::namedref::(references.md#rentzReichert2017)
 suggested to put as little as possible semantics into
 the grammar (e.g. "+" instead of "*") and to add this 
 semantics to the validation code. This often allows

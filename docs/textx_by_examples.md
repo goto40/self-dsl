@@ -1,7 +1,7 @@
 # TextX by Examples
 
-The [TextX project page](references.md#textx)
-gives a nice introduction to the concepts of TextX.
+The TextX project page gives a nice introduction 
+to the concepts of TextX ::namedref::(references.md#textx).
 Read the docs to explore different aspects, like
 the grammar or scoping. The unittests are
 also a great source of information, because they contain

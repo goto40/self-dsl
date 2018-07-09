@@ -9,7 +9,7 @@ and in turn, prevents misunderstandings.
 ![communication and consistency](images/communication_and_consistency.png)
 
 A very good introduction to domain modeling is
-[(Tomassetti, 2017)](references.md#tomassetti2017).
+::namedref::(references.md#tomassetti2017).
 
 ## MDSD and DSLs
 
