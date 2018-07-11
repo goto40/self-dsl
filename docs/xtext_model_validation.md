@@ -1,4 +1,4 @@
-# Model Validation
+# Model ::namedref::{xtext_validation:Validation}
 
 A model can be validated according certain validation rules.
 These rules have to be define by the meta modeller

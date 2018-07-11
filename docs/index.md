@@ -14,7 +14,7 @@ This is a tutorial site for the creation of domain specific languages.
 
 ## Development, Sources
 
-See: https://github.com/goto40/self-dsl
+See: [github sources](https://github.com/goto40/self-dsl)
 
 ## Employed software to generate this documentation
 

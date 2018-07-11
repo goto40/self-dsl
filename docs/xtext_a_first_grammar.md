@@ -47,7 +47,7 @@ Take a look at the grammar initially created for our project:
   * See also ::namedref::(references.md#mooji2017a)
 
 
-## Attributes, Composition
+## ::namedref::{xtext_attributes:Attributes}, ::namedref::{xtext_Composition:Composition}
 
 A "KPackage" element, in turn, shall be composed of "KComponent" and "KService"
 elements:
@@ -100,7 +100,7 @@ started via the Debug icon).
     }
 
 
-## References
+## ::namedref::{xtext_References:References}
 
 ![reference](images/xtext_reference.png "reference")
 
@@ -162,7 +162,7 @@ your langauge with the following snippet:
 You can also edit the model with a __tree editor__:
 open wthe file with "Open With..." - "Sample Ecore Model Editor".
 
-::namedref::{tree_editor:(Tree Editor)}:
+::namedref::{tree_editor:Tree Editor}:
 
 ![tree editor](images/xtext_tree_editor.png "tree editor")
 

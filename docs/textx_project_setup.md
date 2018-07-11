@@ -43,7 +43,7 @@ We have chosen a distribution as follows:
     * \_\_init\_\_.py represent module entry points.
   * tests contains unittests.
 
-### File: metamodel.py
+### File: ::namedref::{textx_meta_model:metamodel.py}
 
 Here, we define the grammar. We allocate the scope providers to
 individual elements, and register validation code.
@@ -53,7 +53,7 @@ echo "::python"
 cat docs/examples/textx/simple_project/simple_dsl/metamodel.py
 ::shellcmd-end:: 
 
-### File:: validation.py
+### File: ::namedref::{textx_validation:validation.py}
 
 This file contains validation functions registered in the meta model.
 

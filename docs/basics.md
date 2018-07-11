@@ -107,6 +107,12 @@ class Birthday {
 Note: Domain objects in the meta model represent a blueprint or a class of a
 concrete instances of such objects in a concrete model.
 
+See also:
+
+   * Xtext: ::namedref::(xtext_a_first_grammar.md#xtext_attributes)
+   * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
+
+
 ## Composing objects
 
 Domain objects may be composed of other domain objects. Such a relationship
@@ -127,6 +133,11 @@ class Birthday {
 Note: in this example, a Customer is composed of a Birthday object.
 The Birthday object cannot exist without the Customer. This relationship
 is called __composition__ and has clear __ownership__ semantics.
+
+See also:
+
+   * Xtext: ::namedref::(xtext_a_first_grammar.md#xtext_Composition)
+   * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
 
 ## References and Aggregation
 
@@ -153,6 +164,11 @@ class Owns {
 Note: non-owning knowlegde of other objects is called __aggregation__. Simple
 relationships can be presented by a simple link (without attributes and without
 own rule/class definition).
+
+See also:
+
+   * Xtext: ::namedref::(xtext_a_first_grammar.md#xtext_References)
+   * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
 
 ## Scoping
 
@@ -184,6 +200,11 @@ referenced by a "Testcase" are visible to the "Testcase"__. This
 restriction is context specific (to the context of the "Testcase" described
 by the referenced "Scenario"). Scoping mechanisms allow to define this scope.
 
+See also:
+
+   * Xtext: TODO
+   * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
+
 ## Specialization (base classes/base rules)
 
 Sometimes it happens that some domain object is too generic and needs to
@@ -209,6 +230,12 @@ Configuration <|-- GoodConfiguration
 Configuration <|-- BadConfiguration
 ::end-uml::
 
+See also:
+
+   * Xtext: TODO
+   * TextX: TODO
+
+
 ## Modularization
 
 This happens when a model is splitted  in multiple submodels
@@ -233,6 +260,12 @@ test_T1 o- scenario_001
 test_T1 o- config_B
 ::end-uml::
 
+See also:
+
+   * Xtext: TODO
+   * TextX: TODO
+
+
 ## Combining meta models
 
 To foster modularization, meta models can be splitted and still allow to
@@ -240,6 +273,12 @@ reference domain objects of one meta model from the other meta model. In our las
 we could define a meta model for "Testcases" and one meta model for
 "Scenarios". This feature is more demanding to the underlying technology but
 allows a __modularization of the meta model and, thus, the glossary__.
+
+See also:
+
+   * Xtext: TODO
+   * TextX: TODO
+
 
 ## Interoperability with other toolsets or software components
 
@@ -392,3 +431,8 @@ config_A o- aspect_X: haves
 config_B o- aspect_Y: haves
 config_B o-[bold,#green]- aspect_X : haves
 ::end-uml::
+
+See also:
+
+   * Xtext: ::namedref::(xtext_model_validation.md#xtext_validation)
+   * TextX: ::namedref::(textx_project_setup.md#textx_validation)
