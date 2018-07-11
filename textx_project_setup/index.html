@@ -234,7 +234,7 @@ with individual responsibilities into different files.</p>
 </li>
 <li>tests contains unittests.</li>
 </ul>
-<h3 id="file-metamodelpy">File: metamodel.py</h3>
+<h3 id="file-metamodelpy">File: <a name="textx_meta_model"></a> metamodel.py</h3>
 <p>Here, we define the grammar. We allocate the scope providers to
 individual elements, and register validation code.</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_str</span>
@@ -273,7 +273,7 @@ individual elements, and register validation code.</p>
 </pre></div>
 
 
-<h3 id="file-validationpy">File:: validation.py</h3>
+<h3 id="file-validationpy">File: <a name="textx_validation"></a> validation.py</h3>
 <p>This file contains validation functions registered in the meta model.</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx.exceptions</span> <span class="kn">import</span> <span class="n">TextXError</span>
 <span class="kn">from</span> <span class="nn">textx.scoping.tools</span> <span class="kn">import</span> <span class="n">get_location</span>
