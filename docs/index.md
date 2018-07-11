@@ -12,6 +12,10 @@ This is a tutorial site for the creation of domain specific languages.
 
  * [References](references.md)
 
+## Development, Sources
+
+See: https://github.com/goto40/self-dsl
+
 ## Employed software to generate this documentation
 
  * We use [MkDocs](http://www.mkdocs.org/) to build these
