@@ -12,7 +12,7 @@ This is a tutorial site for the creation of domain specific languages.
 
  * [References](references.md)
 
-## Development, Sources
+## Development, Sources, License
 
 See: [github sources](https://github.com/goto40/self-dsl)
 
