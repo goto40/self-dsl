@@ -21,6 +21,7 @@ The references are summarized in the following sections.
  * ::namedref::{mooji2017b:(Mooij et al, 2017b)} A. Mooij, K. Triantafyllidis, J. Hooman: ["Advanced Xtext Manual on Modularity"](http://www.cs.kun.nl/J.Hooman/DSL/AdvancedXtextManual.pdf) (2017/06)
  * ::namedref::{rentzReichert2017:(Rentz-Reichert, 2017)} H. Rentz-Reichert (Protos Software): "Entwicklung domänenspezifischer Sprachen und Code-Generatoren mit Xtext und Xtend" (german course, Regensburg, 2017/05;
     architect of [eTrice (ROOM based modeling tool)](http://www.eclipse.org/etrice/) (2017/06)
+ * ::namedref::{xtext15min:(Xtext 15 Minutes Tutorial)} [Xtext 15 Minutes Tutorial](https://www.eclipse.org/Xtext/documentation/102_domainmodelwalkthrough.html).
 
 ### TextX related stuff
  * ::namedref::{dejanovic2017:(Dejanović et al. 2017)} Dejanović I., Vaderna R., Milosavljević G., Vuković Ž. (2017). TextX: A Python tool for Domain-Specific Languages implementation. Knowledge-Based Systems, 115, 1-4.
