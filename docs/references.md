@@ -7,8 +7,9 @@ The references are summarized in the following sections.
  *  ::namedref::{xtext:(Xtext)} [Xtext](https://www.eclipse.org/Xtext/) - a grammar based language workbench for java/Xtend/eclipse.
  *  ::namedref::{textx:(TextX)} [TextX](http://www.igordejanovic.net/textX/) - a grammar based language workbench for Python.
 
-### Programming languages
+### Programming languages, Tools
 
+ * ::namedref::{maven:(Maven)} [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) - a build system
  * [Xtend](https://www.eclipse.org/xtend) - a statically types language (translates to Java).
  * [Python](https://www.python.org) - a dynamically types language.
 

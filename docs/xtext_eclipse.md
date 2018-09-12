@@ -1,8 +1,8 @@
 # Xtext and Eclipse
 
 Xtext is integrated in Eclispe.
-To run this tutorial (using Xtext) you need to install Eclipse with the appropriate
-plugins (current version: Oxygen).
+To run this tutorial (using Xtext) you need to install Eclipse with the 
+appropriate plugins.
 
 Note: The parser "Antlr" is not distributed with eclipse. You need to install
 it manually [(itemis update site)](http://download.itemis.de/updates),
@@ -17,8 +17,8 @@ Unpack the archive to make eclipse available.
 
     ::shell
     root@xtext:~/Download# ls
-    eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
-    root@xtext:~/Download# tar xzf eclipse-modeling-oxygen-3a-linux-gtk-x86_64.tar.gz
+    eclipse-modeling-xxx-linux-gtk-x86_64.tar.gz
+    root@xtext:~/Download# tar xzf eclipse-modeling-xxx-linux-gtk-x86_64.tar.gz
     root@xtext:~/Download# mv eclipse /opt/
     root@xtext:~/Download# /opt/eclipse/eclipse &
 

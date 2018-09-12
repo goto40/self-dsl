@@ -1,191 +1,59 @@
 # A First Grammar
 
-The goal of this exercise is to define a grammar for a structure as sketched in
-the image below: A __Model__ shall contain __Packages__. Every __Package__
-can contain __Component__ definitions and __Service__ definitions.
-A Service can __instantiate__ the Components.
-Moreover shall a Component definition contain __input ports__
-and __output ports__.
+Here we highlight some information when walking through
+::namedref::(references.md#xtext15min).
 
-All __bold__ elements in the text above will be defined in our the grammar of
-our meta model.
+## Step 1: Create and run an Xtext project
 
-![a first grammar](images/a_first_grammar_plan.png "a first grammar: goal")
+Take your time for this tutorial now and continue reading afterwards.
+You may __stop before "Second Iteration"__ where "packages"
+are added to the model.
 
-## First steps after project initialization
+## Step 2: Lessons learned
 
-A grammar describes the syntax (more or less without semantic) of our
-domain language describing domain models.
-Internally, Xtext deduces an ecore model from the grammar, which can be used
-to display the structure of the grammar (like the image in the first part of this
-page).
-The grammar remains the master (for maintenance) and the ecore model is recreated
-after every change.
+Check if you understood thw following points:
 
-Note: Is is also possible to create a grammar based on an ecore model
-(via Eclipse Wizard).
+ * What is the role of the __start rule__ of a grammar in a meta model?
+ * What is the meaning of "Type: DataType | Entity;" in terms of inheritance? 
+    Explore the generated Java Interfaces for the classes Type, DataType, 
+    Entity in  src-gen/org/example/domainmodel/domainmodel in your main 
+    project.
+ * How do you typically add keywords to your language (like "entity")?
+ * What is the difference between "x=Rule1" and "x=[Rule1]" 
+    ::namedref::{xtext_attributes:Attributes}, 
+    ::namedref::{xtext_References:References}?
+ * How can you model the following?
+    * "a _named_ __University__ aggregates _named_ __Students__".
+    * "a __House__ is composed of __Rooms__" 
+        ::namedref::{xtext_Composition:Composition}.
+ * Explain the role of "?" in the following examples: 
+    * (x=INT)?
+    * enabled?='enabled'
+    
+    
+Note:
 
-Additional information can be found in the [references list](references.md) or
-in the offline help of Eclipse: "Help" - "Help Contents".
-
-## Root node of a model
-
-Take a look at the grammar initially created for our project:
-
-    ::antlr
-    Model:
-        greetings+=Greeting*;
-    Greeting:
-        'Hello' name=ID '!';
-
-  * A grammar conists of __rules__, starting with the name of the rule,
-    followed by a colon ":" and the rule itself,
-    and is terminated by a semicolon ";".
-  * The first rule in the grammar (e.g. "Model") is the root of the model.
-  * Instead of adding elements to the model of type "__Greeting__", we will
-    add elements of type "__KPackage__" (change the name "Greeting" to "KPackage").
-  * See also ::namedref::(references.md#mooji2017a)
-
-
-## ::namedref::{xtext_attributes:Attributes}, ::namedref::{xtext_Composition:Composition}
-
-A "KPackage" element, in turn, shall be composed of "KComponent" and "KService"
-elements:
-
-![composition](images/xtext_composition.png "composition")
-
-The syntax for the composition is given as follows:
-
-    ::antlr
-    KPackage: 'package' name=ID '{'
-            (
-                components += KComponent |
-                services += KService
-            )*
-        '}'
-    ;
-
-  * 'package', '{', '}'
-    * represent __keywords__ of our language.
-  * name=ID
-    * "name" is an __attribute__ in the meta mode (the attribute "name" has
-       a special meaning: it is used to __indentify__ elements).
-    * "=" means: this is a scalar value (no list of values).
-    * __ID__ is a __terminal__ (see grammar, and click "F3" on
-      "org.eclipse.xtext.common.Terminals" to see definition).
-  * components += KComponent
-    * "components" is an attribute in the meta model.
-    * "+=" means, this is a __list of values__ (add one element to this list here)
-    * "KComponent" and "KService" are __rule definitions__ like "KPackage"
-      (need to be added)
-  * ( ... | ... )*
-    * Everything with the brackets can be repeated  0 to n times ("+" instead
-      of "*" means 1 to n times).
-    * "|" is a logical OR.
-
-Modify the grammar to allow to enter the following model. Test the
-grammar with this example (run the grammar as described
-[in the previous section](xtext_project_setup.md)): "Run As" -
-"Xtext Artifacts". The new Eclipse instance can easily be
-started via the Debug icon).
-
-    ::java
-    package test1 {
-        Component PC {
-        }
-        Component DF {
-        }
-        service MyService {
-        }
-    }
-
-
-## ::namedref::{xtext_References:References}
-
-![reference](images/xtext_reference.png "reference")
-
-    ::antlr
-    KInstance: 'instance' name=ID ':' type=[KComponent];
-
-  * type=[KComponent]
-     * "type" is an attribute in the meta model.
-     * "[KComponent]" is a __reference__ to a "KComponent" element.
-     * For more inforamtion see the [references list](references.md).
-
-
-## Specialization
-
-![specialization](images/xtext_specialization.png "specialization")
-
-    ::antlr
-    KPort:
-        KPortIn|KPortOut
-    ;
-    KPortIn:
-        'port_in' name=ID '{'
-        '}'
-    ;
-    KPortOut:
-        'port_out' name=ID '{'
-        '}'
-    ;
-
-  * Base: SpecialA|SpecialB;
-     * Defines a base class (base rule) for the specializations separated
-       by "|".
-     * Common attributes are availabe in the base class (here: "name")
-     * For more inforamtion see the [references list](references.md).
+ * Optional attributes can be defined using "?". Note: some types, like 
+ references, are null if not set. Others have default values (like an empty
+ String for STRING, "0" for INT or the first enum value defined for enums).
 
 ## Editor
 
-After adding __ports__ ("KPort") to the __components__ ("KComponent")
-and __instances__ ("KInstance") to the __services__ ("KService"), you can test
-your langauge with the following snippet:
-
-    ::java
-    package test1 {
-        Component PC {
-            port_in in {}
-            port_out out {}
-        }
-        Component DF {
-            port_in in {}
-            port_out out {}
-            port_out debug {}
-        }
-        service MyService {
-            instance pc : PC
-            instance df : DF
-        }
-    }
-
-You can also edit the model with a __tree editor__:
+In addition to the text editor,
+you can also edit the model with a __tree editor__:
 open wthe file with "Open With..." - "Sample Ecore Model Editor".
 
-::namedref::{tree_editor:Tree Editor}:
-
-![tree editor](images/xtext_tree_editor.png "tree editor")
-
-
 When editing the model graph, the model text is changed accordingly: 
-see [Auto Formatting](xtext_auto_formatting.md).
-
-## More grammar stuff...
-
-There is much more not covered here. You can start with
-::namedref::(references.md#mooji2017a).
-
-Of special interest could be
-  * Optional parts of the grammar with "?".
-  * Enums (initially set to the first enum state).
+see [Auto Formatting](https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting).
 
 
 ## Visualize the meta model
 
-The ecore model deduced from the grammar can be visualized:
+The __ecore model__  deduced from the grammar can be __visualized__:
 see ::namedref::(references.md#mooji2017a),
 section "Optional: Ecore diagram" („Initialize Ecore Diagram ...“).
-Moreover a syntax tree can be rendered from the grammar:
+
+Moreover a __syntax tree__ can be rendered from the grammar:
 see ::namedref::(references.md#mooji2017a),
 section "Optional: View Diagram of Xtext Grammar"
 (Window/Show View/Other.../Xtext/Xtext Syntax Graph).
