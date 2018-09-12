@@ -81,7 +81,7 @@
         
             <li><a class="toctree-l4" href="#create-a-new-xtext-project">Create a new Xtext Project</a></li>
         
-            <li><a class="toctree-l4" href="#compile-and-run-the-project">Compile and Run the Project</a></li>
+            <li><a class="toctree-l4" href="#build-meta-model-using-maven">Build meta model using maven</a></li>
         
         </ul>
     
@@ -91,10 +91,6 @@
                 <li class="">
                     
     <a class="" href="../xtext_a_first_grammar/">A First Grammar</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../xtext_auto_formatting/">Auto Formatting</a>
                 </li>
                 <li class="">
                     
@@ -111,6 +107,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
                 </li>
     </ul>
 	    </li>
@@ -179,6 +179,10 @@
 <h2 id="create-a-new-xtext-project">Create a new Xtext Project</h2>
 <p>Follow section "Create A New Xtext Project"
 in <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
+<p>In addition to the information from the tutorial we
+suggest the following details for the other examples
+discussed on this site:
+<img alt="model.dot" src="../images/xtext_new_project2.png" title="xtext_new_project2.png" /></p>
 <p>The example grammar (automatically created after project
 initialization) defines a "Model" consisting of 
 "Greetings" is shown in the following. A "Model" contains "Greetings".
@@ -199,15 +203,21 @@ Every "Greeting" consists of the Text 'Hello' and a name followed by '!'
 <p><img alt="Greeting Meta Model" classes="uml GreetingMetaModel" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgaGVpZ2h0PSI3N3B4IiBzdHlsZT0id2lkdGg6MjAxcHg7aGVpZ2h0Ojc3cHg7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyMDEgNzciIHdpZHRoPSIyMDFweCI+PGRlZnM+PGZpbHRlciBoZWlnaHQ9IjMwMCUiIGlkPSJmMSIgd2lkdGg9IjMwMCUiIHg9Ii0xIiB5PSItMSI+PGZlR2F1c3NpYW5CbHVyIHJlc3VsdD0iYmx1ck91dCIgc3RkRGV2aWF0aW9uPSIyLjAiLz48ZmVDb2xvck1hdHJpeCBpbj0iYmx1ck91dCIgcmVzdWx0PSJibHVyT3V0MiIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIC40IDAiLz48ZmVPZmZzZXQgZHg9IjQuMCIgZHk9IjQuMCIgaW49ImJsdXJPdXQyIiByZXN1bHQ9ImJsdXJPdXQzIi8+PGZlQmxlbmQgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iYmx1ck91dDMiIG1vZGU9Im5vcm1hbCIvPjwvZmlsdGVyPjwvZGVmcz48Zz48cmVjdCBmaWxsPSIjRkVGRUNFIiBmaWx0ZXI9InVybCgjZjEpIiBoZWlnaHQ9IjQ4IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHdpZHRoPSI2NyIgeD0iNiIgeT0iMTQuNSIvPjxlbGxpcHNlIGN4PSIyMSIgY3k9IjMwLjUiIGZpbGw9IiNBREQxQjIiIHJ4PSIxMSIgcnk9IjExIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48cGF0aCBkPSJNMjMuOTY4OCwzNi4xNDA2IFEyMy4zOTA2LDM2LjQzNzUgMjIuNzUsMzYuNTg1OSBRMjIuMTA5NCwzNi43MzQ0IDIxLjQwNjMsMzYuNzM0NCBRMTguOTA2MywzNi43MzQ0IDE3LjU4NTksMzUuMDg1OSBRMTYuMjY1NiwzMy40Mzc1IDE2LjI2NTYsMzAuMzEyNSBRMTYuMjY1NiwyNy4xODc1IDE3LjU4NTksMjUuNTMxMyBRMTguOTA2MywyMy44NzUgMjEuNDA2MywyMy44NzUgUTIyLjEwOTQsMjMuODc1IDIyLjc1NzgsMjQuMDMxMyBRMjMuNDA2MywyNC4xODc1IDIzLjk2ODgsMjQuNDg0NCBMMjMuOTY4OCwyNy4yMDMxIFEyMy4zNDM4LDI2LjYyNSAyMi43NSwyNi4zNTE2IFEyMi4xNTYzLDI2LjA3ODEgMjEuNTMxMywyNi4wNzgxIFEyMC4xODc1LDI2LjA3ODEgMTkuNSwyNy4xNDg0IFExOC44MTI1LDI4LjIxODggMTguODEyNSwzMC4zMTI1IFExOC44MTI1LDMyLjQwNjMgMTkuNSwzMy40NzY2IFEyMC4xODc1LDM0LjU0NjkgMjEuNTMxMywzNC41NDY5IFEyMi4xNTYzLDM0LjU0NjkgMjIuNzUsMzQuMjczNCBRMjMuMzQzOCwzNCAyMy45Njg4LDMzLjQyMTkgTDIzLjk2ODgsMzYuMTQwNiBaICIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjM1IiB4PSIzNSIgeT0iMzQuNjU0MyI+TW9kZWw8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB4MT0iNyIgeDI9IjcyIiB5MT0iNDYuNSIgeTI9IjQ2LjUiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuNTsiIHgxPSI3IiB4Mj0iNzIiIHkxPSI1NC41IiB5Mj0iNTQuNSIvPjxyZWN0IGZpbGw9IiNGRUZFQ0UiIGZpbHRlcj0idXJsKCNmMSkiIGhlaWdodD0iNjAuODA0NyIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB3aWR0aD0iODQiIHg9IjEwOC41IiB5PSI4Ii8+PGVsbGlwc2UgY3g9IjEyMy41IiBjeT0iMjQiIGZpbGw9IiNBREQxQjIiIHJ4PSIxMSIgcnk9IjExIiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48cGF0aCBkPSJNMTI2LjQ2ODgsMjkuNjQwNiBRMTI1Ljg5MDYsMjkuOTM3NSAxMjUuMjUsMzAuMDg1OSBRMTI0LjYwOTQsMzAuMjM0NCAxMjMuOTA2MywzMC4yMzQ0IFExMjEuNDA2MywzMC4yMzQ0IDEyMC4wODU5LDI4LjU4NTkgUTExOC43NjU2LDI2LjkzNzUgMTE4Ljc2NTYsMjMuODEyNSBRMTE4Ljc2NTYsMjAuNjg3NSAxMjAuMDg1OSwxOS4wMzEzIFExMjEuNDA2MywxNy4zNzUgMTIzLjkwNjMsMTcuMzc1IFExMjQuNjA5NCwxNy4zNzUgMTI1LjI1NzgsMTcuNTMxMyBRMTI1LjkwNjMsMTcuNjg3NSAxMjYuNDY4OCwxNy45ODQ0IEwxMjYuNDY4OCwyMC43MDMxIFExMjUuODQzOCwyMC4xMjUgMTI1LjI1LDE5Ljg1MTYgUTEyNC42NTYzLDE5LjU3ODEgMTI0LjAzMTMsMTkuNTc4MSBRMTIyLjY4NzUsMTkuNTc4MSAxMjIsMjAuNjQ4NCBRMTIxLjMxMjUsMjEuNzE4OCAxMjEuMzEyNSwyMy44MTI1IFExMjEuMzEyNSwyNS45MDYzIDEyMiwyNi45NzY2IFExMjIuNjg3NSwyOC4wNDY5IDEyNC4wMzEzLDI4LjA0NjkgUTEyNC42NTYzLDI4LjA0NjkgMTI1LjI1LDI3Ljc3MzQgUTEyNS44NDM4LDI3LjUgMTI2LjQ2ODgsMjYuOTIxOSBMMTI2LjQ2ODgsMjkuNjQwNiBaICIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmdBbmRHbHlwaHMiIHRleHRMZW5ndGg9IjUyIiB4PSIxMzcuNSIgeT0iMjguMTU0MyI+R3JlZXRpbmc8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB4MT0iMTA5LjUiIHgyPSIxOTEuNSIgeTE9IjQwIiB5Mj0iNDAiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMSIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSIzMiIgeD0iMTE0LjUiIHk9IjU0LjIxMDQiPm5hbWU8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjU7IiB4MT0iMTA5LjUiIHgyPSIxOTEuNSIgeTE9IjYwLjgwNDciIHkyPSI2MC44MDQ3Ii8+PHBhdGggZD0iTTg2LjQzNDgsMzguNSBDOTMuNzIwNywzOC41IDEwMS4wMDY1LDM4LjUgMTA4LjI5MiwzOC41ICIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTogI0E4MDAzNjsgc3Ryb2tlLXdpZHRoOiAxLjA7Ii8+PHBvbHlnb24gZmlsbD0iI0E4MDAzNiIgcG9pbnRzPSI3My4zMjAzLDM4LjUsNzkuMzIwMyw0Mi41LDg1LjMyMDMsMzguNSw3OS4zMjAzLDM0LjUsNzMuMzIwMywzOC41IiBzdHlsZT0ic3Ryb2tlOiAjQTgwMDM2OyBzdHJva2Utd2lkdGg6IDEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nQW5kR2x5cGhzIiB0ZXh0TGVuZ3RoPSI4IiB4PSI5Mi42MzkzIiB5PSIzNC4zNTE5Ij5uPC90ZXh0PjwvZz48L3N2Zz4=" title="" /></p>
 <p>Notes:</p>
 <ul>
-<li>"+=" denotes the owner relationship of one Model containing many Greetings.</li>
-<li>"name=ID" defines an attribute "name" of the Rule "Greeting".</li>
+<li>"+=" denotes the owner relationship of one Model containing many Greetings 
+    (<strong>composition</strong>).</li>
+<li>"name=ID" defines an attribute "name" of the Rule "Greeting" (allowing to 
+    define model elements of the type "Greeting"; <strong>attributes</strong> of 
+    <strong>model elements</strong>).</li>
 <li>The attribute name has a special meaning by default, to denote the 
-    identifier of the Rule.</li>
-<li>ID defines an indentifier (a string; see org.eclipse.xtext.common.Terminals)</li>
+    identifier of the Rule (<strong>identification of model elements</strong>).</li>
+<li>ID is a terminal (like INT, STRING, etc.; see grammar, and click "F3" on
+      "org.eclipse.xtext.common.Terminals" to see definition).
+   "name=ID" means that the attribute "name" is parsed as "ID" (which in turn
+   is - more or less - an alphanumerical word staring with no number)</li>
 </ul>
-<p>Note: Use "Team -&gt; Git -&gt; Project for "Automatically ignore derived resources"
+<p>TODO Note: Use "Team -&gt; Git -&gt; Project for "Automatically ignore derived resources"
 to add an appropriate .gitignore file to your project (when using git).</p>
-<h2 id="compile-and-run-the-project">Compile and Run the Project</h2>
+<h2 id="compile-and-run-the-project"><a name="xtext_compile_and_run"></a> Compile and Run the Project</h2>
 <p>Without modifing the grammar (or anything else), follow the steps in
 section "Generate Language Artifacts" in 
 <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
@@ -219,6 +229,16 @@ completion). Enter the following example:</p>
 <span class="err">Hello Tim!</span>
 <span class="err">Hello Markus!</span>
 </pre></div>
+
+
+<h2 id="build-meta-model-using-maven">Build meta model using maven</h2>
+<p>When maven is selected as build tool, you can also use maven (instead of
+eclipse) to build your project on the command line: Go to the "parent" 
+project and run "mvn package".</p>
+<p>Maven will download all required packages in "~/.m2" (locally) and then build 
+your subprojects. The output is located in the folder "target" of each 
+subproject.</p>
+<p>See also: <a href="../references/#maven">(Maven)</a>.</p>
               
             </div>
           </div>

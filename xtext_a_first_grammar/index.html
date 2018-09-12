@@ -83,15 +83,11 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#first-steps-after-project-initialization">First steps after project initialization</a></li>
+            <li><a class="toctree-l4" href="#step-1-create-and-run-an-xtext-project">Step 1: Create and run an Xtext project</a></li>
         
-            <li><a class="toctree-l4" href="#root-node-of-a-model">Root node of a model</a></li>
-        
-            <li><a class="toctree-l4" href="#specialization">Specialization</a></li>
+            <li><a class="toctree-l4" href="#step-2-lessons-learned">Step 2: Lessons learned</a></li>
         
             <li><a class="toctree-l4" href="#editor">Editor</a></li>
-        
-            <li><a class="toctree-l4" href="#more-grammar-stuff">More grammar stuff...</a></li>
         
             <li><a class="toctree-l4" href="#visualize-the-meta-model">Visualize the meta model</a></li>
         
@@ -99,10 +95,6 @@
     
 
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../xtext_auto_formatting/">Auto Formatting</a>
                 </li>
                 <li class="">
                     
@@ -119,6 +111,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
                 </li>
     </ul>
 	    </li>
@@ -184,181 +180,53 @@
             <div class="section">
               
                 <h1 id="a-first-grammar">A First Grammar</h1>
-<p>The goal of this exercise is to define a grammar for a structure as sketched in
-the image below: A <strong>Model</strong> shall contain <strong>Packages</strong>. Every <strong>Package</strong>
-can contain <strong>Component</strong> definitions and <strong>Service</strong> definitions.
-A Service can <strong>instantiate</strong> the Components.
-Moreover shall a Component definition contain <strong>input ports</strong>
-and <strong>output ports</strong>.</p>
-<p>All <strong>bold</strong> elements in the text above will be defined in our the grammar of
-our meta model.</p>
-<p><img alt="a first grammar" src="../images/a_first_grammar_plan.png" title="a first grammar: goal" /></p>
-<h2 id="first-steps-after-project-initialization">First steps after project initialization</h2>
-<p>A grammar describes the syntax (more or less without semantic) of our
-domain language describing domain models.
-Internally, Xtext deduces an ecore model from the grammar, which can be used
-to display the structure of the grammar (like the image in the first part of this
-page).
-The grammar remains the master (for maintenance) and the ecore model is recreated
-after every change.</p>
-<p>Note: Is is also possible to create a grammar based on an ecore model
-(via Eclipse Wizard).</p>
-<p>Additional information can be found in the <a href="../references/">references list</a> or
-in the offline help of Eclipse: "Help" - "Help Contents".</p>
-<h2 id="root-node-of-a-model">Root node of a model</h2>
-<p>Take a look at the grammar initially created for our project:</p>
-<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nv">greetings</span><span class="o">+=</span><span class="no">Greeting</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
-<span class="nl">Greeting</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="s">&#39;Hello&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;!&#39;</span><span class="p">;</span><span class="w"></span>
-</pre></div>
-
-
+<p>Here we highlight some information when walking through
+<a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
+<h2 id="step-1-create-and-run-an-xtext-project">Step 1: Create and run an Xtext project</h2>
+<p>Take your time for this tutorial now and continue reading afterwards.
+You may <strong>stop before "Second Iteration"</strong> where "packages"
+are added to the model.</p>
+<h2 id="step-2-lessons-learned">Step 2: Lessons learned</h2>
+<p>Check if you understood thw following points:</p>
 <ul>
-<li>A grammar conists of <strong>rules</strong>, starting with the name of the rule,
-    followed by a colon ":" and the rule itself,
-    and is terminated by a semicolon ";".</li>
-<li>The first rule in the grammar (e.g. "Model") is the root of the model.</li>
-<li>Instead of adding elements to the model of type "<strong>Greeting</strong>", we will
-    add elements of type "<strong>KPackage</strong>" (change the name "Greeting" to "KPackage").</li>
-<li>See also <a href="../references/#mooji2017a">(Mooij et al, 2017a)</a></li>
+<li>What is the role of the <strong>start rule</strong> of a grammar in a meta model?</li>
+<li>What is the meaning of "Type: DataType | Entity;" in terms of inheritance? 
+    Explore the generated Java Interfaces for the classes Type, DataType, 
+    Entity in  src-gen/org/example/domainmodel/domainmodel in your main 
+    project.</li>
+<li>How do you typically add keywords to your language (like "entity")?</li>
+<li>What is the difference between "x=Rule1" and "x=[Rule1]" 
+    <a name="xtext_attributes"></a> Attributes, 
+    <a name="xtext_References"></a> References?</li>
+<li>How can you model the following?<ul>
+<li>"a <em>named</em> <strong>University</strong> aggregates <em>named</em> <strong>Students</strong>".</li>
+<li>"a <strong>House</strong> is composed of <strong>Rooms</strong>" 
+    <a name="xtext_Composition"></a> Composition.</li>
 </ul>
-<h2 id="attributes-composition"><a name="xtext_attributes"></a> Attributes, <a name="xtext_Composition"></a> Composition</h2>
-<p>A "KPackage" element, in turn, shall be composed of "KComponent" and "KService"
-elements:</p>
-<p><img alt="composition" src="../images/xtext_composition.png" title="composition" /></p>
-<p>The syntax for the composition is given as follows:</p>
-<div class="codehilite"><pre><span></span><span class="nl">KPackage</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;package&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"></span>
-<span class="w">        </span><span class="o">(</span><span class="w"></span>
-<span class="w">            </span><span class="nv">components</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="no">KComponent</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
-<span class="w">            </span><span class="nv">services</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="no">KService</span><span class="w"></span>
-<span class="w">        </span><span class="o">)*</span><span class="w"></span>
-<span class="w">    </span><span class="s">&#39;}&#39;</span><span class="w"></span>
-<span class="p">;</span><span class="w"></span>
-</pre></div>
-
-
+</li>
+<li>Explain the role of "?" in the following examples: <ul>
+<li>(x=INT)?</li>
+<li>enabled?='enabled'</li>
+</ul>
+</li>
+</ul>
+<p>Note:</p>
 <ul>
-<li>'package', '{', '}'<ul>
-<li>represent <strong>keywords</strong> of our language.</li>
-</ul>
-</li>
-<li>name=ID<ul>
-<li>"name" is an <strong>attribute</strong> in the meta mode (the attribute "name" has
-   a special meaning: it is used to <strong>indentify</strong> elements).</li>
-<li>"=" means: this is a scalar value (no list of values).</li>
-<li><strong>ID</strong> is a <strong>terminal</strong> (see grammar, and click "F3" on
-  "org.eclipse.xtext.common.Terminals" to see definition).</li>
-</ul>
-</li>
-<li>components += KComponent<ul>
-<li>"components" is an attribute in the meta model.</li>
-<li>"+=" means, this is a <strong>list of values</strong> (add one element to this list here)</li>
-<li>"KComponent" and "KService" are <strong>rule definitions</strong> like "KPackage"
-  (need to be added)</li>
-</ul>
-</li>
-<li>( ... | ... )*<ul>
-<li>Everything with the brackets can be repeated  0 to n times ("+" instead
-  of "*" means 1 to n times).</li>
-<li>"|" is a logical OR.</li>
-</ul>
-</li>
-</ul>
-<p>Modify the grammar to allow to enter the following model. Test the
-grammar with this example (run the grammar as described
-<a href="../xtext_project_setup/">in the previous section</a>): "Run As" -
-"Xtext Artifacts". The new Eclipse instance can easily be
-started via the Debug icon).</p>
-<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">test1</span> <span class="o">{</span>
-    <span class="n">Component</span> <span class="n">PC</span> <span class="o">{</span>
-    <span class="o">}</span>
-    <span class="n">Component</span> <span class="n">DF</span> <span class="o">{</span>
-    <span class="o">}</span>
-    <span class="n">service</span> <span class="n">MyService</span> <span class="o">{</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<h2 id="references"><a name="xtext_References"></a> References</h2>
-<p><img alt="reference" src="../images/xtext_reference.png" title="reference" /></p>
-<div class="codehilite"><pre><span></span><span class="nl">KInstance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;:&#39;</span><span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="p">[</span><span class="x">KComponent</span><span class="p">];</span><span class="w"></span>
-</pre></div>
-
-
-<ul>
-<li>type=[KComponent]<ul>
-<li>"type" is an attribute in the meta model.</li>
-<li>"[KComponent]" is a <strong>reference</strong> to a "KComponent" element.</li>
-<li>For more inforamtion see the <a href="../references/">references list</a>.</li>
-</ul>
-</li>
-</ul>
-<h2 id="specialization">Specialization</h2>
-<p><img alt="specialization" src="../images/xtext_specialization.png" title="specialization" /></p>
-<div class="codehilite"><pre><span></span><span class="nl">KPort</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="no">KPortIn</span><span class="o">|</span><span class="no">KPortOut</span><span class="w"></span>
-<span class="p">;</span><span class="w"></span>
-<span class="nl">KPortIn</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="s">&#39;port_in&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="s">&#39;}&#39;</span><span class="w"></span>
-<span class="p">;</span><span class="w"></span>
-<span class="nl">KPortOut</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="s">&#39;port_out&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="s">&#39;}&#39;</span><span class="w"></span>
-<span class="p">;</span><span class="w"></span>
-</pre></div>
-
-
-<ul>
-<li>Base: SpecialA|SpecialB;<ul>
-<li>Defines a base class (base rule) for the specializations separated
-   by "|".</li>
-<li>Common attributes are availabe in the base class (here: "name")</li>
-<li>For more inforamtion see the <a href="../references/">references list</a>.</li>
-</ul>
-</li>
+<li>Optional attributes can be defined using "?". Note: some types, like 
+ references, are null if not set. Others have default values (like an empty
+ String for STRING, "0" for INT or the first enum value defined for enums).</li>
 </ul>
 <h2 id="editor">Editor</h2>
-<p>After adding <strong>ports</strong> ("KPort") to the <strong>components</strong> ("KComponent")
-and <strong>instances</strong> ("KInstance") to the <strong>services</strong> ("KService"), you can test
-your langauge with the following snippet:</p>
-<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">test1</span> <span class="o">{</span>
-    <span class="n">Component</span> <span class="n">PC</span> <span class="o">{</span>
-        <span class="n">port_in</span> <span class="n">in</span> <span class="o">{}</span>
-        <span class="n">port_out</span> <span class="n">out</span> <span class="o">{}</span>
-    <span class="o">}</span>
-    <span class="n">Component</span> <span class="n">DF</span> <span class="o">{</span>
-        <span class="n">port_in</span> <span class="n">in</span> <span class="o">{}</span>
-        <span class="n">port_out</span> <span class="n">out</span> <span class="o">{}</span>
-        <span class="n">port_out</span> <span class="n">debug</span> <span class="o">{}</span>
-    <span class="o">}</span>
-    <span class="n">service</span> <span class="n">MyService</span> <span class="o">{</span>
-        <span class="n">instance</span> <span class="n">pc</span> <span class="o">:</span> <span class="n">PC</span>
-        <span class="n">instance</span> <span class="n">df</span> <span class="o">:</span> <span class="n">DF</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>You can also edit the model with a <strong>tree editor</strong>:
+<p>In addition to the text editor,
+you can also edit the model with a <strong>tree editor</strong>:
 open wthe file with "Open With..." - "Sample Ecore Model Editor".</p>
-<p><a name="tree_editor"></a> Tree Editor:</p>
-<p><img alt="tree editor" src="../images/xtext_tree_editor.png" title="tree editor" /></p>
 <p>When editing the model graph, the model text is changed accordingly: 
-see <a href="../xtext_auto_formatting/">Auto Formatting</a>.</p>
-<h2 id="more-grammar-stuff">More grammar stuff...</h2>
-<p>There is much more not covered here. You can start with
-<a href="../references/#mooji2017a">(Mooij et al, 2017a)</a>.</p>
-<p>Of special interest could be
-  * Optional parts of the grammar with "?".
-  * Enums (initially set to the first enum state).</p>
+see <a href="https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting">Auto Formatting</a>.</p>
 <h2 id="visualize-the-meta-model">Visualize the meta model</h2>
-<p>The ecore model deduced from the grammar can be visualized:
+<p>The <strong>ecore model</strong>  deduced from the grammar can be <strong>visualized</strong>:
 see <a href="../references/#mooji2017a">(Mooij et al, 2017a)</a>,
-section "Optional: Ecore diagram" („Initialize Ecore Diagram ...“).
-Moreover a syntax tree can be rendered from the grammar:
+section "Optional: Ecore diagram" („Initialize Ecore Diagram ...“).</p>
+<p>Moreover a <strong>syntax tree</strong> can be rendered from the grammar:
 see <a href="../references/#mooji2017a">(Mooij et al, 2017a)</a>,
 section "Optional: View Diagram of Xtext Grammar"
 (Window/Show View/Other.../Xtext/Xtext Syntax Graph).</p>
@@ -369,7 +237,7 @@ section "Optional: View Diagram of Xtext Grammar"
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../xtext_auto_formatting/" class="btn btn-neutral float-right" title="Auto Formatting">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../xtext_model_validation/" class="btn btn-neutral float-right" title="Model Validation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../xtext_project_setup/" class="btn btn-neutral" title="Xtext Project Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -401,7 +269,7 @@ section "Optional: View Diagram of Xtext Grammar"
         <span><a href="../xtext_project_setup/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../xtext_auto_formatting/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../xtext_model_validation/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
