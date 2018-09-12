@@ -107,5 +107,5 @@ Note:
  * no need to add (import) the standalone project into the ecplise 
     workspace.
  * You can use the standalone code generator as "compiler" in a Makefile
-    (like gcc). It will perform a model sytanx check, a model validation and a 
+    (like gcc). It will perform a model syntax check, a model validation and a 
     code generation.
