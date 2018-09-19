@@ -84,10 +84,6 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_quickfixes/">Quickfixes</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
                 </li>
                 <li class=" current">
@@ -106,6 +102,8 @@
             <li><a class="toctree-l4" href="#misc">Misc</a></li>
         
             <li><a class="toctree-l4" href="#emf-parent-relationship-model-mavigation">EMF Parent Relationship (model mavigation)</a></li>
+        
+            <li><a class="toctree-l4" href="#filter-and-map-functions-lambdas-and-passing-lambdas">filter and map functions, lambdas and passing lambdas</a></li>
         
         </ul>
     
@@ -230,6 +228,32 @@ it is useful to navigate to the parent of a model object.
 This can be done with the attribute "eContainer" of every model
 element. It may be necessary to cast this parent to an appropriate type
 (this can also happen via a dispatch method).</p>
+<h2 id="filter-and-map-functions-lambdas-and-passing-lambdas">filter and map functions, lambdas and passing lambdas</h2>
+<p>Filter functions can be used to filter a list (like the unix command grep). 
+Map funtions can be used to transform a list of element (like the unix 
+command sed):</p>
+<div class="codehilite"><pre><span></span><span class="o">::</span> <span class="n">xtend</span> 
+<span class="n">resource</span><span class="o">.</span><span class="n">allContents</span>
+    <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">map</span><span class="o">[</span><span class="n">name</span><span class="o">]</span>
+    <span class="o">.</span><span class="n">join</span><span class="o">(</span><span class="s">&#39;, &#39;</span><span class="o">))</span>
+</pre></div>
+
+
+<p>Details:</p>
+<ul>
+<li>"filter(TYPE)" filters the list to yield all entries of type "TYPE".</li>
+<li>"filter(LAMBDA)" filters the list using the "LAMBDA" as selector (if the
+     LAMBDA returns true, the element is returned).</li>
+<li>"map(LAMBDA)" transforms each element using the "LAMBDA".</li>
+<li>Functions expecting a lambda can be called ommiting the brackets "(...)".</li>
+<li>Lambda have the following syntax <ul>
+<li>"[a | a.name]" is the same as "[name]" or "[it.name]" ("it" is the 
+    default parametername).</li>
+<li>"return" can be ommited: the last command yields the return value.</li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

@@ -85,7 +85,9 @@
         
             <li><a class="toctree-l4" href="#step-1-create-and-run-an-xtext-project">Step 1: Create and run an Xtext project</a></li>
         
-            <li><a class="toctree-l4" href="#step-2-lessons-learned">Step 2: Lessons learned</a></li>
+            <li><a class="toctree-l4" href="#step-2-questions">Step 2: Questions</a></li>
+        
+            <li><a class="toctree-l4" href="#step-3-more-examples">Step 3: More examples</a></li>
         
             <li><a class="toctree-l4" href="#editor">Editor</a></li>
         
@@ -99,10 +101,6 @@
                 <li class="">
                     
     <a class="" href="../xtext_model_validation/">Model Validation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../xtext_quickfixes/">Quickfixes</a>
                 </li>
                 <li class="">
                     
@@ -186,7 +184,7 @@
 <p>Take your time for this tutorial now and continue reading afterwards.
 You may <strong>stop before "Second Iteration"</strong> where "packages"
 are added to the model.</p>
-<h2 id="step-2-lessons-learned">Step 2: Lessons learned</h2>
+<h2 id="step-2-questions">Step 2: Questions</h2>
 <p>Check if you understood thw following points:</p>
 <ul>
 <li>What is the role of the <strong>start rule</strong> of a grammar in a meta model?</li>
@@ -195,9 +193,7 @@ are added to the model.</p>
     Entity in  src-gen/org/example/domainmodel/domainmodel in your main 
     project.</li>
 <li>How do you typically add keywords to your language (like "entity")?</li>
-<li>What is the difference between "x=Rule1" and "x=[Rule1]" 
-    <a name="xtext_attributes"></a> Attributes, 
-    <a name="xtext_References"></a> References?</li>
+<li>What is the difference between "x=Rule1" and "x=[Rule1]"?</li>
 <li>How can you model the following?<ul>
 <li>"a <em>named</em> <strong>University</strong> aggregates <em>named</em> <strong>Students</strong>".</li>
 <li>"a <strong>House</strong> is composed of <strong>Rooms</strong>" 
@@ -216,6 +212,23 @@ are added to the model.</p>
  references, are null if not set. Others have default values (like an empty
  String for STRING, "0" for INT or the first enum value defined for enums).</li>
 </ul>
+<h2 id="step-3-more-examples">Step 3: More examples</h2>
+<p>Can you interpret the following snippet:</p>
+<div class="codehilite"><pre><span></span><span class="c">// ...</span><span class="w"></span>
+<span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">customers</span><span class="o">+=</span><span class="no">Customer</span><span class="o">*</span><span class="w"> </span><span class="nv">computers</span><span class="o">+=</span><span class="no">Computer</span><span class="o">*</span><span class="w"> </span><span class="nv">owns</span><span class="o">+=</span><span class="no">Owns</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Computer</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;computer&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Customer</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;customer&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Own</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;the&#39;</span><span class="w"> </span><span class="nv">computer</span><span class="o">=</span><span class="p">[</span><span class="x">Computer</span><span class="p">]</span><span class="w"> </span>
+<span class="w">     </span><span class="s">&#39;is&#39;</span><span class="w"> </span><span class="s">&#39;owned&#39;</span><span class="w"> </span><span class="s">&#39;by&#39;</span><span class="w"> </span><span class="nv">customer</span><span class="o">=</span><span class="p">[</span><span class="x">Customer</span><span class="p">]</span><span class="w"> </span>
+<span class="w">     </span><span class="s">&#39;since&#39;</span><span class="w"> </span><span class="nv">date</span><span class="o">=</span><span class="no">STRING</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+
+
+<p>What changes when we define the 'Model' differently:</p>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="nv">customers</span><span class="o">+=</span><span class="no">Customer</span><span class="w"> </span><span class="nv">computers</span><span class="o">+=</span><span class="no">Computer</span><span class="w"> </span><span class="nv">owns</span><span class="o">+=</span><span class="no">Owns</span><span class="o">)*</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+
+
 <h2 id="editor">Editor</h2>
 <p>In addition to the text editor,
 you can also edit the model with a <strong>tree editor</strong>:

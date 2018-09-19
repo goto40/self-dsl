@@ -82,10 +82,6 @@
                     
     <a class="" href="../xtext_model_validation/">Model Validation</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../xtext_quickfixes/">Quickfixes</a>
-                </li>
                 <li class=" current">
                     
     <a class="current" href="./">Code Generation (with Xtend)</a>
@@ -95,9 +91,9 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#simple-example">Simple Example</a></li>
+            <li><a class="toctree-l4" href="#question">Question</a></li>
         
-            <li><a class="toctree-l4" href="#xtend-template-engine">Xtend template engine</a></li>
+            <li><a class="toctree-l4" href="#extended-example">Extended example</a></li>
         
         </ul>
     
@@ -181,121 +177,104 @@ for code generation. It has a optimzed template engine (e.g., with
 automatic indentation support) and
 is fully integrated in the Eclipse IDE (auto completition
 for model data).</p>
-<h2 id="simple-example">Simple Example</h2>
-<p>Open the *Generator.xtend file in your project, e.g.,
-kurs.xtext.dataflow.generator.DataFlowDslGenerator.xtend. 
-Here, you can implement your first code generator:
-You have model access (parameter "resource") and file system access
-(parameter "fsa").</p>
-<div class="codehilite"><pre><span></span><span class="n">override</span> <span class="kt">void</span> <span class="nf">doGenerate</span><span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span><span class="o">,</span> <span class="n">IFileSystemAccess2</span> <span class="n">fsa</span><span class="o">,</span> 
-        <span class="n">IGeneratorContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// -------------------------------------------</span>
-    <span class="c1">// Option 1:</span>
-    <span class="n">var</span> <span class="n">txt</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nl">obj:</span> <span class="n">resource</span><span class="o">.</span><span class="n">allContents</span><span class="o">.</span><span class="n">toIterable</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">obj</span> <span class="k">instanceof</span> <span class="n">KComponent</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// inside this &quot;if&quot; obj is a KComponent</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">txt</span><span class="o">.</span><span class="n">length</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">)</span> <span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span>
-            <span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">name</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="s">&#39;Components1.txt&#39;</span><span class="o">,</span> <span class="s">&#39;Component declarations: &#39;</span> <span class="o">+</span> <span class="n">txt</span><span class="o">);</span>
+<p>Here we highlight some information when walking through
+<a href="../references/#xtext15minext">(Xtext 15 Minutes Tutorial, Extended)</a>, 
+section "Writing a Code Generator With Xtend".</p>
+<ul>
+<li>"doGenerate" is the method called when generating artefact from a model.</li>
+<li>xxx TODO @Inject</li>
+<li>Xtend allows to use templates (indicated by multiline strings with
+    three single quotes): Inside this templates special commands like "IF"
+    or "FOR" can be used. Is is also possible to to directly insert local
+    variable contensts (typically model data).</li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>
+<p>This following example als illustrates how to get the
+    root of the model (val model=...).</p>
+<div class="codehilite"><pre><span></span><span class="n">val</span> <span class="n">model</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="n">as</span> <span class="n">Domainmodel</span>
+</pre></div>
 
-    <span class="c1">// -------------------------------------------</span>
-    <span class="c1">// Option 2:</span>
-    <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="s">&#39;Components2.txt&#39;</span><span class="o">,</span> <span class="s">&#39;Component declarations: &#39;</span> <span class="o">+</span> 
+
+</li>
+<li>
+<p>It also shows how to cast an object: „obj as Type“.</p>
+</li>
+</ul>
+<h2 id="question">Question</h2>
+<p>What is the following code doing? See <a href="../xtext_xtend/">xtext_xtend.md</a>.</p>
+<div class="codehilite"><pre><span></span><span class="n">override</span> <span class="kt">void</span> <span class="nf">doGenerate</span><span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span><span class="o">,</span> <span class="n">IFileSystemAccess2</span> <span class="n">fsa</span><span class="o">,</span> <span class="n">IGeneratorContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="s">&#39;greetings.txt&#39;</span><span class="o">,</span> <span class="s">&#39;People to greet: &#39;</span> <span class="o">+</span> 
         <span class="n">resource</span><span class="o">.</span><span class="n">allContents</span>
-            <span class="o">.</span><span class="n">filter</span><span class="o">[</span> <span class="n">obj</span> <span class="o">|</span> <span class="n">obj</span> <span class="k">instanceof</span> <span class="n">KComponent</span><span class="o">]</span>
-            <span class="o">.</span><span class="n">map</span><span class="o">[</span> <span class="n">obj</span> <span class="o">|</span> <span class="k">return</span> <span class="o">(</span><span class="n">obj</span> <span class="n">as</span> <span class="n">KComponent</span><span class="o">).</span><span class="n">name</span> <span class="o">]</span>
+            <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">)</span>
+            <span class="o">.</span><span class="n">map</span><span class="o">[</span><span class="n">name</span><span class="o">]</span>
             <span class="o">.</span><span class="n">join</span><span class="o">(</span><span class="s">&#39;, &#39;</span><span class="o">))</span>
-
-    <span class="c1">// -------------------------------------------</span>
-    <span class="c1">// Option 3:</span>
-    <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="s">&#39;Components3.txt&#39;</span><span class="o">,</span> <span class="s">&#39;Component declarations: &#39;</span> <span class="o">+</span> 
-        <span class="n">resource</span><span class="o">.</span><span class="n">allContents</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">KComponent</span><span class="o">).</span><span class="n">map</span><span class="o">[</span><span class="n">name</span><span class="o">].</span><span class="n">join</span><span class="o">(</span><span class="s">&#39;, &#39;</span><span class="o">))</span>
 <span class="o">}</span>
 </pre></div>
 
 
-<p>In the last example we generate a text describing a list of components on 
-three different manners.</p>
-<ol>
-<li>A traditional for-each loop<ul>
-<li>Note: "auto-casting" happens; this mean if a type of an inctance is 
-  checked (if „instanceof“), 
-  the object is automatically casted to that type within the 
-  body of the if.</li>
-<li>Semicolons are optional.</li>
-<li>"var" und "val" are used to declare variable (val: final variables).</li>
-</ul>
-</li>
-<li>A filter/map/join combination with explicit lambda („[ param | code ]“)<ul>
-<li>The lambda function is directly defined with square brackets '['...']'.</li>
-<li>The brackets '('...')' of the function call are omitted.</li>
-<li>The parameter of the lambda function are stated before the "|"
-  within the '['..']'.</li>
-</ul>
-</li>
-<li>A filter/map/join combination with compact lambdas and class filters: <ul>
-<li>filter(Class) filters according to the passed class "Class".</li>
-<li>map: here, the parameter is implizit defined (and can be addressed 
-  with the name "it": e.g., it.name). 
-  Moreover, the implicit name of the parameter can be omitted,
-  thus, "name" corresponds to "it.name" here: 
-  "[a | a.name]" → "[name]" oder "[it.name]"</li>
-<li>"return" can be omitted: The last expression is the return value.</li>
-</ul>
-</li>
-</ol>
-<p>The generated files contain the text:</p>
-<div class="codehilite"><pre><span></span><span class="err">Component declarations: PC, DF</span>
+<h2 id="extended-example">Extended example</h2>
+<p>Try to generate a C-code snippet:</p>
+<div class="codehilite"><pre><span></span><span class="cp">#ifndef __MYSTRUCT_H_</span>
+<span class="cp">#define __MYSTRUCT_H_</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span> <span class="n">MyStruct</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">attribute1</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">attribute2</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cp">#endif</span>
 </pre></div>
 
 
-<h2 id="xtend-template-engine">Xtend template engine</h2>
-<p>Xtext and Xtend provide a powerful template engine. With this engine
-output text and code can be easily mixed. Moreover, indentations
-in this mixed code are separated between output indentation and logical
-template code indentation (see example: the indentation from the nested
-FOR statement are ignored in the output).</p>
-<div class="codehilite"><pre><span></span>    ::xtend
-    // -------------------------------------------
-    // Option 4:
-    val model = resource.contents.get(0) as Model
-    fsa.generateFile(&#39;Components4.txt&#39;, &#39;&#39;&#39;
-    The Components of the model are:
-    «FOR p: model.packages»
-        Package «p.name»
-        «FOR c: p.components»
-            KComponent «c.name»
-            «FOR port: c.ports SEPARATOR &quot;, &quot;» 
-            - with port «port.name»
-            «ENDFOR»
-        «ENDFOR»
-    «ENDFOR»
-    &#39;&#39;&#39;);
+<p>When starting a new generator snippet, it can help to copy-paste
+the code to be generate as an example into your code:</p>
+<div class="codehilite"><pre><span></span><span class="kd">def</span> <span class="nf">generateCppCode</span><span class="o">(</span><span class="n">Entity</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="s">&#39;&#39;&#39;</span>
+<span class="s">    #ifndef __MYSTRUCT_H_</span>
+<span class="s">    #define __MYSTRUCT_H_</span>
+<span class="s">    #include &lt;cstdint&gt;</span>
+
+<span class="s">    struct MyStruct {</span>
+<span class="s">        float attribute1;</span>
+<span class="s">        int32_t attribute2;</span>
+<span class="s">    };</span>
+
+<span class="s">    #endif</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="o">}</span>
 </pre></div>
 
 
-<p>Such templates are defined with a multi line string bounded by
-three single qutation marks.
-Within the template special commands (like FOR-loops) can be 
-expressed with text bounded by french quotes.
-The editor supports many features, such as automatic completition of model
-data and displaying the actual indentation. </p>
-<p>Note:
-  * This example als illustrates how to get the
-    root of the model (val model=...).
-  * It also shows how to cast an object: „obj as Type“.</p>
-<p>Output (generated artefact; note the indentation in the template is omitted):</p>
-<div class="codehilite"><pre><span></span><span class="err">The Components of the model are:</span>
-<span class="err">Package test1</span>
-<span class="err">KComponent PC</span>
-<span class="err">- with port in, </span>
-<span class="err">- with port out</span>
-<span class="err">KComponent DF</span>
-<span class="err">- with port in, </span>
-<span class="err">- with port out, </span>
-<span class="err">- with port debug</span>
+<p>Then start replacing your example code with model information 
+("«" and "»" can be 
+entered using CTRL-&lt; and CTRL-&gt; within eclipse):  </p>
+<div class="codehilite"><pre><span></span><span class="kd">def</span> <span class="nf">generateCppCode</span><span class="o">(</span><span class="n">Entity</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="s">&#39;&#39;&#39;</span>
+<span class="s">    #ifndef __MYSTRUCT_H_ // TODO</span>
+<span class="s">    #define __MYSTRUCT_H_ // TODO</span>
+<span class="s">    #include &lt;cstdint&gt;</span>
+
+<span class="s">    struct «</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="s">» {</span>
+<span class="s">    «</span><span class="k">FOR</span> <span class="n">f</span> <span class="o">:</span> <span class="n">e</span><span class="o">.</span><span class="n">features</span><span class="s">»</span>
+<span class="s">        TODO «</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="s">»;</span>
+<span class="s">    «</span><span class="k">ENDFOR</span><span class="s">»</span>
+<span class="s">    };</span>
+
+<span class="s">    #endif</span>
+<span class="s">    &#39;&#39;&#39;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>... and integrate
+your new functionality in your "doGenerate" method:</p>
+<div class="codehilite"><pre><span></span><span class="c1">// integrate the new generator</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">e</span> <span class="o">:</span> <span class="n">resource</span><span class="o">.</span><span class="n">allContents</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">).</span><span class="n">toIterable</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&#39;.h&#39;</span><span class="o">,</span> <span class="n">generateCppCode</span><span class="o">(</span><span class="n">e</span><span class="o">))</span>
+<span class="o">}</span>
 </pre></div>
               
             </div>
@@ -307,7 +286,7 @@ data and displaying the actual indentation. </p>
         <a href="../xtext_xtend/" class="btn btn-neutral float-right" title="Xtend: Selected Aspects">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../xtext_quickfixes/" class="btn btn-neutral" title="Quickfixes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../xtext_model_validation/" class="btn btn-neutral" title="Model Validation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -333,7 +312,7 @@ data and displaying the actual indentation. </p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../xtext_quickfixes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../xtext_model_validation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../xtext_xtend/" style="color: #fcfcfc">Next &raquo;</a></span>
