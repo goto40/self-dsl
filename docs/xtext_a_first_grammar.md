@@ -9,7 +9,7 @@ Take your time for this tutorial now and continue reading afterwards.
 You may __stop before "Second Iteration"__ where "packages"
 are added to the model.
 
-## Step 2: Lessons learned
+## Step 2: Questions
 
 Check if you understood thw following points:
 
@@ -19,9 +19,7 @@ Check if you understood thw following points:
     Entity in  src-gen/org/example/domainmodel/domainmodel in your main 
     project.
  * How do you typically add keywords to your language (like "entity")?
- * What is the difference between "x=Rule1" and "x=[Rule1]" 
-    ::namedref::{xtext_attributes:Attributes}, 
-    ::namedref::{xtext_References:References}?
+ * What is the difference between "x=Rule1" and "x=[Rule1]"?
  * How can you model the following?
     * "a _named_ __University__ aggregates _named_ __Students__".
     * "a __House__ is composed of __Rooms__" 
@@ -36,6 +34,26 @@ Note:
  * Optional attributes can be defined using "?". Note: some types, like 
  references, are null if not set. Others have default values (like an empty
  String for STRING, "0" for INT or the first enum value defined for enums).
+
+## Step 3: More examples
+
+Can you interpret the following snippet:
+
+
+    ::antlr
+    // ...
+    Model: customers+=Customer* computers+=Computer* owns+=Owns*;
+    Computer: 'computer' name=ID;
+    Customer: 'customer' name=ID;
+    Own: 'the' computer=[Computer] 
+         'is' 'owned' 'by' customer=[Customer] 
+         'since' date=STRING;
+
+What changes when we define the 'Model' differently:
+
+
+    ::antlr
+    Model: (customers+=Customer computers+=Computer owns+=Owns)*;
 
 ## Editor
 

@@ -86,7 +86,7 @@ In eclipse you can "__Export__" your generator as "__Runnable JAR__":
 
  * Close eclipse 
  * Clone [https://github.com/basilfx/xtext-standalone-maven-build](https://github.com/basilfx/xtext-standalone-maven-build)
-   (There is a good description there what to do)
+   into some temporary directory (there is a good description there what to do)
  * Copy the ...standalone-folder into your ...parent folder (side-by-side 
     to your other projects)
  * Rename the folder to match your project name (e.g. 

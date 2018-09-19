@@ -58,3 +58,29 @@ it is useful to navigate to the parent of a model object.
 This can be done with the attribute "eContainer" of every model
 element. It may be necessary to cast this parent to an appropriate type
 (this can also happen via a dispatch method).
+
+## filter and map functions, lambdas and passing lambdas
+
+Filter functions can be used to filter a list (like the unix command grep). 
+Map funtions can be used to transform a list of element (like the unix 
+command sed):
+
+    :: xtend 
+    resource.allContents
+        .filter(Entity)
+        .map[name]
+        .join(', '))
+ 
+
+Details:
+
+  * "filter(TYPE)" filters the list to yield all entries of type "TYPE".
+  * "filter(LAMBDA)" filters the list using the "LAMBDA" as selector (if the
+     LAMBDA returns true, the element is returned).
+  * "map(LAMBDA)" transforms each element using the "LAMBDA".
+  * Functions expecting a lambda can be called ommiting the brackets "(...)".
+  * Lambda have the following syntax 
+     * "[a | a.name]" is the same as "[name]" or "[it.name]" ("it" is the 
+        default parametername).
+     * "return" can be ommited: the last command yields the return value.
+        

@@ -13,6 +13,11 @@ the grammar (e.g. "+" instead of "*") and to add this
 semantics to the validation code. This often allows
 to generate more meaningful domain errors.
 
+A good introduction can be found here:
+::namedref::(references.md#xtext15minext), in the section 
+"Creating Custom Validation Rules".
+
+
 ## Validation Example
 
 Open the *Validator.xtend" file (automatically generated for
@@ -32,13 +37,14 @@ Activate the commented code and modify it:
         public static val INVALID_NAME = 'invalidName'
     
         @Check
-        def checkComponentStartsWithCapital(KComponent c) {
-            if (!Character.isUpperCase(c.name.charAt(0))) {
+        def checkGreetingStartsWithCapital(Entity obj) {
+            if (!Character.isUpperCase(obj.name.charAt(0))) {
                 warning('Name should start with a capital', 
-                        DataFlowDslPackage.Literals.KCOMPONENT__NAME,
+                        DomainmodelPackage.Literals.TYPE__NAME,
                         INVALID_NAME)
             }
-        }	
+        }
+
     }
 
 Try your validator for your language in the Eclipse Runtime model editor.
@@ -54,10 +60,12 @@ Notes:
      typing, when saving, or upon explicit request
      (see: org.eclipse.xtext.validation.CheckType; 
      press "F3" when having the cursor on @Check)
-   * The rule above checks elements of type "KComponent". 
+   * The rule above checks elements of type "Entity". 
      Errors/warning, if present, are attached to this model element.
    * A rule can generate "errors", "warnings" und "infos".
      The ID (in our case "INVALID_NAME") allows a rule to 
      be identified later, e.g., when
      implementing HotFixes for specific validation violations.
+   * Why did we use "TYPE_NAME" instead of ENTITY_NAME? (Hint: ENTITY_NAME does
+     not exist; How are Type and Entity related to each other?)
  

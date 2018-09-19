@@ -23,10 +23,11 @@ Unpack the archive to make eclipse available.
     root@xtext:~/Download# /opt/eclipse/eclipse &
 
 
-To complete the installation you need "Install Modeling Components" from the
-"Help" menu entry. Select the "Xtext" entry and "Finish" the installation by
-restarting eclipse.
+To complete the installation you need "Install New Software" from the
+"Help" menu entry. 
 
-![install dialog](images/xtext_install.png "select the Xtext component")
+ * Enter the URL of the itemis update site (see above)
+    in the field "work with" and press enter. 
+ * Then select "Xtext" and "Xtext Antlr" and install the selected software.
 
 

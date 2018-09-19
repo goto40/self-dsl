@@ -109,7 +109,7 @@ concrete instances of such objects in a concrete model.
 
 See also:
 
-   * Xtext: ::namedref::(xtext_a_first_grammar.md#xtext_attributes)
+   * Xtext: [xtext_a_first_grammar.md](xtext_a_first_grammar.md)
    * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
 
 
@@ -136,7 +136,7 @@ is called __composition__ and has clear __ownership__ semantics.
 
 See also:
 
-   * Xtext: ::namedref::(xtext_a_first_grammar.md#xtext_Composition)
+   * Xtext: [xtext_a_first_grammar.md](xtext_a_first_grammar.md)
    * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
 
 ## References and Aggregation
@@ -167,7 +167,7 @@ own rule/class definition).
 
 See also:
 
-   * Xtext: ::namedref::(xtext_a_first_grammar.md#xtext_References)
+   * Xtext: [xtext_a_first_grammar.md](xtext_a_first_grammar.md)
    * TextX: ::namedref::(textx_project_setup.md#textx_meta_model)
 
 ## Scoping
