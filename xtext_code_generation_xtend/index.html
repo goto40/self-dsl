@@ -91,9 +91,15 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#question">Question</a></li>
+            <li><a class="toctree-l4" href="#goal-of-this-section">Goal of this section</a></li>
         
-            <li><a class="toctree-l4" href="#extended-example">Extended example</a></li>
+            <li><a class="toctree-l4" href="#step-1-walkthough">Step 1: Walkthough</a></li>
+        
+            <li><a class="toctree-l4" href="#step-2-question">Step 2: Question</a></li>
+        
+            <li><a class="toctree-l4" href="#step-3-next-step-extended-example">Step 3: Next step: Extended example</a></li>
+        
+            <li><a class="toctree-l4" href="#optional-step-4-create-a-command-line-version-of-your-compiler">Optional Step 4: Create a command line version of your "compiler"</a></li>
         
         </ul>
     
@@ -103,6 +109,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_scoping/">Scoping</a>
                 </li>
                 <li class="">
                     
@@ -180,19 +190,56 @@ for model data).</p>
 <p>Here we highlight some information when walking through
 <a href="../references/#xtext15minext">(Xtext 15 Minutes Tutorial, Extended)</a>, 
 section "Writing a Code Generator With Xtend".</p>
+<h2 id="goal-of-this-section">Goal of this section</h2>
 <ul>
-<li>"doGenerate" is the method called when generating artefact from a model.</li>
-<li>xxx TODO @Inject</li>
+<li>You learn how to generate Artefacts in form of text files (e.g. source code).</li>
+<li>You learn how to format the output and how to access model data.</li>
+<li>After some basic steps you may have a look at 
+    <a href="../xtext_xtend/">xtext_xtend.md</a> to learn more about the language xtend 
+    employed for the artefact generator.</li>
+<li>Finally, you see how you can generate a C++-file based on the model. You
+   will see how you can start from an example code and iteratively replace
+   concrete code with model data.</li>
+</ul>
+<h2 id="step-1-walkthough">Step 1: Walkthough</h2>
+<p>When reading <a href="../references/#xtext15minext">(Xtext 15 Minutes Tutorial, Extended)</a>, start with the
+first section "Writing a Code Generator With Xtend" (until 
+"Unit Testing the Language"): </p>
+<ul>
+<li>Locate the file where the <strong>artifact generator</strong> is implemented 
+    (DomainmodelGenerator.xtend).</li>
+<li>"<strong>doGenerate</strong>" is the method called when generating artifacts from a model.</li>
+<li>Ignore the "IQualifiedNameProvider": You can just use "obj.name" in your 
+    example (instead of obj.fullyQualifiedName) for the moment.</li>
 <li>Xtend allows to use templates (indicated by multiline strings with
-    three single quotes): Inside this templates special commands like "IF"
-    or "FOR" can be used. Is is also possible to to directly insert local
-    variable contensts (typically model data).</li>
+    three single quotes): <ul>
+<li>Inside this templates you can place <strong>text which 
+  is directly inserted</strong> in the output. </li>
+<li><strong>Special commands</strong> like "IF" or "FOR" can be used if placed between 
+  "«" and "»" 
+  ("«" and "»" can be entered using CTRL-&lt; and CTRL-&gt; within eclipse).</li>
+<li>Is is also possible to <strong>insert local variable contensts</strong> (typically model 
+  data, e.g. '''the name of the entitiy is «entity_var.name»''').</li>
+<li>Tabs are inserted in an intelligent way, such that <strong>indentation</strong> associated
+  with generator logic (e.g., after an "«IF»") are not inserted into the
+  output (such indentation is visually highlighted in the editor).</li>
+</ul>
+</li>
+<li><strong>Optional model elements</strong> which are represented as a class are null, when
+    not used. Caution: Other elements, such as enums, INT, and STRING have
+    default values.</li>
+<li>The example also shows that a <strong>modularization</strong> is possible (see how 
+    code for "Features" is inserted).</li>
+<li>Many aspects may look scary at first sight, but are extremely valuable 
+    for teh given task of textual artifact generation: 
+    See <a href="../xtext_xtend/">xtext_xtend.md</a>.</li>
 </ul>
 <p>Note:</p>
 <ul>
 <li>
 <p>This following example als illustrates how to get the
-    root of the model (val model=...).</p>
+    root of the model (val model=...). This object can be passsed to
+    a function generating some text from it.</p>
 <div class="codehilite"><pre><span></span><span class="n">val</span> <span class="n">model</span> <span class="o">=</span> <span class="n">resource</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="n">as</span> <span class="n">Domainmodel</span>
 </pre></div>
 
@@ -202,7 +249,7 @@ section "Writing a Code Generator With Xtend".</p>
 <p>It also shows how to cast an object: „obj as Type“.</p>
 </li>
 </ul>
-<h2 id="question">Question</h2>
+<h2 id="step-2-question">Step 2: Question</h2>
 <p>What is the following code doing? See <a href="../xtext_xtend/">xtext_xtend.md</a>.</p>
 <div class="codehilite"><pre><span></span><span class="n">override</span> <span class="kt">void</span> <span class="nf">doGenerate</span><span class="o">(</span><span class="n">Resource</span> <span class="n">resource</span><span class="o">,</span> <span class="n">IFileSystemAccess2</span> <span class="n">fsa</span><span class="o">,</span> <span class="n">IGeneratorContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="s">&#39;greetings.txt&#39;</span><span class="o">,</span> <span class="s">&#39;People to greet: &#39;</span> <span class="o">+</span> 
@@ -214,7 +261,7 @@ section "Writing a Code Generator With Xtend".</p>
 </pre></div>
 
 
-<h2 id="extended-example">Extended example</h2>
+<h2 id="step-3-next-step-extended-example">Step 3: Next step: Extended example</h2>
 <p>Try to generate a C-code snippet:</p>
 <div class="codehilite"><pre><span></span><span class="cp">#ifndef __MYSTRUCT_H_</span>
 <span class="cp">#define __MYSTRUCT_H_</span>
@@ -248,9 +295,7 @@ the code to be generate as an example into your code:</p>
 </pre></div>
 
 
-<p>Then start replacing your example code with model information 
-("«" and "»" can be 
-entered using CTRL-&lt; and CTRL-&gt; within eclipse):  </p>
+<p>Then start replacing your example code with model information:  </p>
 <div class="codehilite"><pre><span></span><span class="kd">def</span> <span class="nf">generateCppCode</span><span class="o">(</span><span class="n">Entity</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="s">&#39;&#39;&#39;</span>
 <span class="s">    #ifndef __MYSTRUCT_H_ // TODO</span>
@@ -276,6 +321,10 @@ your new functionality in your "doGenerate" method:</p>
     <span class="n">fsa</span><span class="o">.</span><span class="n">generateFile</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&#39;.h&#39;</span><span class="o">,</span> <span class="n">generateCppCode</span><span class="o">(</span><span class="n">e</span><span class="o">))</span>
 <span class="o">}</span>
 </pre></div>
+
+
+<h2 id="optional-step-4-create-a-command-line-version-of-your-compiler">Optional Step 4: Create a command line version of your "compiler"</h2>
+<p>See <a href="../xtext_deploy_command_line/">xtext_deploy_command_line.md</a>.</p>
               
             </div>
           </div>

@@ -79,9 +79,17 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#create-a-new-xtext-project">Create a new Xtext Project</a></li>
+            <li><a class="toctree-l4" href="#goal">Goal</a></li>
         
-            <li><a class="toctree-l4" href="#build-meta-model-using-maven">Build meta model using maven</a></li>
+            <li><a class="toctree-l4" href="#step-1-create-a-new-xtext-project">Step 1: Create a new Xtext Project</a></li>
+        
+            <li><a class="toctree-l4" href="#step-2-exploring-the-new-domain-model-language">Step 2: Exploring the new domain model language</a></li>
+        
+            <li><a class="toctree-l4" href="#step-3-compile-and-run-the-project">Step 3: </a></li>
+        
+            <li><a class="toctree-l4" href="#step-5-add-unittests">Step 5: Add Unittests</a></li>
+        
+            <li><a class="toctree-l4" href="#optional-step-5-build-meta-model-using-maven">Optional step 5: Build meta model using maven</a></li>
         
         </ul>
     
@@ -103,6 +111,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_scoping/">Scoping</a>
                 </li>
                 <li class="">
                     
@@ -172,13 +184,26 @@
             <div class="section">
               
                 <h1 id="xtext-project-setup">Xtext Project Setup</h1>
-<h2 id="create-a-new-xtext-project">Create a new Xtext Project</h2>
+<h2 id="goal">Goal</h2>
+<p>In this section you will learn</p>
+<ul>
+<li>How to create a new XText Project.</li>
+<li>How to run you toolchain (edtior and parser).</li>
+<li>What Project structures are created.</li>
+<li>Run a unittest testing the parser.</li>
+<li>Optional: How to start a build of your toolchain with maven at the 
+   commmandline</li>
+</ul>
+<h2 id="step-1-create-a-new-xtext-project">Step 1: Create a new Xtext Project</h2>
 <p>Follow section "Create A New Xtext Project"
 in <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
 <p>In addition to the information from the tutorial we
 suggest the following details for the other examples
 discussed on this site:
 <img alt="model.dot" src="../images/xtext_new_project2.png" title="xtext_new_project2.png" /></p>
+<p>The result are a set of projects: we are mainly interrested in the
+first project, which contains the grammar.</p>
+<h2 id="step-2-exploring-the-new-domain-model-language">Step 2: Exploring the new domain model language</h2>
 <p>The example grammar (automatically created after project
 initialization) defines a "Model" consisting of 
 "Greetings" is shown in the following. A "Model" contains "Greetings".
@@ -211,9 +236,21 @@ Every "Greeting" consists of the Text 'Hello' and a name followed by '!'
    "name=ID" means that the attribute "name" is parsed as "ID" (which in turn
    is - more or less - an alphanumerical word staring with no number)</li>
 </ul>
-<p>TODO Note: Use "Team -&gt; Git -&gt; Project for "Automatically ignore derived resources"
-to add an appropriate .gitignore file to your project (when using git).</p>
-<h2 id="compile-and-run-the-project"><a name="xtext_compile_and_run"></a> Compile and Run the Project</h2>
+<h3 id="note-on-version-control">Note on version control</h3>
+<p>When using git or svn make sure not to commit any generated code
+(e.g. everything under src-gen and xtend-gen). Use, e.g., a .gitignore file
+like the following:</p>
+<div class="codehilite"><pre><span></span>target
+src-gen
+xtend-gen
+.settings
+.metadata
+bin
+generated
+</pre></div>
+
+
+<h2 id="step-3-compile-and-run-the-project">Step 3: <a name="xtext_compile_and_run"></a> Compile and Run the Project</h2>
 <p>Without modifing the grammar (or anything else), follow the steps in
 section "Generate Language Artifacts" in 
 <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
@@ -227,7 +264,12 @@ completion). Enter the following example:</p>
 </pre></div>
 
 
-<h2 id="build-meta-model-using-maven">Build meta model using maven</h2>
+<h2 id="step-5-add-unittests">Step 5: Add Unittests</h2>
+<p>In the test project you can add a unitests. Locate the single file in
+the src folder. This file contains a unittest. Uncomment the test code and
+run the test. </p>
+<p>Note: You need to generate the xtext artefact before (see above).</p>
+<h2 id="optional-step-5-build-meta-model-using-maven">Optional step 5: Build meta model using maven</h2>
 <p>When maven is selected as build tool, you can also use maven (instead of
 eclipse) to build your project on the command line: Go to the "parent" 
 project and run "mvn package".</p>
@@ -235,6 +277,23 @@ project and run "mvn package".</p>
 your subprojects. The output is located in the folder "target" of each 
 subproject.</p>
 <p>See also: <a href="../references/#maven">(Maven)</a>.</p>
+<p>Hint: When using the XText Version with Photon in September 2018, I got
+an error reported by maven I solved by inserting a small snippted to correct
+a version (everythiong between &lt;dependencies> and &lt;/dependencies>,
+see <a href="https://github.com/eclipse/xtext/issues/1231">https://github.com/eclipse/xtext/issues/1231</a>.</p>
+<div class="codehilite"><pre><span></span><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.eclipse.xtend<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>xtend-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span><span class="cp">${</span><span class="n">xtextVersion</span><span class="cp">}</span><span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.eclipse.platform<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>org.eclipse.equinox.common<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>3.10.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+...
+</pre></div>
               
             </div>
           </div>

@@ -2,72 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/motivation/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/basics/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_eclipse/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_project_setup/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_a_first_grammar/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_model_validation/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_code_generation_xtend/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_xtend/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/xtext_scoping/</loc>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/xtext_deploy_command_line/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/textx_intro/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/textx_project_setup/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/textx_by_examples/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/references/</loc>
-     <lastmod>2018-09-19</lastmod>
+     <lastmod>2018-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

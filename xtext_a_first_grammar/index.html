@@ -83,15 +83,19 @@
     
         <ul>
         
+            <li><a class="toctree-l4" href="#goal">Goal</a></li>
+        
             <li><a class="toctree-l4" href="#step-1-create-and-run-an-xtext-project">Step 1: Create and run an Xtext project</a></li>
         
             <li><a class="toctree-l4" href="#step-2-questions">Step 2: Questions</a></li>
         
             <li><a class="toctree-l4" href="#step-3-more-examples">Step 3: More examples</a></li>
         
-            <li><a class="toctree-l4" href="#editor">Editor</a></li>
+            <li><a class="toctree-l4" href="#step-4-editor">Step 4: Editor</a></li>
         
-            <li><a class="toctree-l4" href="#visualize-the-meta-model">Visualize the meta model</a></li>
+            <li><a class="toctree-l4" href="#step-5-visualize-the-meta-model">Step 5: Visualize the meta model</a></li>
+        
+            <li><a class="toctree-l4" href="#optional-step-6-adapt-you-unittests">Optional Step 6: Adapt you unittests</a></li>
         
         </ul>
     
@@ -109,6 +113,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_scoping/">Scoping</a>
                 </li>
                 <li class="">
                     
@@ -180,6 +188,16 @@
                 <h1 id="a-first-grammar">A First Grammar</h1>
 <p>Here we highlight some information when walking through
 <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
+<h2 id="goal">Goal</h2>
+<p>In this section you will learn</p>
+<ul>
+<li>How to model hierarchical data structures (things containing things).</li>
+<li>How to model references (things referencing things).</li>
+<li>How to identify model elements (by name). </li>
+<li>How to model specialization.</li>
+</ul>
+<p>Note: How to identify model elements in other hierarchical elements
+(e.g. packages) will be handled later.</p>
 <h2 id="step-1-create-and-run-an-xtext-project">Step 1: Create and run an Xtext project</h2>
 <p>Take your time for this tutorial now and continue reading afterwards.
 You may <strong>stop before "Second Iteration"</strong> where "packages"
@@ -209,8 +227,11 @@ are added to the model.</p>
 <p>Note:</p>
 <ul>
 <li>Optional attributes can be defined using "?". Note: some types, like 
- references, are null if not set. Others have default values (like an empty
- String for STRING, "0" for INT or the first enum value defined for enums).</li>
+   references, are null if not set. Others have default values (like an empty
+   String for STRING, "0" for INT or the first enum value defined for enums).</li>
+<li>Rules without attributes doe not yield an object 
+   (e.g.: "Thing: INT"). You can force the object creation with the
+   following syntax using curly brackets: "Thing: {Thing} INT".</li>
 </ul>
 <h2 id="step-3-more-examples">Step 3: More examples</h2>
 <p>Can you interpret the following snippet:</p>
@@ -229,13 +250,14 @@ are added to the model.</p>
 </pre></div>
 
 
-<h2 id="editor">Editor</h2>
+<h2 id="step-4-editor">Step 4: Editor</h2>
 <p>In addition to the text editor,
 you can also edit the model with a <strong>tree editor</strong>:
 open wthe file with "Open With..." - "Sample Ecore Model Editor".</p>
 <p>When editing the model graph, the model text is changed accordingly: 
-see <a href="https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting">Auto Formatting</a>.</p>
-<h2 id="visualize-the-meta-model">Visualize the meta model</h2>
+see the Xtext <a href="https://blogs.itemis.com/en/tabular-formatting-with-the-new-formatter-api">"Formatter"</a> 
+in the online help of Xtext (in the internet or within eclipse): </p>
+<h2 id="step-5-visualize-the-meta-model">Step 5: Visualize the meta model</h2>
 <p>The <strong>ecore model</strong>  deduced from the grammar can be <strong>visualized</strong>:
 see <a href="../references/#mooji2017a">(Mooij et al, 2017a)</a>,
 section "Optional: Ecore diagram" („Initialize Ecore Diagram ...“).</p>
@@ -243,6 +265,8 @@ section "Optional: Ecore diagram" („Initialize Ecore Diagram ...“).</p>
 see <a href="../references/#mooji2017a">(Mooij et al, 2017a)</a>,
 section "Optional: View Diagram of Xtext Grammar"
 (Window/Show View/Other.../Xtext/Xtext Syntax Graph).</p>
+<h2 id="optional-step-6-adapt-you-unittests">Optional Step 6: Adapt you unittests</h2>
+<p>Adapt your unittests.</p>
               
             </div>
           </div>
