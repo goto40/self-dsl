@@ -18,6 +18,7 @@ pages:
 #    - {'Quickfixes':'xtext_quickfixes.md'}
     - {'Code Generation (with Xtend)':'xtext_code_generation_xtend.md'}
     - {'Xtend: Selected Aspects':'xtext_xtend.md'}
+    - {'Scoping':'xtext_scoping.md'}
     - {'Deploy a command line version':'xtext_deploy_command_line.md'}
  - TextX:
     - {'TextX Intro':'textx_intro.md'}

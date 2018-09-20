@@ -1,6 +1,17 @@
 # Xtext Project Setup
 
-## Create a new Xtext Project
+## Goal
+
+In this section you will learn
+
+ * How to create a new XText Project.
+ * How to run you toolchain (edtior and parser).
+ * What Project structures are created.
+ * Run a unittest testing the parser.
+ * Optional: How to start a build of your toolchain with maven at the 
+   commmandline
+
+## Step 1: Create a new Xtext Project
 
 Follow section "Create A New Xtext Project"
 in ::namedref::(references.md#xtext15min).
@@ -10,6 +21,10 @@ suggest the following details for the other examples
 discussed on this site:
 ![model.dot](images/xtext_new_project2.png "xtext_new_project2.png")
 
+The result are a set of projects: we are mainly interrested in the
+first project, which contains the grammar.
+
+## Step 2: Exploring the new domain model language
 
 The example grammar (automatically created after project
 initialization) defines a "Model" consisting of 
@@ -52,10 +67,21 @@ Notes:
    "name=ID" means that the attribute "name" is parsed as "ID" (which in turn
    is - more or less - an alphanumerical word staring with no number)
 
-TODO Note: Use "Team -> Git -> Project for "Automatically ignore derived resources"
-to add an appropriate .gitignore file to your project (when using git).
+### Note on version control
 
-## ::namedref::{xtext_compile_and_run:Compile and Run the Project}
+When using git or svn make sure not to commit any generated code
+(e.g. everything under src-gen and xtend-gen). Use, e.g., a .gitignore file
+like the following:
+
+    target
+    src-gen
+    xtend-gen
+    .settings
+    .metadata
+    bin
+    generated
+
+## Step 3: ::namedref::{xtext_compile_and_run:Compile and Run the Project}
 
 Without modifing the grammar (or anything else), follow the steps in
 section "Generate Language Artifacts" in 
@@ -72,7 +98,15 @@ completion). Enter the following example:
     Hello Tim!
     Hello Markus!
 
-## Build meta model using maven
+## Step 5: Add Unittests
+
+In the test project you can add a unitests. Locate the single file in
+the src folder. This file contains a unittest. Uncomment the test code and
+run the test. 
+
+Note: You need to generate the xtext artefact before (see above).
+
+## Optional step 5: Build meta model using maven
 
 When maven is selected as build tool, you can also use maven (instead of
 eclipse) to build your project on the command line: Go to the "parent" 
@@ -84,3 +118,20 @@ subproject.
 
 See also: ::namedref::(references.md#maven).
 
+Hint: When using the XText Version with Photon in September 2018, I got
+an error reported by maven I solved by inserting a small snippted to correct
+a version (everythiong between <dependencies\> and </dependencies\>,
+see [https://github.com/eclipse/xtext/issues/1231](https://github.com/eclipse/xtext/issues/1231).
+
+    <plugin>
+        <groupId>org.eclipse.xtend</groupId>
+        <artifactId>xtend-maven-plugin</artifactId>
+        <version>${xtextVersion}</version>
+        <dependencies>
+            <dependency>
+                <groupId>org.eclipse.platform</groupId>
+                <artifactId>org.eclipse.equinox.common</artifactId>
+                <version>3.10.0</version>
+            </dependency>
+        </dependencies>
+    ...

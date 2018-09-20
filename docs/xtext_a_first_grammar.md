@@ -3,6 +3,18 @@
 Here we highlight some information when walking through
 ::namedref::(references.md#xtext15min).
 
+## Goal
+
+In this section you will learn
+
+ * How to model hierarchical data structures (things containing things).
+ * How to model references (things referencing things).
+ * How to identify model elements (by name). 
+ * How to model specialization.
+
+Note: How to identify model elements in other hierarchical elements
+(e.g. packages) will be handled later.
+
 ## Step 1: Create and run an Xtext project
 
 Take your time for this tutorial now and continue reading afterwards.
@@ -32,8 +44,11 @@ Check if you understood thw following points:
 Note:
 
  * Optional attributes can be defined using "?". Note: some types, like 
- references, are null if not set. Others have default values (like an empty
- String for STRING, "0" for INT or the first enum value defined for enums).
+   references, are null if not set. Others have default values (like an empty
+   String for STRING, "0" for INT or the first enum value defined for enums).
+ * Rules without attributes doe not yield an object 
+   (e.g.: "Thing: INT"). You can force the object creation with the
+   following syntax using curly brackets: "Thing: {Thing} INT".
 
 ## Step 3: More examples
 
@@ -55,17 +70,19 @@ What changes when we define the 'Model' differently:
     ::antlr
     Model: (customers+=Customer computers+=Computer owns+=Owns)*;
 
-## Editor
+## Step 4: Editor
 
 In addition to the text editor,
 you can also edit the model with a __tree editor__:
 open wthe file with "Open With..." - "Sample Ecore Model Editor".
 
 When editing the model graph, the model text is changed accordingly: 
-see [Auto Formatting](https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#formatting).
+see the Xtext ["Formatter"](https://blogs.itemis.com/en/tabular-formatting-with-the-new-formatter-api) 
+in the online help of Xtext (in the internet or within eclipse): 
 
 
-## Visualize the meta model
+
+## Step 5: Visualize the meta model
 
 The __ecore model__  deduced from the grammar can be __visualized__:
 see ::namedref::(references.md#mooji2017a),
@@ -76,3 +93,6 @@ see ::namedref::(references.md#mooji2017a),
 section "Optional: View Diagram of Xtext Grammar"
 (Window/Show View/Other.../Xtext/Xtext Syntax Graph).
 
+## Optional Step 6: Adapt you unittests
+
+Adapt your unittests.

@@ -20,7 +20,7 @@ When running the mwe2 script (compiling your grammar;
 see ::namedref::(xtext_project_setup.md#xtext_compile_and_run)), a Main.java
 file is created in the generator namespace side-by-side to your grammar.
 
-## Modify Main.java
+## Optional: Modify Main.java
 
 The Main-class expects a model file to be processed: parsed, validated and
 generated code from the model.
@@ -109,3 +109,4 @@ Note:
  * You can use the standalone code generator as "compiler" in a Makefile
     (like gcc). It will perform a model syntax check, a model validation and a 
     code generation.
+    
