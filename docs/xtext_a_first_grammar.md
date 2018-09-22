@@ -64,7 +64,7 @@ Can you interpret the following snippet:
          'is' 'owned' 'by' customer=[Customer] 
          'since' date=STRING;
 
-What changes when we define the 'Model' differently:
+What changes, when we define the 'Model' differently:
 
 
     ::antlr

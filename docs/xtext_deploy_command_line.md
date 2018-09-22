@@ -82,7 +82,16 @@ In eclipse you can "__Export__" your generator as "__Runnable JAR__":
  * Select "Package requried libraries into generated JAR file".
  * Specify your destination JAR file name and click "Finish".
 
+## Create the command line compiler with gradle
+
+See [https://gitlab.com/Tim-S/xtext-dsl-headless-example](https://gitlab.com/Tim-S/xtext-dsl-headless-example)
+for a very nice and compact description: you will learn how to
+deploy a command line version of the "Hello World" grammar
+using a few lines of code.
+
 ## Create the command line compiler with maven
+
+(work in progress)
 
  * Close eclipse 
  * Clone [https://github.com/basilfx/xtext-standalone-maven-build](https://github.com/basilfx/xtext-standalone-maven-build)

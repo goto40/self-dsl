@@ -11,11 +11,8 @@ In this seciton you will learn thw following:
 
 Scoping is always relevant, when a reference 
 (e.g., "Thing: ref=[OtherThing]") is resolved after 
-parsing the model text. 
+parsing the model text. Details see [basics.md](basics.md).
 
-These references can be resolved in order to idnetify an object 
-globally (e.g., by name) or with respect to other model data: e.g.:
-"Call: object=[Object] '.' method=[Method];"
 
 ## Scoping: Global identification of elements
 

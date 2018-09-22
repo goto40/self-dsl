@@ -65,7 +65,7 @@ Filter functions can be used to filter a list (like the unix command grep).
 Map funtions can be used to transform a list of element (like the unix 
 command sed):
 
-    :: xtend 
+    ::xtend 
     resource.allContents
         .filter(Entity)
         .map[name]
