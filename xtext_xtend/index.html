@@ -103,7 +103,9 @@
         
             <li><a class="toctree-l4" href="#emf-parent-relationship-model-mavigation">EMF Parent Relationship (model mavigation)</a></li>
         
-            <li><a class="toctree-l4" href="#filter-and-map-functions-lambdas-and-passing-lambdas">filter and map functions, lambdas and passing lambdas</a></li>
+            <li><a class="toctree-l4" href="#list-element-access">List element access</a></li>
+        
+            <li><a class="toctree-l4" href="#filter-and-map-functions-lambdas-and-passing-lambdas">Filter and map functions, lambdas and passing lambdas</a></li>
         
         </ul>
     
@@ -117,6 +119,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_howtos/">Xtext HOWTOs</a>
                 </li>
     </ul>
 	    </li>
@@ -216,12 +222,12 @@ depending what object is passed (runtime polymorphy). The code behaves if
 an "if obj instanceof TYPE" is called to determine which version has to be called.</p>
 <h2 id="misc">Misc</h2>
 <ul>
-<li>„==“ vs. „===“ (analog „!=“ vs. „!==“):<ul>
+<li>„==“ vs. „===“ (analogous „!=“ vs. „!==“):<ul>
 <li>„==“ uses the method "equals" to determine the result.</li>
 <li>„===“ checks if the identical object is referenced (like a pointer comparison).</li>
 </ul>
 </li>
-<li>It is posisble to check if an optional modell element is present or not
+<li>It is possible to check if an optional modell element is present or not
     by comparing it to null.</li>
 <li>It is possible to check if a model element is not yet loaded
     (eIsProxy==true).</li>
@@ -232,7 +238,10 @@ it is useful to navigate to the parent of a model object.
 This can be done with the attribute "eContainer" of every model
 element. It may be necessary to cast this parent to an appropriate type
 (this can also happen via a dispatch method).</p>
-<h2 id="filter-and-map-functions-lambdas-and-passing-lambdas">filter and map functions, lambdas and passing lambdas</h2>
+<h2 id="list-element-access">List element access</h2>
+<p>Lists can be accessed, e.g., via "head" (the first element) or "get(index)"
+(the i.th element).</p>
+<h2 id="filter-and-map-functions-lambdas-and-passing-lambdas">Filter and map functions, lambdas and passing lambdas</h2>
 <p>Filter functions can be used to filter a list (like the unix command grep). 
 Map funtions can be used to transform a list of element (like the unix 
 command sed):</p>

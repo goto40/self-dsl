@@ -99,15 +99,13 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#goal">Goal</a></li>
-        
             <li><a class="toctree-l4" href="#scoping-what-is-it-and-where-do-i-need-it">Scoping: What is it and where do I need it?</a></li>
         
             <li><a class="toctree-l4" href="#scoping-global-identification-of-elements">Scoping: Global identification of elements</a></li>
         
-            <li><a class="toctree-l4" href="#customize-lookup-of-local-elements">Customize lookup of local elements</a></li>
+            <li><a class="toctree-l4" href="#models-distributed-across-multiple-files">Models distributed across multiple files</a></li>
         
-            <li><a class="toctree-l4" href="#select-scope-providers">Select scope providers</a></li>
+            <li><a class="toctree-l4" href="#customize-lookup-of-local-elements">Customize lookup of local elements</a></li>
         
         </ul>
     
@@ -117,6 +115,10 @@
                 <li class="">
                     
     <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_howtos/">Xtext HOWTOs</a>
                 </li>
     </ul>
 	    </li>
@@ -182,11 +184,12 @@
             <div class="section">
               
                 <h1 id="xtext-scoping">Xtext Scoping</h1>
-<h2 id="goal">Goal</h2>
-<p>In this seciton you will learn thw following:
- * What scoping means and where you need it.
- * How to customize scoping for special lookups of local elements.
- * How to select scope providers to handle multifile lookups.</p>
+<p>In this seciton you will learn thw following:</p>
+<ul>
+<li>What scoping means and where you need it.</li>
+<li>How to customize scoping for special lookups of local elements.</li>
+<li>How to select scope providers to handle multifile lookups.</li>
+</ul>
 <h2 id="scoping-what-is-it-and-where-do-i-need-it">Scoping: What is it and where do I need it?</h2>
 <p>Scoping is always relevant, when a reference 
 (e.g., "Thing: ref=[OtherThing]") is resolved after 
@@ -199,10 +202,10 @@ packages separated by dots).</p>
 <p>In order to make use of the full qualified name of an elements the default
 format of references is not enough to formulate the name (because dots are not
 part of this default format):</p>
-<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">P</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
-<span class="nl">P</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;package&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"> </span><span class="o">(</span><span class="nv">a</span><span class="o">+=</span><span class="no">A</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">b</span><span class="o">+=</span><span class="no">B</span><span class="o">)*</span><span class="w"> </span><span class="s">&#39;}&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="nl">A</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;a&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
-<span class="nl">B</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;b&#39;</span><span class="w"> </span><span class="nv">ref</span><span class="o">=</span><span class="p">[</span><span class="x">A</span><span class="p">]</span><span class="w"> </span><span class="c">// same as &quot;ref=[A|ID]&quot;;</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">Pack</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Pack</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;package&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"> </span><span class="o">(</span><span class="nv">defs</span><span class="o">+=</span><span class="no">Def</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">calls</span><span class="o">+=</span><span class="no">Call</span><span class="o">)*</span><span class="w"> </span><span class="s">&#39;}&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Def</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;def&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Call</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;call&#39;</span><span class="w"> </span><span class="nv">ref</span><span class="o">=</span><span class="p">[</span><span class="x">Def</span><span class="p">];</span><span class="w"> </span><span class="c">// same as &quot;ref=[Def|ID]&quot;</span><span class="w"></span>
 </pre></div>
 
 
@@ -211,55 +214,310 @@ in B objects.</p>
 <p>The following will work because all elements are in the same hierachical
 element (Package):</p>
 <div class="codehilite"><pre><span></span>package p1 {
-    a a1
-    a a2
-    b a1
-    b a2
+    def a1
+    def a2
+    call a1
+    call a2
 }
 </pre></div>
 
 
 <p>The following will not work</p>
 <div class="codehilite"><pre><span></span>package p1 {
-    a a1
+    def a1
 }
 package p2 {
-    a a2
-    b a1 // will not work (a1 is located in p1) 
-    b a2
+    def a2
+    call a1 // will not work (a1 is located in p1) 
+    call a2
 }
 </pre></div>
 
 
 <h3 id="solution">Solution</h3>
-<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">P</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
-<span class="nl">P</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;package&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"> </span><span class="o">(</span><span class="nv">a</span><span class="o">+=</span><span class="no">A</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">b</span><span class="o">+=</span><span class="no">B</span><span class="o">)*</span><span class="w"> </span><span class="s">&#39;}&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="nl">A</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;a&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
-<span class="nl">B</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;b&#39;</span><span class="w"> </span><span class="nv">ref</span><span class="o">=</span><span class="p">[</span><span class="x">A|FQN</span><span class="p">];</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">Pack</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Pack</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;package&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"> </span><span class="o">(</span><span class="nv">defs</span><span class="o">+=</span><span class="no">Def</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">calls</span><span class="o">+=</span><span class="no">Call</span><span class="o">)*</span><span class="w"> </span><span class="s">&#39;}&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Def</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;def&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Call</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;call&#39;</span><span class="w"> </span><span class="nv">ref</span><span class="o">=</span><span class="p">[</span><span class="x">Def|FQN</span><span class="p">];</span><span class="w"></span>
 <span class="nl">FQN</span><span class="w"> </span><span class="err">hidden()</span><span class="p">:</span><span class="w"> </span><span class="no">ID</span><span class="o">(</span><span class="s">&#39;.&#39;</span><span class="w"> </span><span class="no">ID</span><span class="o">)*</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 
 
-<p>Here we allow the format of the reference to be a dot-separated name.
-<em>The optional "hidden()" controls which tokens are ignored (hidden). Hidden
-tokens are, e.g., whitespaces and comments by default. 
+<p>Here we allow the format of the reference to be a dot-separated name.</p>
+<p><strong>Note</strong>: The optional "hidden()" controls which tokens are ignored (hidden). 
+Hidden tokens are, e.g., whitespaces and comments by default. 
 With "hidden()" no such tokens are ignored, thus, not allowing, e.g.,
-whitespaces between the dot separated parts of a name.</em>
-With this the default scope provide works as follows:</p>
-<p>The following will not work</p>
+whitespaces between the dot separated parts of a name.*</p>
+<p>With this, the default scope provider allows models as in the following example:</p>
 <div class="codehilite"><pre><span></span>package p1 {
-    a a1
+    def a1
 }
 package p2 {
-    a a2
-    b p1.a1  
-    b a2
+    def a2
+    call p1.a1  
+    call a2
 }
 </pre></div>
 
 
+<h2 id="models-distributed-across-multiple-files">Models distributed across multiple files</h2>
+<p>When distributing the model across different file, you can control
+how model elements are allowed to reference other model elements in 
+different model files.</p>
+<h3 id="defaultglobalscopeprovider-make-everything-visible">DefaultGlobalScopeProvider "make everything visible"</h3>
+<p>The default scope provider allows referencing any model element in the 
+available resources. In case of an eclipse project with model files,
+those resources consist all model files in the current project. Thus,
+you can reference any model element without any import or include statement.</p>
+<p>For example, elements from p1.mydsl:</p>
+<div class="codehilite"><pre><span></span>package p1 {
+    def a1
+}
+</pre></div>
+
+
+<p>may be referenced by elements in p2.mydsl:</p>
+<div class="codehilite"><pre><span></span>package p2 {
+    call p1.a1  
+}
+</pre></div>
+
+
+<p><strong>Note:</strong> When creating a standalone compiler for your DSL, you do not
+have such thing as a workspace. In this case, you can manually provide
+this information, as illustrated in 
+<a href="../xtext_deploy_command_line/">xtext_deploy_command_line.md</a>.</p>
+<h3 id="importuriglobalscopeprovider-include-other">ImportUriGlobalScopeProvider "#include &lt;other&gt;"</h3>
+<p>You can easily change the visiblity to provide a language with explicit import
+statements; see e.g. <a href="../references/#mooji2017b">(Mooij et al, 2017b)</a>.</p>
+<p>These steps sum up as follows for a simple default project:</p>
+<ul>
+<li>
+<p>Add the "ImportUriValidator" in your mwe2-file (side-by-side to your grammar).</p>
+<div class="codehilite"><pre><span></span>...
+validator = {
+    // composedCheck = &quot;org.eclipse.xtext.validation.NamesAreUniqueValidator&quot;
+    composedCheck = &quot;org.eclipse.xtext.validation.ImportUriValidator&quot;
+}
+...
+</pre></div>
+
+
+</li>
+<li>
+<p>Modify your grammar to include an import statement with a special 
+    "importURI"-field.</p>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">imports</span><span class="o">+=</span><span class="no">Import</span><span class="o">*</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">Pack</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Import</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;import&quot;</span><span class="w"> </span><span class="nv">importURI</span><span class="o">=</span><span class="no">STRING</span><span class="w"></span>
+<span class="o">...</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+<li>
+<p>add the following to your *RuntimeModule (located side-by-side to your
+      grammar)</p>
+<div class="codehilite"><pre><span></span><span class="n">override</span> <span class="nf">bindIGlobalScopeProvider</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">ImportUriGlobalScopeProvider</span>
+<span class="o">}</span>
+</pre></div>
+
+
+</li>
+</ul>
+<p>With this addition, the example above needs to be changed in file p2.mydsl:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="s2">&quot;p1.mydsl&quot;</span>
+
+<span class="n">package</span> <span class="n">p2</span> <span class="p">{</span>
+    <span class="n">call</span> <span class="n">p1</span><span class="o">.</span><span class="n">a1</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h2 id="customize-lookup-of-local-elements">Customize lookup of local elements</h2>
-<h2 id="select-scope-providers">Select scope providers</h2>
+<p>The following example illustrates a 
+simple object oriented language, where you can define classes, 
+create instances, and call methods of classes associated to that instances.</p>
+<div class="codehilite"><pre><span></span>package p1 {
+    class C1 {
+        def a1
+        def b1
+    }
+    instance i1: C1
+    call i1-&gt;a1
+    call i1-&gt;b1
+}
+</pre></div>
+
+
+<p>When model references point to relative model element locations, you need a 
+custom scope provider for that reference. The reference to "a1" in "i1-&gt;a1"
+cannot be resolved by the default scope provider, because the semantics of
+the call are not defined by the grammar.</p>
+<p>In the example shown, "i1-&gt;a1"
+points to "a1", which can be resolved by following the reference to the
+definition of "i1", and then following there the reference to "C1", which
+contains the desired definition of "a1".</p>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">imports</span><span class="o">+=</span><span class="no">Import</span><span class="o">*</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">Pack</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Pack</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;package&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;{&#39;</span><span class="w"> </span>
+<span class="w">    </span><span class="o">(</span><span class="nv">class</span><span class="o">+=</span><span class="no">Class</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">instances</span><span class="o">+=</span><span class="no">Instance</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">calls</span><span class="o">+=</span><span class="no">Call</span><span class="o">)*</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&#39;}&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Class</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;class&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&quot;{&quot;</span><span class="w"> </span><span class="nv">defs</span><span class="o">+=</span><span class="no">Def</span><span class="o">*</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Def</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;def&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Instance</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;instance&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="w"> </span><span class="s">&#39;:&#39;</span><span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="p">[</span><span class="x">Class|FQN</span><span class="p">];</span><span class="w"></span>
+<span class="nl">Call</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;call&#39;</span><span class="w"> </span><span class="nv">instance</span><span class="o">=</span><span class="p">[</span><span class="x">Instance|FQN</span><span class="p">]</span><span class="w"> </span><span class="s">&#39;-&gt;&#39;</span><span class="w"> </span><span class="nv">ref</span><span class="o">=</span><span class="p">[</span><span class="x">Def</span><span class="p">];</span><span class="w"></span>
+<span class="nl">FQN</span><span class="w"> </span><span class="err">hidden()</span><span class="p">:</span><span class="w"> </span><span class="no">ID</span><span class="o">(</span><span class="s">&#39;.&#39;</span><span class="w"> </span><span class="no">ID</span><span class="o">)*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Import</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;import&quot;</span><span class="w"> </span><span class="nv">importURI</span><span class="o">=</span><span class="no">STRING</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+
+
+<p><img alt="example image" src="../images/model_class_instance_and_calls.png" /></p>
+<p>To resolve the reference of the "call", you need to specify a custom scope
+provider in "scoping/MyDslScopeProvider.xtend", side-by-side to your grammar:</p>
+<ul>
+<li>You get the "object" (in our case the "call"-object) and a "reference"
+   identifying the part of grammar representing the reference to be resolved 
+   (in our case the attribute "ref" of the "Call").</li>
+<li>Using "object" and "reference" you can decide where to handle scoping
+   here, or delegating scoping to the default implementation 
+   "return super.getScope(...)".</li>
+<li>Based on the object you can implement your scoping logic defining
+    what objects are visible (e.g. all "Def"-objects in 
+    "call.instance.type.defs"). Use Scopes.scopeFor(...) to return your
+    selection.</li>
+<li>When you decide that no elements are visible, return "IScope.NULLSCOPE".<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">MyDslScopeProvider</span> <span class="kd">extends</span> <span class="n">AbstractMyDslScopeProvider</span> <span class="o">{</span>
+    <span class="n">override</span> <span class="nf">getScope</span><span class="o">(</span><span class="n">EObject</span> <span class="n">object</span><span class="o">,</span> <span class="n">EReference</span> <span class="n">ref</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ref</span> <span class="o">==</span> <span class="n">MyDslPackage</span><span class="o">.</span><span class="n">Literals</span><span class="o">.</span><span class="n">CALL__REF</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">val</span> <span class="n">call</span> <span class="o">=</span> <span class="n">object</span> <span class="n">as</span> <span class="n">Call</span>
+            <span class="k">return</span> <span class="n">Scopes</span><span class="o">.</span><span class="n">scopeFor</span><span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">defs</span><span class="o">)</span> 
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="n">getScope</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">ref</span><span class="o">)</span>
+    <span class="o">}</span>   
+<span class="o">}</span>
+</pre></div>
+
+
+</li>
+</ul>
+<h3 id="exercise-modeling-inheritance">Exercise "modeling inheritance"</h3>
+<p>Here, you have to extend the language above to support inheritance. The 
+following example should parse.</p>
+<div class="codehilite"><pre><span></span>package p1 {
+    class C1 {
+        def a1
+    }
+    class C2 extends C1 {
+        def b1
+    }
+    instance i1: C1
+    instance i2: C2
+    call i1-&gt;a1
+    //call i1-&gt;b1 // error
+    call i2-&gt;a1
+    call i2-&gt;b1
+}
+</pre></div>
+
+
+<p>The basic steps are as follows:</p>
+<ul>
+<li>Extend your grammar to support the optional "extends" syntax.</li>
+<li>Extend your scope provider to concatenate the list of "Def" elements
+   of a class with the "Def" elements of a base class (recursively). Hint:
+   java.util.Lists&lt;T&gt; can be concatenated using "+".</li>
+</ul>
+<p>This unittest can be used to check the correct functionality:</p>
+<div class="codehilite"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * generated by Xtext 2.14.0</span>
+<span class="cm"> */</span>
+<span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="n">xtext</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">mydsl</span><span class="o">.</span><span class="n">tests</span>
+
+<span class="kn">import</span> <span class="nn">com.google.inject.Inject</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.testing.InjectWith</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.testing.XtextRunner</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.testing.util.ParseHelper</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">extension</span> <span class="n">org</span><span class="o">.</span><span class="n">junit</span><span class="o">.</span><span class="n">Assert</span><span class="o">.*</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span>
+<span class="kn">import</span> <span class="nn">org.xtext.example.mydsl.myDsl.Model</span>
+<span class="kn">import</span> <span class="nn">org.eclipse.xtext.testing.validation.ValidationTestHelper</span>
+<span class="kn">import</span> <span class="nn">org.xtext.example.mydsl.myDsl.MyDslPackage</span>
+
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">XtextRunner</span><span class="o">)</span>
+<span class="nd">@InjectWith</span><span class="o">(</span><span class="n">MyDslInjectorProvider</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">MyDslParsingTest</span> <span class="o">{</span>
+    <span class="nd">@Inject</span> <span class="n">extension</span>
+    <span class="n">ParseHelper</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">&gt;</span> <span class="n">parseHelper</span>
+    <span class="nd">@Inject</span> <span class="n">extension</span>
+    <span class="n">ValidationTestHelper</span> <span class="n">testHelper</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">def</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">val</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseHelper</span><span class="o">.</span><span class="n">parse</span><span class="o">(</span><span class="s">&#39;&#39;&#39;</span>
+<span class="s">            package p1 {</span>
+<span class="s">                class C1 {</span>
+<span class="s">                    def a1</span>
+<span class="s">                }</span>
+<span class="s">                class C2 extends C1 {</span>
+<span class="s">                    def b1</span>
+<span class="s">                }</span>
+<span class="s">                instance i1: C1</span>
+<span class="s">                instance i2: C2</span>
+<span class="s">                call i1-&gt;a1</span>
+<span class="s">                //call i1-&gt;b1 // error</span>
+<span class="s">                call i2-&gt;a1</span>
+<span class="s">                call i2-&gt;b1</span>
+<span class="s">            }</span>
+<span class="s">        &#39;&#39;&#39;</span><span class="o">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">assertNotNull</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">assertNoErrors</span>
+
+        <span class="c1">// check call references:</span>
+        <span class="n">assertTrue</span><span class="o">(</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">class_</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">defs</span><span class="o">.</span><span class="n">head</span> 
+            <span class="o">==</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">ref</span>
+        <span class="o">)</span>
+        <span class="n">assertTrue</span><span class="o">(</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">class_</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">defs</span><span class="o">.</span><span class="n">head</span> 
+            <span class="o">==</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">ref</span>
+        <span class="o">)</span>
+        <span class="n">assertTrue</span><span class="o">(</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">class_</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">defs</span><span class="o">.</span><span class="n">head</span> 
+            <span class="o">!=</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">ref</span>
+        <span class="o">)</span>
+        <span class="n">assertTrue</span><span class="o">(</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">class_</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">defs</span><span class="o">.</span><span class="n">head</span> 
+            <span class="o">==</span> <span class="n">result</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">ref</span>
+        <span class="o">)</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">def</span> <span class="kt">void</span> <span class="nf">loadModelWithError</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">val</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseHelper</span><span class="o">.</span><span class="n">parse</span><span class="o">(</span><span class="s">&#39;&#39;&#39;</span>
+<span class="s">            package p1 {</span>
+<span class="s">                class C1 {</span>
+<span class="s">                    def a1</span>
+<span class="s">                }</span>
+<span class="s">                class C2 extends C1 {</span>
+<span class="s">                    def b1</span>
+<span class="s">                }</span>
+<span class="s">                instance i1: C1</span>
+<span class="s">                instance i2: C2</span>
+<span class="s">                call i1-&gt;a1</span>
+<span class="s">                call i1-&gt;b1 // error</span>
+<span class="s">                call i2-&gt;a1</span>
+<span class="s">                call i2-&gt;b1</span>
+<span class="s">            }</span>
+<span class="s">        &#39;&#39;&#39;</span><span class="o">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">assertNotNull</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">assertError</span><span class="o">(</span><span class="n">MyDslPackage</span><span class="o">.</span><span class="n">eINSTANCE</span><span class="o">.</span><span class="n">call</span><span class="o">,</span> 
+            <span class="n">org</span><span class="o">.</span><span class="n">eclipse</span><span class="o">.</span><span class="n">xtext</span><span class="o">.</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">Diagnostic</span><span class="o">.</span><span class="n">LINKING_DIAGNOSTIC</span>
+        <span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>Note: When you do not know the error code ("LINKING_DIAGNOSTIC") you can
+check the output of your unittest to get (and check) the information.
+For custom validators, the error code is the one passed to the error/warning 
+function within your validation code.</p>
               
             </div>
           </div>
