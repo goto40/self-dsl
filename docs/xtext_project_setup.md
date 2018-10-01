@@ -81,9 +81,9 @@ like the following:
     bin
     generated
 
-## Step 3: ::namedref::{xtext_compile_and_run:Compile and Run the Project}
-
-Without modifing the grammar (or anything else), follow the steps in
+## Step 3: Compile and Run the Project
+::namedref::{xtext_compile_and_run:Compile and Run the Project}: Without 
+modifing the grammar (or anything else), follow the steps in
 section "Generate Language Artifacts" in 
 ::namedref::(references.md#xtext15min).
 

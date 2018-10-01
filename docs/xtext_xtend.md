@@ -42,10 +42,10 @@ an "if obj instanceof TYPE" is called to determine which version has to be calle
 
 
 ## Misc
-  * „==“ vs. „===“ (analog „!=“ vs. „!==“):
+  * „==“ vs. „===“ (analogous „!=“ vs. „!==“):
     * „==“ uses the method "equals" to determine the result.
     * „===“ checks if the identical object is referenced (like a pointer comparison).
-  * It is posisble to check if an optional modell element is present or not
+  * It is possible to check if an optional modell element is present or not
     by comparing it to null.
   * It is possible to check if a model element is not yet loaded
     (eIsProxy==true).
