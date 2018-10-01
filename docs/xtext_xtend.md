@@ -59,7 +59,12 @@ This can be done with the attribute "eContainer" of every model
 element. It may be necessary to cast this parent to an appropriate type
 (this can also happen via a dispatch method).
 
-## filter and map functions, lambdas and passing lambdas
+## List element access
+
+Lists can be accessed, e.g., via "head" (the first element) or "get(index)"
+(the i.th element).
+
+## Filter and map functions, lambdas and passing lambdas
 
 Filter functions can be used to filter a list (like the unix command grep). 
 Map funtions can be used to transform a list of element (like the unix 
