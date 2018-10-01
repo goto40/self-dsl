@@ -20,6 +20,7 @@ pages:
     - {'Xtend: Selected Aspects':'xtext_xtend.md'}
     - {'Scoping':'xtext_scoping.md'}
     - {'Deploy a command line version':'xtext_deploy_command_line.md'}
+    - {'Xtext HOWTOs':'xtext_howtos.md'}
  - TextX:
     - {'TextX Intro':'textx_intro.md'}
     - {'TextX Project Setup':'textx_project_setup.md'}
