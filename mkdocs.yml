@@ -20,6 +20,7 @@ pages:
     - {'Xtend: Selected Aspects':'xtext_xtend.md'}
     - {'Scoping':'xtext_scoping.md'}
     - {'Deploy a command line version':'xtext_deploy_command_line.md'}
+    - {'Deploy an eclispe plugin':'xtext_deploy_plugin.md'}
     - {'Xtext HOWTOs':'xtext_howtos.md'}
  - TextX:
     - {'TextX Intro':'textx_intro.md'}
