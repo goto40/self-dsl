@@ -46,7 +46,7 @@ Note:
  * Optional attributes can be defined using "?". Note: some types, like 
    references, are null if not set. Others have default values (like an empty
    String for STRING, "0" for INT or the first enum value defined for enums).
- * Rules without attributes doe not yield an object 
+ * Rules without attributes does not yield an object 
    (e.g.: "Thing: INT"). You can force the object creation with the
    following syntax using curly brackets: "Thing: {Thing} INT".
 
@@ -74,7 +74,7 @@ What changes, when we define the 'Model' differently:
 
 In addition to the text editor,
 you can also edit the model with a __tree editor__:
-open wthe file with "Open With..." - "Sample Ecore Model Editor".
+open the file with "Open With..." - "Sample Ecore Model Editor".
 
 When editing the model graph, the model text is changed accordingly: 
 see the Xtext ["Formatter"](https://blogs.itemis.com/en/tabular-formatting-with-the-new-formatter-api) 

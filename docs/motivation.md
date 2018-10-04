@@ -16,9 +16,9 @@ A very good introduction to domain modeling is
 __Model driven software development (MDSD)__ allows
 introducing a supplementary layer of
 abstraction above the code: This additional complexity can be employed to
-replace traditional model traditional model based design approaches, and
-thus represents a significant design element of a software architecture.
-Such model driven approaches often also refer to
+complement, and in some cases replace traditional model based design 
+approaches, and thus represents a significant design element of a 
+software architecture. Such model driven approaches often also refer to
 __domain specific languages (DSL)__.
 These languages make the design easy to communicate (defined language at
 design level) and at the same time the design itself constitutes of actual
@@ -56,8 +56,8 @@ rest of the employed toolset and definitions (e.g. the meta model) further
 increase this value, by allowing to validate, transform or
 evaluate the model data.
 
-Keeping this in mind, one should keep in  mind to be able to parse and
-understand the model data in, say, 10 years. Also think about wht happens if
+Keeping this in mind, one should be able to parse and
+understand the model data in, say, 10 years. Also think about what happens if
 multiple users create conflicts in model files. One should be able to repair
 such situations. This is easier if the model stored on disk resembles the
 model entered by the user, than if an alternative representation is used

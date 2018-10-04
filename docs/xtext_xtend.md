@@ -51,7 +51,7 @@ an "if obj instanceof TYPE" is called to determine which version has to be calle
     (eIsProxy==true).
 
 
-## EMF Parent Relationship (model mavigation)
+## EMF Parent Relationship (model navigation)
 
 Sometimes (while generating code or validating the model)
 it is useful to navigate to the parent of a model object.
