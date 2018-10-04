@@ -19,6 +19,7 @@ pages:
 #    - {'Quickfixes':'xtext_quickfixes.md'}
     - {'Xtend: Selected Aspects':'xtext_xtend.md'}
     - {'Scoping':'xtext_scoping.md'}
+    - {'Modularization':'xtext_modularization.md'}
     - {'Deploy a command line version':'xtext_deploy_command_line.md'}
     - {'Deploy an eclispe plugin':'xtext_deploy_plugin.md'}
     - {'Xtext HOWTOs':'xtext_howtos.md'}

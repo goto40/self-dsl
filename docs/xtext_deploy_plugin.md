@@ -13,6 +13,12 @@ Then, you can install the plugin from the exported archive in an eclipse
 installation (You can, e.g., copy your eclipse folder, start the copy, install
 your plugin and give the eclipse to another person).
 
+Notes: (1) When installing the plugin, it may be useful to disable 
+"Contact all update sites..." (this caused problems in some examples). 
+(2) You are also prompted, that the new plugin is not signed (you must 
+accept this in order to continue).
+
+
 ## Create a product
 
 (work in progress)
