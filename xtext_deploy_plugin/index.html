@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Motivation - self-dsl</title>
+  <title>Deploy an eclispe plugin - self-dsl</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Motivation";
-    var mkdocs_page_input_path = "motivation.md";
-    var mkdocs_page_url = "/motivation/";
+    var mkdocs_page_name = "Deploy an eclispe plugin";
+    var mkdocs_page_input_path = "xtext_deploy_plugin.md";
+    var mkdocs_page_url = "/xtext_deploy_plugin/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -52,30 +52,14 @@
     <a class="" href="..">Welcome to self-dsl</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Motivation</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#motivation">Motivation</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#mdsd-and-dsls">MDSD and DSLs</a></li>
-        
-            <li><a class="toctree-l3" href="#meta-model-model-and-all-that">Meta-model, model, and all that</a></li>
-        
-            <li><a class="toctree-l3" href="#real-value-for-a-project">Real value for a project</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../motivation/">Motivation</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../basics/">Basics</a>
+    <a class="" href="../basics/">Basics of meta modeling for domain models</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -118,9 +102,23 @@
                     
     <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../xtext_deploy_plugin/">Deploy an eclispe plugin</a>
+    <a class="current" href="./">Deploy an eclispe plugin</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#deploy-your-dsl-as-eclispe-plugin">Deploy your DSL as eclispe plugin</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#manual-way-to-export-and-install-a-plugin">Manual way to export and install a plugin</a></li>
+        
+            <li><a class="toctree-l4" href="#create-a-product">Create a product</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -174,8 +172,12 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Xtext &raquo;</li>
+        
+      
     
-    <li>Motivation</li>
+    <li>Deploy an eclispe plugin</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -185,63 +187,25 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="motivation">Motivation</h1>
-<p>The problem to be solved is two-fold: avoid problems with
-<strong>communication</strong> and <strong>consistency</strong>.
-A <em>common language</em> will be defined to ease <strong>communication</strong> within and
-between teams. A <em>single source</em> of information implies <strong>consistency</strong>,
-and in turn, prevents misunderstandings.</p>
-<p><img alt="communication and consistency" src="../images/communication_and_consistency.png" /></p>
-<p>A very good introduction to domain modeling is
-<a href="../references/#tomassetti2017">(Tomassetti, 2017)</a>.</p>
-<h2 id="mdsd-and-dsls">MDSD and DSLs</h2>
-<p><strong>Model driven software development (MDSD)</strong> allows
-introducing a supplementary layer of
-abstraction above the code: This additional complexity can be employed to
-complement, and in some cases replace traditional model based design 
-approaches, and thus represents a significant design element of a 
-software architecture. Such model driven approaches often also refer to
-<strong>domain specific languages (DSL)</strong>.
-These languages make the design easy to communicate (defined language at
-design level) and at the same time the design itself constitutes of actual
-software artefacts, since code is directly generated from it (single
-source of information).</p>
-<h2 id="meta-model-model-and-all-that">Meta-model, model, and all that</h2>
-<p>The meta modeling toolsets utilized on this site typically allow to define
-<strong>(1) a meta model definition</strong>, which defines what is modeled, e.g.,
-the basic layout of a data structure in terms of structures which have
-attributes. This meta model can be compared to a <em>data base layout</em>.
-It also can be compared to <em>glossary</em> for a given domain.
-Using the meta model <strong>(2) model data</strong> can be defined by a user.
-This model data represents the concrete <em>data structures for a given domain</em>.
-<strong>(3) Validation</strong>: importantly, the meta model definition allows to validate
-and check concrete models. Finally, <strong>(4) code generators and
-model transformations</strong> represent primary end user tools to allow mass
-production based on a <em>single source</em> of information (the model).</p>
-<h2 id="real-value-for-a-project">Real value for a project</h2>
-<p>Notably, if a model represents a real abstraction of a software
-aspect - something people talk about and which hides important
-details - we get a big impact in productivity. From the one and
-single source of specification (the model data) we can extract
-documentation, plan and archive changes (in the models) and at
-the same time guarantee the consistency of model and multiple code artefacts.</p>
-<p>The <strong>real value</strong> in terms of working hours is not the meta model, the code
-generator or the editor of a model, but the <strong>model data</strong> itself. The
-rest of the employed toolset and definitions (e.g. the meta model) further
-increase this value, by allowing to validate, transform or
-evaluate the model data.</p>
-<p>Keeping this in mind, one should be able to parse and
-understand the model data in, say, 10 years. Also think about what happens if
-multiple users create conflicts in model files. One should be able to repair
-such situations. This is easier if the model stored on disk resembles the
-model entered by the user, than if an alternative representation is used
-with, e.g., binary data representations or machine generated IDs which are
-difficult to understand. Such a simple representation on disk also allows to
-easily analyze a model with a traditional text search tool (grep) and to
-make quick modifications to the model with a simple editor.</p>
-<p>Moreover, the interoperability of employed toolsets is of crucial importancy:
-the ability to define inter-model relations eases large scale model
-driven approaches and the IDE integration increases end user acceptance.</p>
+                <h1 id="deploy-your-dsl-as-eclispe-plugin">Deploy your DSL as eclispe plugin</h1>
+<h2 id="manual-way-to-export-and-install-a-plugin">Manual way to export and install a plugin</h2>
+<ul>
+<li>Within eclipse Export your language as "Deployable features".</li>
+<li>Select the "*.feature" project of your language.</li>
+<li>Select an archive file name to export your plugin</li>
+<li>In the "Options" tab: "Browse" for "Categorize repository" and select the
+    "*.repository" project of your language.</li>
+<li>Click "finish".</li>
+</ul>
+<p>Then, you can install the plugin from the exported archive in an eclipse
+installation (You can, e.g., copy your eclipse folder, start the copy, install
+your plugin and give the eclipse to another person).</p>
+<p>Notes: (1) When installing the plugin, it may be useful to disable 
+"Contact all update sites..." (this caused problems in some examples). 
+(2) You are also prompted, that the new plugin is not signed (you must 
+accept this in order to continue).</p>
+<h2 id="create-a-product">Create a product</h2>
+<p>(work in progress)</p>
               
             </div>
           </div>
@@ -249,10 +213,10 @@ driven approaches and the IDE integration increases end user acceptance.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../basics/" class="btn btn-neutral float-right" title="Basics">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../xtext_howtos/" class="btn btn-neutral float-right" title="Xtext HOWTOs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Welcome to self-dsl"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../xtext_deploy_command_line/" class="btn btn-neutral" title="Deploy a command line version"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -278,10 +242,10 @@ driven approaches and the IDE integration increases end user acceptance.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../xtext_deploy_command_line/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../basics/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../xtext_howtos/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

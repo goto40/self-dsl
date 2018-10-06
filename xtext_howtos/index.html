@@ -80,11 +80,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_model_validation/">Model Validation</a>
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
                 </li>
                 <li class="">
                     
@@ -96,7 +96,15 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../xtext_modularization/">Modularization</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_plugin/">Deploy an eclispe plugin</a>
                 </li>
                 <li class=" current">
                     
@@ -133,27 +141,11 @@
         
             <li><a class="toctree-l4" href="#define-multiline-string-attributes">Define multiline string attributes</a></li>
         
-            <li><a class="toctree-l4" href="#define-a-reference">Define a reference</a></li>
-        
-            <li><a class="toctree-l4" href="#define-a-reference-to-a-set-of-different-types">Define a reference to a set of different types</a></li>
-        
-            <li><a class="toctree-l4" href="#allow-fully-qualified-names-for-references">Allow fully qualified names for references</a></li>
-        
-            <li><a class="toctree-l4" href="#allow-references-to-methods-of-a-class-instance">Allow references to methods of a class instance</a></li>
-        
-            <li><a class="toctree-l4" href="#allow-references-to-ports-of-components">Allow references to ports of components</a></li>
-        
-            <li><a class="toctree-l4" href="#allow-references-to-attributes-of-data-structures">Allow references to attributes of data structures</a></li>
-        
-            <li><a class="toctree-l4" href="#allow-to-reference-inherited-methods-of-an-instance">Allow to reference inherited methods of an instance</a></li>
-        
             <li><a class="toctree-l4" href="#filter-a-list-based-on-a-type">Filter a list based on a type</a></li>
         
             <li><a class="toctree-l4" href="#filter-a-list-based-on-an-attribute-value">Filter a list based on an attribute value</a></li>
         
             <li><a class="toctree-l4" href="#transform-a-list">Transform a list</a></li>
-        
-            <li><a class="toctree-l4" href="#generate-type-dependent-text">Generate type dependent text</a></li>
         
         </ul>
     
@@ -264,7 +256,7 @@ Note: The first enum value is the default value.</p>
 <h2 id="force-the-creation-of-an-object-when-no-attributes-are-defined">Force the creation of an object when no attributes are defined</h2>
 <p>Object without attributes are not instantiated as objects in the model
 representation. This can also happen, when all attributes are optional
-and not set in a concrete model (in this case you can a warning in your 
+and not set in a concrete model (in this case you get a warning in your 
 grammar). Use "{Rule-name}" to force instantiation.</p>
 <div class="codehilite"><pre><span></span><span class="nl">MyObj</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="x">MyObj</span><span class="p">}</span><span class="w"> </span><span class="s">&#39;myobj&#39;</span><span class="w"> </span><span class="o">(</span><span class="nv">value</span><span class="o">=</span><span class="no">MyVal</span><span class="o">)?</span><span class="p">;</span><span class="w"></span>
 <span class="nl">MyVal</span><span class="p">:</span><span class="w"> </span><span class="nv">text</span><span class="o">=</span><span class="no">STING</span><span class="p">;</span><span class="w"></span>
@@ -424,17 +416,19 @@ with a xtend extension method).</p>
 </pre></div>
 
 
-<h2 id="define-a-reference">Define a reference</h2>
-<h2 id="define-a-reference-to-a-set-of-different-types">Define a reference to a set of different types</h2>
-<h2 id="allow-fully-qualified-names-for-references">Allow fully qualified names for references</h2>
-<h2 id="allow-references-to-methods-of-a-class-instance">Allow references to methods of a class instance</h2>
-<h2 id="allow-references-to-ports-of-components">Allow references to ports of components</h2>
-<h2 id="allow-references-to-attributes-of-data-structures">Allow references to attributes of data structures</h2>
-<h2 id="allow-to-reference-inherited-methods-of-an-instance">Allow to reference inherited methods of an instance</h2>
 <h2 id="filter-a-list-based-on-a-type">Filter a list based on a type</h2>
+<div class="codehilite"><pre><span></span><span class="n">resource</span><span class="o">.</span><span class="n">allContents</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">)</span>
+</pre></div>
+
+
 <h2 id="filter-a-list-based-on-an-attribute-value">Filter a list based on an attribute value</h2>
+<div class="codehilite"><pre><span></span><span class="n">resource</span><span class="o">.</span><span class="n">allContents</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">).</span><span class="n">filter</span><span class="o">[</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;Tom&quot;</span><span class="o">]</span>
+</pre></div>
+
+
 <h2 id="transform-a-list">Transform a list</h2>
-<h2 id="generate-type-dependent-text">Generate type dependent text</h2>
+<div class="codehilite"><pre><span></span><span class="n">resource</span><span class="o">.</span><span class="n">allContents</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">).</span><span class="n">map</span><span class="o">[</span><span class="n">e</span><span class="o">|</span><span class="s">&#39;the name is &#39;</span><span class="o">+</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">]</span>
+</pre></div>
               
             </div>
           </div>
@@ -445,7 +439,7 @@ with a xtend extension method).</p>
         <a href="../textx_intro/" class="btn btn-neutral float-right" title="TextX Intro">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../xtext_deploy_command_line/" class="btn btn-neutral" title="Deploy a command line version"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../xtext_deploy_plugin/" class="btn btn-neutral" title="Deploy an eclispe plugin"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -471,7 +465,7 @@ with a xtend extension method).</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../xtext_deploy_command_line/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../xtext_deploy_plugin/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../textx_intro/" style="color: #fcfcfc">Next &raquo;</a></span>

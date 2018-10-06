@@ -80,11 +80,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_model_validation/">Model Validation</a>
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
                 </li>
                 <li class=" current">
                     
@@ -101,7 +101,7 @@
         
             <li><a class="toctree-l4" href="#misc">Misc</a></li>
         
-            <li><a class="toctree-l4" href="#emf-parent-relationship-model-mavigation">EMF Parent Relationship (model mavigation)</a></li>
+            <li><a class="toctree-l4" href="#emf-parent-relationship-model-navigation">EMF Parent Relationship (model navigation)</a></li>
         
             <li><a class="toctree-l4" href="#list-element-access">List element access</a></li>
         
@@ -118,7 +118,15 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../xtext_modularization/">Modularization</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_plugin/">Deploy an eclispe plugin</a>
                 </li>
                 <li class="">
                     
@@ -232,7 +240,7 @@ an "if obj instanceof TYPE" is called to determine which version has to be calle
 <li>It is possible to check if a model element is not yet loaded
     (eIsProxy==true).</li>
 </ul>
-<h2 id="emf-parent-relationship-model-mavigation">EMF Parent Relationship (model mavigation)</h2>
+<h2 id="emf-parent-relationship-model-navigation">EMF Parent Relationship (model navigation)</h2>
 <p>Sometimes (while generating code or validating the model)
 it is useful to navigate to the parent of a model object.
 This can be done with the attribute "eContainer" of every model
@@ -243,7 +251,7 @@ element. It may be necessary to cast this parent to an appropriate type
 (the i.th element).</p>
 <h2 id="filter-and-map-functions-lambdas-and-passing-lambdas">Filter and map functions, lambdas and passing lambdas</h2>
 <p>Filter functions can be used to filter a list (like the unix command grep). 
-Map funtions can be used to transform a list of element (like the unix 
+Map funtions can be used to transform a list of elements (like the unix 
 command sed):</p>
 <div class="codehilite"><pre><span></span><span class="n">resource</span><span class="o">.</span><span class="n">allContents</span>
     <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">Entity</span><span class="o">)</span>
@@ -276,7 +284,7 @@ command sed):</p>
         <a href="../xtext_scoping/" class="btn btn-neutral float-right" title="Scoping">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../xtext_code_generation_xtend/" class="btn btn-neutral" title="Code Generation (with Xtend)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../xtext_model_validation/" class="btn btn-neutral" title="Model Validation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -302,7 +310,7 @@ command sed):</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../xtext_code_generation_xtend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../xtext_model_validation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../xtext_scoping/" style="color: #fcfcfc">Next &raquo;</a></span>

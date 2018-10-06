@@ -80,11 +80,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_model_validation/">Model Validation</a>
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
                 </li>
                 <li class="">
                     
@@ -114,7 +114,15 @@
                 </li>
                 <li class="">
                     
+    <a class="" href="../xtext_modularization/">Modularization</a>
+                </li>
+                <li class="">
+                    
     <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_plugin/">Deploy an eclispe plugin</a>
                 </li>
                 <li class="">
                     
@@ -184,11 +192,12 @@
             <div class="section">
               
                 <h1 id="xtext-scoping">Xtext Scoping</h1>
-<p>In this seciton you will learn thw following:</p>
+<p>In this seciton you will learn the following:</p>
 <ul>
 <li>What scoping means and where you need it.</li>
 <li>How to customize scoping for special lookups of local elements.</li>
-<li>How to select scope providers to handle multifile lookups.</li>
+<li>How to select scope providers to handle models distributed across 
+   different files.</li>
 </ul>
 <h2 id="scoping-what-is-it-and-where-do-i-need-it">Scoping: What is it and where do I need it?</h2>
 <p>Scoping is always relevant, when a reference 
@@ -199,7 +208,7 @@ parsing the model text. Details see <a href="../basics/">basics.md</a>.</p>
 the default scope provider of Xtext. It resembles the Java scope (based on
 packages separated by dots).</p>
 <h3 id="problem">Problem</h3>
-<p>In order to make use of the full qualified name of an elements the default
+<p>In order to make use of the full qualified name of an element the default
 format of references is not enough to formulate the name (because dots are not
 part of this default format):</p>
 <div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">packages</span><span class="o">+=</span><span class="no">Pack</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
@@ -267,7 +276,7 @@ different model files.</p>
 <h3 id="defaultglobalscopeprovider-make-everything-visible">DefaultGlobalScopeProvider "make everything visible"</h3>
 <p>The default scope provider allows referencing any model element in the 
 available resources. In case of an eclipse project with model files,
-those resources consist all model files in the current project. Thus,
+those resources consist of all model files in the current project. Thus,
 you can reference any model element without any import or include statement.</p>
 <p>For example, elements from p1.mydsl:</p>
 <div class="codehilite"><pre><span></span>package p1 {
@@ -284,7 +293,7 @@ you can reference any model element without any import or include statement.</p>
 
 
 <p><strong>Note:</strong> When creating a standalone compiler for your DSL, you do not
-have such thing as a workspace. In this case, you can manually provide
+have such things as a workspace. In this case, you can manually provide
 this information, as illustrated in 
 <a href="../xtext_deploy_command_line/">xtext_deploy_command_line.md</a>.</p>
 <h3 id="importuriglobalscopeprovider-include-other">ImportUriGlobalScopeProvider "#include &lt;other&gt;"</h3>
@@ -525,7 +534,7 @@ function within your validation code.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../xtext_deploy_command_line/" class="btn btn-neutral float-right" title="Deploy a command line version">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../xtext_modularization/" class="btn btn-neutral float-right" title="Modularization">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../xtext_xtend/" class="btn btn-neutral" title="Xtend: Selected Aspects"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -557,7 +566,7 @@ function within your validation code.</p>
         <span><a href="../xtext_xtend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../xtext_deploy_command_line/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../xtext_modularization/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
