@@ -216,14 +216,17 @@ Xtend code snippet and test:
 		assertEquals( "Hello Multiline\nWorld", result.infos.last.mltext )
 	}
 	
-## Define a reference
-## Define a reference to a set of different types
-## Allow fully qualified names for references
-## Allow references to methods of a class instance
-## Allow references to ports of components
-## Allow references to attributes of data structures
-## Allow to reference inherited methods of an instance
 ## Filter a list based on a type
+
+    ::xtend 
+    resource.allContents.filter(Entity)
+
 ## Filter a list based on an attribute value
+
+    ::xtend 
+    resource.allContents.filter(Entity).filter[name="Tom"]
+        
 ## Transform a list
-## Generate type dependent text
+
+    ::xtend 
+    resource.allContents.filter(Entity).map[e|'the name is '+e.name]
