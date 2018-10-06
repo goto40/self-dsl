@@ -67,7 +67,7 @@ Lists can be accessed, e.g., via "head" (the first element) or "get(index)"
 ## Filter and map functions, lambdas and passing lambdas
 
 Filter functions can be used to filter a list (like the unix command grep). 
-Map funtions can be used to transform a list of element (like the unix 
+Map funtions can be used to transform a list of elements (like the unix 
 command sed):
 
     ::xtend 

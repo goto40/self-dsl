@@ -1,10 +1,11 @@
 # Xtext Scoping
 
-In this seciton you will learn thw following:
+In this seciton you will learn the following:
 
  * What scoping means and where you need it.
  * How to customize scoping for special lookups of local elements.
- * How to select scope providers to handle multifile lookups.
+ * How to select scope providers to handle models distributed across 
+   different files.
  
 ## Scoping: What is it and where do I need it?
 
@@ -21,7 +22,7 @@ packages separated by dots).
 
 ### Problem
 
-In order to make use of the full qualified name of an elements the default
+In order to make use of the full qualified name of an element the default
 format of references is not enough to formulate the name (because dots are not
 part of this default format):
 
@@ -92,7 +93,7 @@ different model files.
 
 The default scope provider allows referencing any model element in the 
 available resources. In case of an eclipse project with model files,
-those resources consist all model files in the current project. Thus,
+those resources consist of all model files in the current project. Thus,
 you can reference any model element without any import or include statement.
 
 For example, elements from p1.mydsl:
@@ -108,7 +109,7 @@ may be referenced by elements in p2.mydsl:
     }
 
 **Note:** When creating a standalone compiler for your DSL, you do not
-have such thing as a workspace. In this case, you can manually provide
+have such things as a workspace. In this case, you can manually provide
 this information, as illustrated in 
 [xtext_deploy_command_line.md](xtext_deploy_command_line.md).
 

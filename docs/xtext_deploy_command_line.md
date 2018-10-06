@@ -79,7 +79,7 @@ In eclipse you can "__Export__" your generator as "__Runnable JAR__":
  * Then right-click on the project containing the Main.java file and select 
     "Export", "Runnable JAR file".
  * Select "Main" in the "Launch configurazion".
- * Select "Package requried libraries into generated JAR file".
+ * Select "Package required libraries into generated JAR file".
  * Specify your destination JAR file name and click "Finish".
 
 ## Create the command line compiler with gradle

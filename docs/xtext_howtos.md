@@ -48,7 +48,7 @@ Note: The first enum value is the default value.
 
 Object without attributes are not instantiated as objects in the model
 representation. This can also happen, when all attributes are optional
-and not set in a concrete model (in this case you can a warning in your 
+and not set in a concrete model (in this case you get a warning in your 
 grammar). Use "{Rule-name}" to force instantiation.
 
     ::antlr
