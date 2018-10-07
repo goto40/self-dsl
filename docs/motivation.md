@@ -29,7 +29,7 @@ source of information).
 ## Meta-model, model, and all that
 
 The meta modeling toolsets utilized on this site typically allow to define
-__(1) a meta model definition__, which defines what is modeled, e.g.,
+__(1) a meta model__, which defines what is modeled, e.g.,
 the basic layout of a data structure in terms of structures which have
 attributes. This meta model can be compared to a _data base layout_.
 It also can be compared to _glossary_ for a given domain.
