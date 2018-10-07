@@ -393,8 +393,3 @@ config_A o- aspect_X: haves
 config_B o- aspect_Y: haves
 config_B o-[bold,#green]- aspect_X : haves
 ::end-uml::
-
-See also:
-
-   * Xtext: ::namedref::(xtext_model_validation.md#xtext_validation)
-   * TextX: ::namedref::(textx_project_setup.md#textx_validation)
