@@ -14,8 +14,8 @@ When you have ab existing meta model (an Xtext language, e.g.,
 "org.xtext.example.mydsl"), you can create another language referencing this
 existing language.
 
-In the new language (in eclipse, created side-by-side to the existing language,
-e.g., "org.xtext.example.mydsl1"):
+In the new language (in eclipse a new project, created side-by-side to the 
+existing language, e.g., "org.xtext.example.mydsl1"):
 
  * Add the eclipse project of the original language to the build path 
     ("org.xtext.example.mydsl"):
