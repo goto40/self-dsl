@@ -19,7 +19,7 @@ e.g., "org.xtext.example.mydsl1"):
 
  * Add the eclipse project of the original language to the build path 
     ("org.xtext.example.mydsl"):
-       * right-click on project and select "Configure Build Path"
+       * right-click on the project and select "Configure Build Path"
        * select tab "Projects"
        * "Add..." the existing project (e.g., "org.xtext.example.mydsl")
  * Add plugin dependency in MANIFEST.MF
