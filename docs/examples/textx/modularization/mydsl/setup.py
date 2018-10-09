@@ -1,8 +1,8 @@
 from setuptools import setup,find_packages
 
-setup(name='stduent_dsl',
+setup(name='mydsl',
       version='0.1',
-      description='a simple model to manage student data',
+      description='a simple dsl',
       url='',
       author='YOUR NAME',
       author_email='YOUR.NAME@ADDRESS',
@@ -16,7 +16,7 @@ setup(name='stduent_dsl',
       keywords="parser meta-language meta-model language DSL",
       entry_points={
           'console_scripts': [
-              'mydslc=mydsl:myydslc',
+              'mydslc=mydsl:mydslc',
           ]
       },
       )
