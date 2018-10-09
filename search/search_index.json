@@ -601,6 +601,111 @@
             "title": "TextX by Examples"
         },
         {
+            "location": "/textx_modularization/",
+            "text": "TextX: Model Modularization\n\n\nSimilar to \nxtext_modularization.md\n, we \nshow how to achive model modularization across files in TextX.\n\n\nModularization within the same Meta Model\n\n\nReady to use scope providers exists to handle multiple files. See the\n\n(TextX)\n) documentation for details.\n\n\nReferencing Model Elements form other Meta Models\n\n\nIf yuo wish to reference model elements from other metamodels, this can be \nachieved using the multi meta model support of TextX \n(see \n(TextX)\n).\n\n\nThe following example is self contained and shows how to deploy two\npython packages for two DSLs, one referencing the other.\n\n\nmydsl - a simple model of \"Greetings\"\n\n\nFile layout\n\n\n\u251c\u2500\u2500 mydsl\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 __init__.py\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 metamodel.py\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 MyDsl.tx\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 __pycache__\n\u2502\u00a0\u00a0     \u251c\u2500\u2500 __init__.cpython-36.pyc\n\u2502\u00a0\u00a0     \u2514\u2500\u2500 metamodel.cpython-36.pyc\n\u2514\u2500\u2500 setup.py\n\n\n\n\n\nGrammar MyDsl.tx\n\n\nModel\n:\n \ngreetings\n+=\nGreeting\n;\n\n\nGreeting\n:\n \n'Hello'\n \nname\n=\nID\n'!'\n;\n\n\n\n\n\n\nmetamodel.py\n\n\nfrom\n \ntextx\n \nimport\n \nmetamodel_from_file\n\n\nfrom\n \nos.path\n \nimport\n \ndirname\n,\n \nabspath\n,\n \njoin\n\n\n\ndef\n \nget_metamodel\n():\n\n    \nthis_folder\n \n=\n \ndirname\n(\nabspath\n(\n__file__\n))\n\n    \nmeta_model\n \n=\n \nmetamodel_from_file\n(\njoin\n(\nthis_folder\n,\n\"MyDsl.tx\"\n))\n\n    \nreturn\n \nmeta_model\n\n\n\n\n\n\n__init__.py\n\n\nimport\n \nargparse\n\n\nfrom\n \nmydsl.metamodel\n \nimport\n \nget_metamodel\n\n\n\ndef\n \nmydslc\n():\n\n    \nparser\n \n=\n \nargparse\n.\nArgumentParser\n(\ndescription\n=\n'generate code for the model.'\n)\n\n    \nparser\n.\nadd_argument\n(\n'model_files'\n,\n \nmetavar\n=\n'model_files'\n,\n \ntype\n=\nstr\n,\n \nnargs\n=\n'+'\n,\n\n                        \nhelp\n=\n'model filenames'\n)\n\n\n    \nargs\n \n=\n \nparser\n.\nparse_args\n()\n\n    \nmm\n \n=\n \nget_metamodel\n()\n\n\n    \nfor\n \nmodel_file\n \nin\n \nargs\n.\nmodel_files\n:\n\n        \nmodel\n \n=\n \nmm\n.\nmodel_from_file\n(\nmodel_file\n)\n\n        \nfor\n \ngreeting\n \nin\n \nmodel\n.\ngreetings\n:\n\n            \nprint\n(\n\" - hello for '{}'\"\n.\nformat\n(\ngreeting\n.\nname\n))\n\n\n\n\n\n\nCreate installer\n\n\nCreate an installer to help pip find its dependencies:\n\n\npython setup.py  sdist\n\n\n\n\n\nmydsl1 - a model referencing the \"Greetings\" from mydsl\n\n\nFile layout\n\n\n\u251c\u2500\u2500 mydsl1\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 __init__.py\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 metamodel.py\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 MyDsl1.tx\n\u2514\u2500\u2500 setup.py\n\n\n\n\n\nGrammar MyDsl1.tx\n\n\nNote: we use the grammar rule \"Greeting\" from \"mydsl\". See metamodel.py how\nthis is resolved (\"refrenced_metamodels\").\n\n\nModel\n:\n \nimports\n+=\nImport\n \ngreetings\n+=\nRefGreeting\n;\n\n\nRefGreeting\n:\n \n'Hello'\n \n'-->'\n \nref\n=\n[\nGreeting\n];\n\n\nImport\n:\n \n'import'\n \nimportURI\n=\nSTRING\n;\n\n\n\n\n\n\nmetamodel.py\n\n\nfrom\n \ntextx\n \nimport\n \nmetamodel_from_file\n\n\nimport\n \ntextx.scoping\n \nas\n \nscoping\n\n\nimport\n \ntextx.scoping.providers\n \nas\n \nscoping_providers\n\n\nfrom\n \nos.path\n \nimport\n \ndirname\n,\n \nabspath\n,\n \njoin\n\n\nimport\n \nmydsl\n\n\n\ndef\n \nget_metamodel\n():\n\n    \nthis_folder\n \n=\n \ndirname\n(\nabspath\n(\n__file__\n))\n\n\n    \n# get the \"mydsl\" meta model\n\n    \nother_meta_model\n \n=\n \nmydsl\n.\nget_metamodel\n()\n\n\n    \n# create the meta model and reference \"mydsl\"\n\n    \nmeta_model\n \n=\n \nmetamodel_from_file\n(\n\n        \njoin\n(\nthis_folder\n,\n\"MyDsl1.tx\"\n),\n \n        \nreferenced_metamodels\n=\n[\nother_meta_model\n])\n\n\n    \n# register scope provider (allow import models into mydsl1 models)\n\n    \nmeta_model\n.\nregister_scope_providers\n(\n\n        \n{\n\"*.*\"\n:\n \nscoping_providers\n.\nPlainNameImportURI\n()})\n\n\n    \n# register file endings\n\n    \nscoping\n.\nMetaModelProvider\n.\nadd_metamodel\n(\n\"*.mydsl\"\n,\n \nother_meta_model\n)\n\n    \nscoping\n.\nMetaModelProvider\n.\nadd_metamodel\n(\n\"*.mydsl1\"\n,\n \nmeta_model\n)\n\n\n    \nreturn\n \nmeta_model\n\n\n\n\n\n\n__init__.py\n\n\nimport\n \nargparse\n\n\nfrom\n \nmydsl1.metamodel\n \nimport\n \nget_metamodel\n\n\n\ndef\n \nmydsl1c\n():\n\n    \nparser\n \n=\n \nargparse\n.\nArgumentParser\n(\ndescription\n=\n'generate code for the model.'\n)\n\n    \nparser\n.\nadd_argument\n(\n'model_files'\n,\n \nmetavar\n=\n'model_files'\n,\n \ntype\n=\nstr\n,\n \nnargs\n=\n'+'\n,\n\n                        \nhelp\n=\n'model filenames'\n)\n\n\n    \nargs\n \n=\n \nparser\n.\nparse_args\n()\n\n    \nmm\n \n=\n \nget_metamodel\n()\n\n\n    \nfor\n \nmodel_file\n \nin\n \nargs\n.\nmodel_files\n:\n\n        \nmodel\n \n=\n \nmm\n.\nmodel_from_file\n(\nmodel_file\n)\n\n        \nfor\n \ngreeting\n \nin\n \nmodel\n.\ngreetings\n:\n\n            \nprint\n(\n\" - hello for referenced '{}'\"\n.\nformat\n(\ngreeting\n.\nref\n.\nname\n))\n\n\n\n\n\n\nInstaller bother DSLs and compilers\n\n\nThe option \"find-links\" is used to point to the local version of \nmydsl (created above; setup.py of \"mydsl1\" includes this dependency):\n\n\npip3 install . --find-links\n=\nfile:///\n$(\npwd\n)\n/../mydsl/dist\n\n\n\n\n\nUsage\n\n\nModel file data.mydsl\n\n\nHello\n \nPi\n!\n\n\nHello\n \nTim\n!\n\n\n\n\n\n\nModel file data.mydsl1\n\n\nimport\n \n\"\ndata.mydsl\n\"\n\n\nHello\n \n-->\n \nPi\n\n\nHello\n \n-->\n \nTim\n\n\n\n\n\n\nModel file error.mydsl1\n\n\nimport\n \n\"\ndata.mydsl\n\"\n\n\nHello\n \n-->\n \nNoName\n\n\n\n\n\n\nExample using mydslc and mydsl1c\n\n\n$ mydslc model/data.mydsl\n - hello \nfor\n \n'Pi'\n\n - hello \nfor\n \n'Tim'\n\n$ mydsl1c model/data.mydsl1\n - hello \nfor\n referenced \n'Pi'\n\n - hello \nfor\n referenced \n'Tim'\n\n$ mydsl1c model/error.mydsl1\n...\ntextx.exceptions.TextXSemanticError: model/error.mydsl1:2:11: \nerror: Unknown object \n\"NoName\"\n of class \n\"Greeting\"",
+            "title": "TextX Modularization"
+        },
+        {
+            "location": "/textx_modularization/#textx-model-modularization",
+            "text": "Similar to  xtext_modularization.md , we \nshow how to achive model modularization across files in TextX.",
+            "title": "TextX: Model Modularization"
+        },
+        {
+            "location": "/textx_modularization/#modularization-within-the-same-meta-model",
+            "text": "Ready to use scope providers exists to handle multiple files. See the (TextX) ) documentation for details.",
+            "title": "Modularization within the same Meta Model"
+        },
+        {
+            "location": "/textx_modularization/#referencing-model-elements-form-other-meta-models",
+            "text": "If yuo wish to reference model elements from other metamodels, this can be \nachieved using the multi meta model support of TextX \n(see  (TextX) ).  The following example is self contained and shows how to deploy two\npython packages for two DSLs, one referencing the other.",
+            "title": "Referencing Model Elements form other Meta Models"
+        },
+        {
+            "location": "/textx_modularization/#mydsl-a-simple-model-of-greetings",
+            "text": "",
+            "title": "mydsl - a simple model of \"Greetings\""
+        },
+        {
+            "location": "/textx_modularization/#file-layout",
+            "text": "\u251c\u2500\u2500 mydsl\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 __init__.py\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 metamodel.py\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 MyDsl.tx\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 __pycache__\n\u2502\u00a0\u00a0     \u251c\u2500\u2500 __init__.cpython-36.pyc\n\u2502\u00a0\u00a0     \u2514\u2500\u2500 metamodel.cpython-36.pyc\n\u2514\u2500\u2500 setup.py",
+            "title": "File layout"
+        },
+        {
+            "location": "/textx_modularization/#grammar-mydsltx",
+            "text": "Model :   greetings += Greeting ;  Greeting :   'Hello'   name = ID '!' ;",
+            "title": "Grammar MyDsl.tx"
+        },
+        {
+            "location": "/textx_modularization/#metamodelpy",
+            "text": "from   textx   import   metamodel_from_file  from   os.path   import   dirname ,   abspath ,   join  def   get_metamodel (): \n     this_folder   =   dirname ( abspath ( __file__ )) \n     meta_model   =   metamodel_from_file ( join ( this_folder , \"MyDsl.tx\" )) \n     return   meta_model",
+            "title": "metamodel.py"
+        },
+        {
+            "location": "/textx_modularization/#9595init9595py",
+            "text": "import   argparse  from   mydsl.metamodel   import   get_metamodel  def   mydslc (): \n     parser   =   argparse . ArgumentParser ( description = 'generate code for the model.' ) \n     parser . add_argument ( 'model_files' ,   metavar = 'model_files' ,   type = str ,   nargs = '+' , \n                         help = 'model filenames' ) \n\n     args   =   parser . parse_args () \n     mm   =   get_metamodel () \n\n     for   model_file   in   args . model_files : \n         model   =   mm . model_from_file ( model_file ) \n         for   greeting   in   model . greetings : \n             print ( \" - hello for '{}'\" . format ( greeting . name ))",
+            "title": "__init__.py"
+        },
+        {
+            "location": "/textx_modularization/#create-installer",
+            "text": "Create an installer to help pip find its dependencies:  python setup.py  sdist",
+            "title": "Create installer"
+        },
+        {
+            "location": "/textx_modularization/#mydsl1-a-model-referencing-the-greetings-from-mydsl",
+            "text": "",
+            "title": "mydsl1 - a model referencing the \"Greetings\" from mydsl"
+        },
+        {
+            "location": "/textx_modularization/#file-layout_1",
+            "text": "\u251c\u2500\u2500 mydsl1\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 __init__.py\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 metamodel.py\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 MyDsl1.tx\n\u2514\u2500\u2500 setup.py",
+            "title": "File layout"
+        },
+        {
+            "location": "/textx_modularization/#grammar-mydsl1tx",
+            "text": "Note: we use the grammar rule \"Greeting\" from \"mydsl\". See metamodel.py how\nthis is resolved (\"refrenced_metamodels\").  Model :   imports += Import   greetings += RefGreeting ;  RefGreeting :   'Hello'   '-->'   ref = [ Greeting ];  Import :   'import'   importURI = STRING ;",
+            "title": "Grammar MyDsl1.tx"
+        },
+        {
+            "location": "/textx_modularization/#metamodelpy_1",
+            "text": "from   textx   import   metamodel_from_file  import   textx.scoping   as   scoping  import   textx.scoping.providers   as   scoping_providers  from   os.path   import   dirname ,   abspath ,   join  import   mydsl  def   get_metamodel (): \n     this_folder   =   dirname ( abspath ( __file__ )) \n\n     # get the \"mydsl\" meta model \n     other_meta_model   =   mydsl . get_metamodel () \n\n     # create the meta model and reference \"mydsl\" \n     meta_model   =   metamodel_from_file ( \n         join ( this_folder , \"MyDsl1.tx\" ),  \n         referenced_metamodels = [ other_meta_model ]) \n\n     # register scope provider (allow import models into mydsl1 models) \n     meta_model . register_scope_providers ( \n         { \"*.*\" :   scoping_providers . PlainNameImportURI ()}) \n\n     # register file endings \n     scoping . MetaModelProvider . add_metamodel ( \"*.mydsl\" ,   other_meta_model ) \n     scoping . MetaModelProvider . add_metamodel ( \"*.mydsl1\" ,   meta_model ) \n\n     return   meta_model",
+            "title": "metamodel.py"
+        },
+        {
+            "location": "/textx_modularization/#9595init9595py_1",
+            "text": "import   argparse  from   mydsl1.metamodel   import   get_metamodel  def   mydsl1c (): \n     parser   =   argparse . ArgumentParser ( description = 'generate code for the model.' ) \n     parser . add_argument ( 'model_files' ,   metavar = 'model_files' ,   type = str ,   nargs = '+' , \n                         help = 'model filenames' ) \n\n     args   =   parser . parse_args () \n     mm   =   get_metamodel () \n\n     for   model_file   in   args . model_files : \n         model   =   mm . model_from_file ( model_file ) \n         for   greeting   in   model . greetings : \n             print ( \" - hello for referenced '{}'\" . format ( greeting . ref . name ))",
+            "title": "__init__.py"
+        },
+        {
+            "location": "/textx_modularization/#installer-bother-dsls-and-compilers",
+            "text": "The option \"find-links\" is used to point to the local version of \nmydsl (created above; setup.py of \"mydsl1\" includes this dependency):  pip3 install . --find-links = file:/// $( pwd ) /../mydsl/dist",
+            "title": "Installer bother DSLs and compilers"
+        },
+        {
+            "location": "/textx_modularization/#usage",
+            "text": "",
+            "title": "Usage"
+        },
+        {
+            "location": "/textx_modularization/#model-file-datamydsl",
+            "text": "Hello   Pi !  Hello   Tim !",
+            "title": "Model file data.mydsl"
+        },
+        {
+            "location": "/textx_modularization/#model-file-datamydsl1",
+            "text": "import   \" data.mydsl \"  Hello   -->   Pi  Hello   -->   Tim",
+            "title": "Model file data.mydsl1"
+        },
+        {
+            "location": "/textx_modularization/#model-file-errormydsl1",
+            "text": "import   \" data.mydsl \"  Hello   -->   NoName",
+            "title": "Model file error.mydsl1"
+        },
+        {
+            "location": "/textx_modularization/#example-using-mydslc-and-mydsl1c",
+            "text": "$ mydslc model/data.mydsl\n - hello  for   'Pi' \n - hello  for   'Tim' \n$ mydsl1c model/data.mydsl1\n - hello  for  referenced  'Pi' \n - hello  for  referenced  'Tim' \n$ mydsl1c model/error.mydsl1\n...\ntextx.exceptions.TextXSemanticError: model/error.mydsl1:2:11: \nerror: Unknown object  \"NoName\"  of class  \"Greeting\"",
+            "title": "Example using mydslc and mydsl1c"
+        },
+        {
             "location": "/references/",
             "text": "References\n\n\nMany websites, books and persons influenced this work.\nThe references are summarized in the following sections.\n\n\nToolsets / Language Workbenches\n\n\n\n\n (Xtext) \nXtext\n - a grammar based language workbench for java/Xtend/eclipse.\n\n\n (TextX) \nTextX\n - a grammar based language workbench for Python.\n\n\n\n\nProgramming languages, Tools\n\n\n\n\n (Maven) \nMaven\n - a build system\n\n\nXtend\n - a statically types language (translates to Java).\n\n\nPython\n - a dynamically types language.\n\n\n\n\nGeneral information\n\n\n\n\n (Tomassetti, 2017) F. Tomassetti: \n\"The complete guide to (external) Domain Specific Languages\"\n (06/2018)\n\n\n\n\nXtext related stuff\n\n\n\n\n (Bettini, 2016) L. Bettini: \"Implementing Domain-Specific Languages with Xtext and Xtend - Second Edition\u201c (Packt Publishing; 2nd Revised edition, 31. August 2016).\n\n\n (Mooij et al, 2017a) A. Mooij, J. Hooman: \n\"Creating a Domain Specific Language (DSL) with Xtext\"\n (2017/06)\n\n\n (Mooij et al, 2017b) A. Mooij, K. Triantafyllidis, J. Hooman: \n\"Advanced Xtext Manual on Modularity\"\n (2017/06)\n\n\n (Rentz-Reichert, 2017) H. Rentz-Reichert (Protos Software): \"Entwicklung dom\u00e4nenspezifischer Sprachen und Code-Generatoren mit Xtext und Xtend\" (german course, Regensburg, 2017/05;\n    architect of \neTrice (ROOM based modeling tool)\n (2017/06)\n\n\n (Xtext 15 Minutes Tutorial) \nXtext 15 Minutes Tutorial\n.\n\n\n (Xtext 15 Minutes Tutorial, Extended) \nXtext 15 Minutes Tutorial, Extended\n.\n\n\n\n\nTextX related stuff\n\n\n\n\n (Dejanovi\u0107 et al. 2017) Dejanovi\u0107 I., Vaderna R., Milosavljevi\u0107 G., Vukovi\u0107 \u017d. (2017). TextX: A Python tool for Domain-Specific Languages implementation. Knowledge-Based Systems, 115, 1-4.",
             "title": "References"

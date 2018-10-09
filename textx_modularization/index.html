@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>TextX Modularization - self-dsl</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "TextX Modularization";
+    var mkdocs_page_input_path = "textx_modularization.md";
+    var mkdocs_page_url = "/textx_modularization/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> self-dsl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Welcome to self-dsl</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../motivation/">Motivation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../basics/">Basics of meta modeling for domain models</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Xtext</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../xtext_eclipse/">Eclipse</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_project_setup/">Xtext Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_a_first_grammar/">A First Grammar</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_code_generation_xtend/">Code Generation (with Xtend)</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_model_validation/">Model Validation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_xtend/">Xtend: Selected Aspects</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_scoping/">Scoping</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_modularization/">Modularization</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_command_line/">Deploy a command line version</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_deploy_plugin/">Deploy an eclispe plugin</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../xtext_howtos/">Xtext HOWTOs</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">TextX</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../textx_intro/">TextX Intro</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../textx_project_setup/">TextX Project Setup</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../textx_by_examples/">TextX by Examples</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">TextX Modularization</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#textx-model-modularization">TextX: Model Modularization</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#modularization-within-the-same-meta-model">Modularization within the same Meta Model</a></li>
+        
+            <li><a class="toctree-l4" href="#referencing-model-elements-form-other-meta-models">Referencing Model Elements form other Meta Models</a></li>
+        
+            <li><a class="toctree-l4" href="#usage">Usage</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../references/">References</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">self-dsl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>TextX &raquo;</li>
+        
+      
+    
+    <li>TextX Modularization</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="textx-model-modularization">TextX: Model Modularization</h1>
+<p>Similar to <a href="../xtext_modularization/">xtext_modularization.md</a>, we 
+show how to achive model modularization across files in TextX.</p>
+<h2 id="modularization-within-the-same-meta-model">Modularization within the same Meta Model</h2>
+<p>Ready to use scope providers exists to handle multiple files. See the
+<a href="../references/#textx">(TextX)</a>) documentation for details.</p>
+<h2 id="referencing-model-elements-form-other-meta-models">Referencing Model Elements form other Meta Models</h2>
+<p>If yuo wish to reference model elements from other metamodels, this can be 
+achieved using the multi meta model support of TextX 
+(see <a href="../references/#textx">(TextX)</a>).</p>
+<p>The following example is self contained and shows how to deploy two
+python packages for two DSLs, one referencing the other.</p>
+<h3 id="mydsl-a-simple-model-of-greetings">mydsl - a simple model of "Greetings"</h3>
+<h4 id="file-layout">File layout</h4>
+<div class="codehilite"><pre><span></span>├── mydsl
+│   ├── __init__.py
+│   ├── metamodel.py
+│   ├── MyDsl.tx
+│   └── __pycache__
+│       ├── __init__.cpython-36.pyc
+│       └── metamodel.cpython-36.pyc
+└── setup.py
+</pre></div>
+
+
+<h3 id="grammar-mydsltx">Grammar MyDsl.tx</h3>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">greetings</span><span class="o">+=</span><span class="no">Greeting</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Greeting</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Hello&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="s">&#39;!&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+
+
+<h3 id="metamodelpy">metamodel.py</h3>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_file</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">join</span>
+
+<span class="k">def</span> <span class="nf">get_metamodel</span><span class="p">():</span>
+    <span class="n">this_folder</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">meta_model</span> <span class="o">=</span> <span class="n">metamodel_from_file</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">this_folder</span><span class="p">,</span><span class="s2">&quot;MyDsl.tx&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">meta_model</span>
+</pre></div>
+
+
+<h3 id="9595init9595py">__init__.py</h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">mydsl.metamodel</span> <span class="kn">import</span> <span class="n">get_metamodel</span>
+
+<span class="k">def</span> <span class="nf">mydslc</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;generate code for the model.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;model_files&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;model_files&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;model filenames&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">get_metamodel</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">model_file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">model_files</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">mm</span><span class="o">.</span><span class="n">model_from_file</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">greeting</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">greetings</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot; - hello for &#39;{}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">greeting</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+
+
+<h3 id="create-installer">Create installer</h3>
+<p>Create an installer to help pip find its dependencies:</p>
+<div class="codehilite"><pre><span></span>python setup.py  sdist
+</pre></div>
+
+
+<h3 id="mydsl1-a-model-referencing-the-greetings-from-mydsl">mydsl1 - a model referencing the "Greetings" from mydsl</h3>
+<h4 id="file-layout_1">File layout</h4>
+<div class="codehilite"><pre><span></span>├── mydsl1
+│   ├── __init__.py
+│   ├── metamodel.py
+│   └── MyDsl1.tx
+└── setup.py
+</pre></div>
+
+
+<h3 id="grammar-mydsl1tx">Grammar MyDsl1.tx</h3>
+<p>Note: we use the grammar rule "Greeting" from "mydsl". See metamodel.py how
+this is resolved ("refrenced_metamodels").</p>
+<div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">imports</span><span class="o">+=</span><span class="no">Import</span><span class="w"> </span><span class="nv">greetings</span><span class="o">+=</span><span class="no">RefGreeting</span><span class="p">;</span><span class="w"></span>
+<span class="nl">RefGreeting</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Hello&#39;</span><span class="w"> </span><span class="s">&#39;--&gt;&#39;</span><span class="w"> </span><span class="nv">ref</span><span class="o">=</span><span class="p">[</span><span class="x">Greeting</span><span class="p">];</span><span class="w"></span>
+<span class="nl">Import</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;import&#39;</span><span class="w"> </span><span class="nv">importURI</span><span class="o">=</span><span class="no">STRING</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+
+
+<h3 id="metamodelpy_1">metamodel.py</h3>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_file</span>
+<span class="kn">import</span> <span class="nn">textx.scoping</span> <span class="kn">as</span> <span class="nn">scoping</span>
+<span class="kn">import</span> <span class="nn">textx.scoping.providers</span> <span class="kn">as</span> <span class="nn">scoping_providers</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">join</span>
+<span class="kn">import</span> <span class="nn">mydsl</span>
+
+<span class="k">def</span> <span class="nf">get_metamodel</span><span class="p">():</span>
+    <span class="n">this_folder</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+    <span class="c1"># get the &quot;mydsl&quot; meta model</span>
+    <span class="n">other_meta_model</span> <span class="o">=</span> <span class="n">mydsl</span><span class="o">.</span><span class="n">get_metamodel</span><span class="p">()</span>
+
+    <span class="c1"># create the meta model and reference &quot;mydsl&quot;</span>
+    <span class="n">meta_model</span> <span class="o">=</span> <span class="n">metamodel_from_file</span><span class="p">(</span>
+        <span class="n">join</span><span class="p">(</span><span class="n">this_folder</span><span class="p">,</span><span class="s2">&quot;MyDsl1.tx&quot;</span><span class="p">),</span> 
+        <span class="n">referenced_metamodels</span><span class="o">=</span><span class="p">[</span><span class="n">other_meta_model</span><span class="p">])</span>
+
+    <span class="c1"># register scope provider (allow import models into mydsl1 models)</span>
+    <span class="n">meta_model</span><span class="o">.</span><span class="n">register_scope_providers</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;*.*&quot;</span><span class="p">:</span> <span class="n">scoping_providers</span><span class="o">.</span><span class="n">PlainNameImportURI</span><span class="p">()})</span>
+
+    <span class="c1"># register file endings</span>
+    <span class="n">scoping</span><span class="o">.</span><span class="n">MetaModelProvider</span><span class="o">.</span><span class="n">add_metamodel</span><span class="p">(</span><span class="s2">&quot;*.mydsl&quot;</span><span class="p">,</span> <span class="n">other_meta_model</span><span class="p">)</span>
+    <span class="n">scoping</span><span class="o">.</span><span class="n">MetaModelProvider</span><span class="o">.</span><span class="n">add_metamodel</span><span class="p">(</span><span class="s2">&quot;*.mydsl1&quot;</span><span class="p">,</span> <span class="n">meta_model</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">meta_model</span>
+</pre></div>
+
+
+<h3 id="9595init9595py_1">__init__.py</h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">mydsl1.metamodel</span> <span class="kn">import</span> <span class="n">get_metamodel</span>
+
+<span class="k">def</span> <span class="nf">mydsl1c</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;generate code for the model.&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;model_files&#39;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s1">&#39;model_files&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;model filenames&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">get_metamodel</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">model_file</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">model_files</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">mm</span><span class="o">.</span><span class="n">model_from_file</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">greeting</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">greetings</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot; - hello for referenced &#39;{}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">greeting</span><span class="o">.</span><span class="n">ref</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+
+
+<h3 id="installer-bother-dsls-and-compilers">Installer bother DSLs and compilers</h3>
+<p>The option "find-links" is used to point to the local version of 
+mydsl (created above; setup.py of "mydsl1" includes this dependency):</p>
+<div class="codehilite"><pre><span></span>pip3 install . --find-links<span class="o">=</span>file:///<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/../mydsl/dist
+</pre></div>
+
+
+<h2 id="usage">Usage</h2>
+<h3 id="model-file-datamydsl">Model file data.mydsl</h3>
+<div class="codehilite"><pre><span></span><span class="n">Hello</span> <span class="n">Pi</span><span class="o">!</span>
+<span class="n">Hello</span> <span class="n">Tim</span><span class="o">!</span>
+</pre></div>
+
+
+<h3 id="model-file-datamydsl1">Model file data.mydsl1</h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="err">&quot;</span><span class="nn">data.mydsl</span><span class="err">&quot;</span>
+<span class="n">Hello</span> <span class="o">--&gt;</span> <span class="n">Pi</span>
+<span class="n">Hello</span> <span class="o">--&gt;</span> <span class="n">Tim</span>
+</pre></div>
+
+
+<h3 id="model-file-errormydsl1">Model file error.mydsl1</h3>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="err">&quot;</span><span class="nn">data.mydsl</span><span class="err">&quot;</span>
+<span class="n">Hello</span> <span class="o">--&gt;</span> <span class="n">NoName</span>
+</pre></div>
+
+
+<h3 id="example-using-mydslc-and-mydsl1c">Example using mydslc and mydsl1c</h3>
+<div class="codehilite"><pre><span></span>$ mydslc model/data.mydsl
+ - hello <span class="k">for</span> <span class="s1">&#39;Pi&#39;</span>
+ - hello <span class="k">for</span> <span class="s1">&#39;Tim&#39;</span>
+$ mydsl1c model/data.mydsl1
+ - hello <span class="k">for</span> referenced <span class="s1">&#39;Pi&#39;</span>
+ - hello <span class="k">for</span> referenced <span class="s1">&#39;Tim&#39;</span>
+$ mydsl1c model/error.mydsl1
+...
+textx.exceptions.TextXSemanticError: model/error.mydsl1:2:11: 
+error: Unknown object <span class="s2">&quot;NoName&quot;</span> of class <span class="s2">&quot;Greeting&quot;</span>
+</pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../references/" class="btn btn-neutral float-right" title="References">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../textx_by_examples/" class="btn btn-neutral" title="TextX by Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../textx_by_examples/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../references/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

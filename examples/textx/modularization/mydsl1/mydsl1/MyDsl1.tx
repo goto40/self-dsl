@@ -1,0 +1,3 @@
+Model: imports+=Import greetings+=RefGreeting;
+RefGreeting: 'Hello' '-->' ref=[Greeting];
+Import: 'import' importURI=STRING;
