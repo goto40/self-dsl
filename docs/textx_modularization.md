@@ -74,7 +74,7 @@ echo "::python"
 cat docs/examples/textx/modularization/mydsl1/mydsl1/__init__.py
 ::shellcmd-end:: 
 
-### Installer bother DSLs and compilers
+### Install both DSLs and compilers
 
 The option "find-links" is used to point to the local version of 
 mydsl (created above; setup.py of "mydsl1" includes this dependency):
