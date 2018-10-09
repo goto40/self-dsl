@@ -194,25 +194,26 @@ model data into smaller parts.</p>
 <h2 id="modularization-within-the-same-meta-model">Modularization within the same Meta Model</h2>
 <p>This topic is covered in <a href="../xtext_scoping/">xtext_scoping.md</a>.</p>
 <h2 id="referencing-model-elements-form-other-meta-models">Referencing Model Elements form other Meta Models</h2>
-<p>When you have ab existing meta model (an Xtext language, e.g., 
+<p>When you have ab existing metamodel (an Xtext language, e.g., 
 "org.xtext.example.mydsl"), you can create another language referencing this
 existing language.</p>
 <p>In the new language (in eclipse a new project, created side-by-side to the 
-existing language, e.g., "org.xtext.example.mydsl1"):</p>
+existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
+<a href="../references/#mooji2017b">(Mooij et al, 2017b)</a>):</p>
 <ul>
-<li>Add the eclipse project of the original language to the build path 
-    ("org.xtext.example.mydsl"):<ul>
-<li>right-click on the project and select "Configure Build Path"</li>
-<li>select tab "Projects"</li>
-<li>"Add..." the existing project (e.g., "org.xtext.example.mydsl")</li>
+<li>Add plugin dependency in MANIFEST.MF in your new language project 
+   (e.g., "org.xtext.example.mydsl1")<ul>
+<li>open org.xtext.example.mydsl1/META_INF/MANIFEST.MF</li>
+<li>click on "Dependencies" </li>
+<li>"Add..." in "Required Plug-Ins"</li>
+<li>select the existing language and the ui package
+     (e.g. "org.xtext.example.mydsl" and "org.xtext.example.mydsl.ui")</li>
+<li>save MANIFEST.MF (CTRL-S)</li>
 </ul>
 </li>
-<li>Add plugin dependency in MANIFEST.MF<ul>
-<li>open org.xtext.example.mydsl1/META_INF/MANIFEST.MF</li>
-<li>click on "Dependencies"</li>
-<li>"Add..." in "required packages"</li>
-<li>select the existing language (e.g. "org.xtext.example.mydsl")</li>
-<li>save MANIFEST.MF (CTRL-S)</li>
+<li>Add plugin dependency in MANIFEST.MF of your new "ui" project (e.g.,
+  "org.xtext.example.mydsl1.ui").<ul>
+<li>same as for the language project.</li>
 </ul>
 </li>
 <li>
@@ -232,12 +233,14 @@ existing language, e.g., "org.xtext.example.mydsl1"):</p>
    exisiting language as shown below:</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="s2">&quot;http://www.xtext.org/example/mydsl/MyDsl&quot;</span> <span class="k">as</span> <span class="n">existingDsl</span>
 <span class="o">...</span>
-<span class="s1">&#39;Hello&#39;</span> <span class="s1">&#39;--&gt;&#39;</span> <span class="n">ref</span><span class="o">=</span><span class="p">[</span><span class="n">existingDsl</span><span class="p">::</span><span class="n">Greeting</span><span class="p">];</span>
+<span class="n">Greeting</span><span class="p">:</span> <span class="s1">&#39;Hello&#39;</span> <span class="s1">&#39;--&gt;&#39;</span> <span class="n">ref</span><span class="o">=</span><span class="p">[</span><span class="n">existingDsl</span><span class="p">::</span><span class="n">Greeting</span><span class="p">];</span>
 </pre></div>
 
 
 </li>
 </ul>
+<p>Note: Do not forget to have the "Build Automatically" enabled in the eclipse 
+menu "Project".</p>
               
             </div>
           </div>
