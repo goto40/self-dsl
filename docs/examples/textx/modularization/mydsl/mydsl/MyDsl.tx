@@ -1,2 +1,2 @@
-Model: greeting+=Greeting;
+Model: greetings+=Greeting;
 Greeting: 'Hello' name=ID'!';
