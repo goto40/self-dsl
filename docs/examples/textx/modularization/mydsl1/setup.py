@@ -9,7 +9,7 @@ setup(name='mydsl1',
       license='TODO',
       packages=find_packages(),
       package_data={'': ['*.tx', '*.template', 'support_*_code/**/*']},
-      install_requires=["textx","arpeggio"],
+      install_requires=["textx","arpeggio","mydsl"],
       tests_require=[
           'pytest',
       ],

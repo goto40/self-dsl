@@ -27,6 +27,7 @@ pages:
     - {'TextX Intro':'textx_intro.md'}
     - {'TextX Project Setup':'textx_project_setup.md'}
     - {'TextX by Examples':'textx_by_examples.md'}
+    - {'TextX Modularization':'textx_modularization.md'}
  - 'references.md'
 
 
