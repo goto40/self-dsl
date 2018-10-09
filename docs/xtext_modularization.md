@@ -15,14 +15,20 @@ When you have ab existing metamodel (an Xtext language, e.g.,
 existing language.
 
 In the new language (in eclipse a new project, created side-by-side to the 
-existing language, e.g., "org.xtext.example.mydsl1"):
+existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
+::namedref::(references.md#mooji2017b)):
 
- * Add plugin dependency in MANIFEST.MF
+ * Add plugin dependency in MANIFEST.MF in your new language project 
+   (e.g., "org.xtext.example.mydsl1")
        * open org.xtext.example.mydsl1/META_INF/MANIFEST.MF
        * click on "Dependencies" 
        * "Add..." in "Required Plug-Ins"
-       * select the existing language (e.g. "org.xtext.example.mydsl")
+       * select the existing language and the ui package
+         (e.g. "org.xtext.example.mydsl" and "org.xtext.example.mydsl.ui")
        * save MANIFEST.MF (CTRL-S)
+ * Add plugin dependency in MANIFEST.MF of your new "ui" project (e.g.,
+  "org.xtext.example.mydsl1.ui").
+       * same as for the language project.
  * In the mwe2.file (side-by-side to the grammar of your new language)
        * add to section "language" (after "name"; you can check the path and the 
          file name in your existing language)
