@@ -10,7 +10,7 @@ Ready to use scope providers exists to handle multiple files. See the
 
 ## Referencing Model Elements form other Meta Models
 
-If yuo wish to reference model elements from other metamodels, this can be 
+If you wish to reference model elements from other metamodels, this can be 
 achieved using the multi meta model support of TextX 
 (see ::namedref::(references.md#textx)).
 
