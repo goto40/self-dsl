@@ -119,7 +119,7 @@ subproject.
 See also: ::namedref::(references.md#maven).
 
 Hint: When using the Xtext version shipped with the Photon eclipse version 
-in September 2018, I got an error reported by maven I solved by inserting 
+in September 2018, I got an error reported by maven which I solved by inserting 
 a small snippted to correct
 a version (everythiong between <dependencies\> and </dependencies\>,
 see [https://github.com/eclipse/xtext/issues/1231](https://github.com/eclipse/xtext/issues/1231).
