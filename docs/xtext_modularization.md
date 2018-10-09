@@ -37,5 +37,5 @@ existing language, e.g., "org.xtext.example.mydsl1"):
  
         import "http://www.xtext.org/example/mydsl/MyDsl" as existingDsl
         ...
-    	'Hello' '-->' ref=[existingDsl::Greeting];
+    	Greeting: 'Hello' '-->' ref=[existingDsl::Greeting];
 
