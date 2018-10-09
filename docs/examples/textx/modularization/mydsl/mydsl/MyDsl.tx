@@ -1,0 +1,2 @@
+Model: greeting+=Greeting;
+Greeting: 'Hello' name=ID'!';
