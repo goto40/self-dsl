@@ -10,22 +10,17 @@ This topic is covered in [xtext_scoping.md](xtext_scoping.md).
 
 ## Referencing Model Elements form other Meta Models
 
-When you have ab existing meta model (an Xtext language, e.g., 
+When you have ab existing metamodel (an Xtext language, e.g., 
 "org.xtext.example.mydsl"), you can create another language referencing this
 existing language.
 
 In the new language (in eclipse a new project, created side-by-side to the 
 existing language, e.g., "org.xtext.example.mydsl1"):
 
- * Add the eclipse project of the original language to the build path 
-    ("org.xtext.example.mydsl"):
-       * right-click on the project and select "Configure Build Path"
-       * select tab "Projects"
-       * "Add..." the existing project (e.g., "org.xtext.example.mydsl")
  * Add plugin dependency in MANIFEST.MF
        * open org.xtext.example.mydsl1/META_INF/MANIFEST.MF
-       * click on "Dependencies"
-       * "Add..." in "required packages"
+       * click on "Dependencies" 
+       * "Add..." in "Required Plug-Ins"
        * select the existing language (e.g. "org.xtext.example.mydsl")
        * save MANIFEST.MF (CTRL-S)
  * In the mwe2.file (side-by-side to the grammar of your new language)
