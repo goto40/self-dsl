@@ -45,3 +45,6 @@ existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
         ...
     	Greeting: 'Hello' '-->' ref=[existingDsl::Greeting];
 
+
+Note: Do not forget to have the "Build Automatically" enabled in the eclipse 
+menu "Project".
