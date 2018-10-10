@@ -78,7 +78,7 @@ In eclipse you can "__Export__" your generator as "__Runnable JAR__":
     "Run as" / "Java Application".
  * Then right-click on the project containing the Main.java file and select 
     "Export", "Runnable JAR file".
- * Select "Main" in the "Launch configurazion".
+ * Select "Main" in the "Launch configuration".
  * Select "Package required libraries into generated JAR file".
  * Specify your destination JAR file name and click "Finish".
 
@@ -91,7 +91,7 @@ using a few lines of code.
 
 ## Create the command line compiler with maven
 
-(work in progress)
+**(work in progress)**
 
  * Close eclipse 
  * Clone [https://github.com/basilfx/xtext-standalone-maven-build](https://github.com/basilfx/xtext-standalone-maven-build)

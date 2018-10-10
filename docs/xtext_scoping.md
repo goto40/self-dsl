@@ -1,6 +1,6 @@
 # Xtext Scoping
 
-In this seciton you will learn the following:
+In this section you will learn the following:
 
  * What scoping means and where you need it.
  * How to customize scoping for special lookups of local elements.
@@ -35,7 +35,7 @@ part of this default format):
 With this grammar the default format "ID" is used to reference A objects
 in B objects.
 
-The following will work because all elements are in the same hierachical
+The following will work because all elements are in the same hierarchical
 element (Package):
 
     package p1 {
@@ -115,7 +115,7 @@ this information, as illustrated in
 
 ### ImportUriGlobalScopeProvider "#include &lt;other&gt;"
 
-You can easily change the visiblity to provide a language with explicit import
+You can easily change the visibility to provide a language with explicit import
 statements; see e.g. ::namedref::(references.md#mooji2017b).
 
 These steps sum up as follows for a simple default project:

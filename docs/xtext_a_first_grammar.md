@@ -34,8 +34,7 @@ Check if you understood thw following points:
  * What is the difference between "x=Rule1" and "x=[Rule1]"?
  * How can you model the following?
     * "a _named_ __University__ aggregates _named_ __Students__".
-    * "a __House__ is composed of __Rooms__" 
-        ::namedref::{xtext_Composition:Composition}.
+    * "a __House__ is composed of __Rooms__".
  * Explain the role of "?" in the following examples: 
     * (x=INT)?
     * enabled?='enabled'
@@ -96,3 +95,8 @@ section "Optional: View Diagram of Xtext Grammar"
 ## Optional Step 6: Adapt you unittests
 
 Adapt your unittests.
+
+ * Check some individual model entries (e.g., a name or a list size).
+ * You can explore the model structure with the debugger in your
+   unittest (just place a breakpoint and run the test).
+

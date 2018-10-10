@@ -22,7 +22,7 @@ software architecture. Such model driven approaches often also refer to
 __domain specific languages (DSL)__.
 These languages make the design easy to communicate (defined language at
 design level) and at the same time the design itself constitutes of actual
-software artefacts, since code is directly generated from it (single
+software artifacts, since code is directly generated from it (single
 source of information).
 
 
@@ -48,7 +48,7 @@ aspect - something people talk about and which hides important
 details - we get a big impact in productivity. From the one and
 single source of specification (the model data) we can extract
 documentation, plan and archive changes (in the models) and at
-the same time guarantee the consistency of model and multiple code artefacts.
+the same time guarantee the consistency of model and multiple code artifacts.
 
 The __real value__ in terms of working hours is not the meta model, the code
 generator or the editor of a model, but the __model data__ itself. The

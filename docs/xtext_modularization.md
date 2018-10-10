@@ -38,7 +38,7 @@ existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
 
  * In your new grammar, import the existing language (check the grammar of 
    the existing language for the URL). You can reference elements from your
-   exisiting language as shown below:
+   existing language as shown below:
  
  
         import "http://www.xtext.org/example/mydsl/MyDsl" as existingDsl

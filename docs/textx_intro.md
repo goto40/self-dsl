@@ -3,9 +3,9 @@
 TextX is a Python library to allow an easy creation of
 DSL validators and artifact generators:
 
-  * Reading model files (grammar based parsing, reference resolution and post processing).
-  * Validating the model.
-  * Generating output artifacts (e.g., code).
+  * Reading model files (**grammar based parsing**, reference resolution and post processing).
+  * **Validating the model**.
+  * **Generating output artifacts** (e.g., code).
   
 A fundamental difference to Xtext is that the
 meta model classes (describing the model elements)
@@ -22,7 +22,7 @@ TextX itself is permanently tested with different python versions.
 Normally, a similar modularization as for Xtext projects 
 is employed to separate different responsibilities across
 software modules (e.g. modules for the 
-grammar, validation, and code generation). 
+**grammar**, **validation**, and **code generation**). 
 However, it is possible to put an entire project
 including grammar and the validation into one file:
 the following code illustrates a meta model with an example model

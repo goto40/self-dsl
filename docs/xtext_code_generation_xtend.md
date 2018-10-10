@@ -1,7 +1,7 @@
 # Code Generation (with Xtend)
 
 Xtend is highly optimized to be used
-for code generation. It has a optimzed template engine (e.g., with
+for code generation. It has a optimized template engine (e.g., with
 automatic indentation support) and
 is fully integrated in the Eclipse IDE (auto completition
 for model data).
@@ -12,16 +12,16 @@ section "Writing a Code Generator With Xtend".
 
 ## Goal of this section
 
- * You learn how to generate Artefacts in form of text files (e.g. source code).
+ * You learn how to generate artifacts in form of text files (e.g. source code).
  * You learn how to format the output and how to access model data.
  * After some basic steps you may have a look at 
     [xtext_xtend.md](xtext_xtend.md) to learn more about the language xtend 
-    employed for the artefact generator.
+    employed for the artifact generator.
  * Finally, you see how you can generate a C++-file based on the model. You
    will see how you can start from an example code and iteratively replace
    concrete code with model data.
 
-## Step 1: Walkthough
+## Step 1: Walk through
 
 When reading ::namedref::(references.md#xtext15minext), start with the
 first section "Writing a Code Generator With Xtend" (until 
@@ -50,7 +50,7 @@ first section "Writing a Code Generator With Xtend" (until
   * The example also shows that a **modularization** is possible (see how 
     code for "Features" is inserted).
   * Many aspects may look scary at first sight, but are extremely valuable 
-    for teh given task of textual artifact generation: 
+    for the given task of textual artifact generation: 
     See [xtext_xtend.md](xtext_xtend.md).
 
 Note:

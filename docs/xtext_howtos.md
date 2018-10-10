@@ -27,7 +27,7 @@ Use "(...)?". Note:
 
 ## Define a boolean flag based on the presence of a keyword
 
-See Xtext docu:
+See Xtext documentation:
 
     ::antlr
     ...
@@ -230,3 +230,9 @@ Xtend code snippet and test:
 
     ::xtend 
     resource.allContents.filter(Entity).map[e|'the name is '+e.name]
+
+## Concatenate two lists
+
+    ::xtend 
+    // list1 and list2 are of type java.util.List<...>
+    (list1+list2).toList

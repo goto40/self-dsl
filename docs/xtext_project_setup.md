@@ -5,13 +5,13 @@
 In this section you will learn
 
  * How to create a new XText Project.
- * How to run you toolchain (edtior and parser).
+ * How to run you toolchain (editor and parser).
  * What Project structures are created.
  * Run a unittest testing the parser.
  * Optional: How to start a build of your toolchain with maven at the 
-   commmandline
+   commandline
 
-Get more help: ::namedref::(references.md#xtext).
+Get more help: ::namedref::(references.md#xtexthelp).
 
 ## Step 1: Create a new Xtext Project
 
@@ -23,7 +23,7 @@ suggest the following details for the other examples
 discussed on this site:
 ![model.dot](images/xtext_new_project2.png "xtext_new_project2.png")
 
-The result are a set of projects: we are mainly interrested in the
+The result are a set of projects: we are mainly interested in the
 first project, which contains the grammar.
 
 ## Step 2: Exploring the new domain model language
@@ -102,11 +102,11 @@ completion). Enter the following example:
 
 ## Step 5: Add Unittests
 
-In the test project you can add a unitests. Locate the single file in
+In the test project you can add a unittests. Locate the single file in
 the src folder. This file contains a unittest. Uncomment the test code and
 run the test. 
 
-Note: You need to generate the xtext artefact before (see above).
+Note: You need to generate the xtext artifact before (see above).
 
 
 You may extend the default test code by adding the following:
@@ -117,7 +117,7 @@ You may extend the default test code by adding the following:
     @Inject extension
     ValidationTestHelper validationHelper
 
-The you can easily check that no errors occured while parsing:
+The you can easily check that no errors occurred while parsing:
 
     ::xtend
     package org.xtext.example.mydsl.tests
@@ -156,8 +156,8 @@ See also: ::namedref::(references.md#maven).
 
 Hint: When using the Xtext version shipped with the Photon eclipse version 
 in September 2018, I got an error reported by maven which I solved by inserting 
-a small snippted to correct
-a version (everythiong between <dependencies\> and </dependencies\>,
+a small snippet to correct
+a version (everything between <dependencies\> and </dependencies\>,
 see [https://github.com/eclipse/xtext/issues/1231](https://github.com/eclipse/xtext/issues/1231).
 
     <plugin>

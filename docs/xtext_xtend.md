@@ -38,7 +38,7 @@ be imported by other modules:
 A method (used as extension of not) can be marked with the keyword 
 "__dispatch__". If such a method is defined multiple times with different 
 specialized types as argument, the correct version of the method if called
-depending what object is passed (runtime polymorphy). The code behaves if
+depending what object is passed (runtime polymorphism). The code behaves if
 an "if obj instanceof TYPE" is called to determine which version has to be called.
 
 
