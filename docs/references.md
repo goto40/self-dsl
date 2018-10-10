@@ -12,6 +12,7 @@ The references are summarized in the following sections.
  * ::namedref::{maven:(Maven)} [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) - a build system
  * [Xtend](https://www.eclipse.org/xtend) - a statically types language (translates to Java).
  * [Python](https://www.python.org) - a dynamically types language.
+ * ::namedref::{xtendhelp:(Xtend Help)} Eclipse/Help/"Help Contents"/"Xtend User Guide".
 
 ### General information
 
@@ -24,6 +25,7 @@ The references are summarized in the following sections.
     architect of [eTrice (ROOM based modeling tool)](http://www.eclipse.org/etrice/) (2017/06)
  * ::namedref::{xtext15min:(Xtext 15 Minutes Tutorial)} [Xtext 15 Minutes Tutorial](https://www.eclipse.org/Xtext/documentation/102_domainmodelwalkthrough.html).
  * ::namedref::{xtext15minext:(Xtext 15 Minutes Tutorial, Extended)} [Xtext 15 Minutes Tutorial, Extended](https://www.eclipse.org/Xtext/documentation/103_domainmodelnextsteps.html).
+ * ::namedref::{xtexthelp:(Xtext Help)} Eclipse/Help/"Help Contents"/"Xtext Documentation".
 
 ### TextX related stuff
  * ::namedref::{dejanovic2017:(Dejanović et al. 2017)} Dejanović I., Vaderna R., Milosavljević G., Vuković Ž. (2017). TextX: A Python tool for Domain-Specific Languages implementation. Knowledge-Based Systems, 115, 1-4.

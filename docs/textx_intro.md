@@ -17,6 +17,7 @@ TextX has only few dependencies and very compact
 projects can be created. Details see
 ::namedref::(references.md#dejanovic2017)
 and the "TextX project page", see ::namedref::(references.md#textx).
+TextX itself is permanently tested with different python versions.
 
 Normally, a similar modularization as for Xtext projects 
 is employed to separate different responsibilities across

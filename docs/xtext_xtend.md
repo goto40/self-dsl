@@ -4,6 +4,7 @@ In addition to the features sketched in the
 ["code generation with Xtend" section](xtext_code_generation_xtend.md)
 this section provides some selected aspects we found useful for our work.
 
+Get more help: ::namedref::(references.md#xtendhelp).
 
 ## Extension mechanism
 

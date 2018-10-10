@@ -11,6 +11,8 @@ In this section you will learn
  * Optional: How to start a build of your toolchain with maven at the 
    commmandline
 
+Get more help: ::namedref::(references.md#xtext).
+
 ## Step 1: Create a new Xtext Project
 
 Follow section "Create A New Xtext Project"
@@ -105,6 +107,40 @@ the src folder. This file contains a unittest. Uncomment the test code and
 run the test. 
 
 Note: You need to generate the xtext artefact before (see above).
+
+
+You may extend the default test code by adding the following:
+
+    ::xtend
+    @Inject extension
+    ParseHelper<Model> parseHelper
+    @Inject extension
+    ValidationTestHelper validationHelper
+
+The you can easily check that no errors occured while parsing:
+
+    ::xtend
+    package org.xtext.example.mydsl.tests
+    
+    ...
+        
+    @RunWith(XtextRunner)
+    @InjectWith(MyDslInjectorProvider)
+    class MyDslParsingTest {
+        @Inject extension
+        ParseHelper<Model> parseHelper
+        @Inject extension
+        ValidationTestHelper validationHelper
+        
+        @Test
+        def void loadModel() {
+            val result = parseHelper.parse('''
+                Hello Xtext!
+            ''')
+            Assert.assertNotNull(result)
+            result.assertNoErrors
+        }
+    }
 
 ## Optional step 5: Build meta model using maven
 
