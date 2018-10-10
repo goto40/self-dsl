@@ -198,13 +198,18 @@
 show how to achive model modularization across files in TextX.</p>
 <h2 id="modularization-within-the-same-meta-model">Modularization within the same Meta Model</h2>
 <p>Ready to use scope providers exists to handle multiple files. See the
-<a href="../references/#textx">(TextX)</a>) documentation for details.</p>
+<a href="../references/#textx">(TextX)</a> documentation for details.</p>
 <h2 id="referencing-model-elements-form-other-meta-models">Referencing Model Elements form other Meta Models</h2>
 <p>If you wish to reference model elements from other metamodels, this can be 
 achieved using the multi meta model support of TextX 
 (see <a href="../references/#textx">(TextX)</a>).</p>
 <p>The following example is self contained and shows how to deploy two
 python packages for two DSLs, one referencing the other.</p>
+<ul>
+<li><strong>mydsl</strong>: a simple "Hello World" language</li>
+<li><strong>mydsl1</strong>: a language referencing Greetings from the mydsl language.</li>
+</ul>
+<hr />
 <h3 id="mydsl-a-simple-model-of-greetings">mydsl - a simple model of "Greetings"</h3>
 <h4 id="file-layout">File layout</h4>
 <div class="codehilite"><pre><span></span>├── mydsl
@@ -216,12 +221,14 @@ python packages for two DSLs, one referencing the other.</p>
 
 
 <h3 id="grammar-mydsltx">Grammar MyDsl.tx</h3>
+<p>The grammar defines the structure...</p>
 <div class="codehilite"><pre><span></span><span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">greetings</span><span class="o">+=</span><span class="no">Greeting</span><span class="p">;</span><span class="w"></span>
 <span class="nl">Greeting</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Hello&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="s">&#39;!&#39;</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 
 
 <h3 id="metamodelpy">metamodel.py</h3>
+<p>The metamodel is created based on the grammar...</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_file</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">join</span>
 
@@ -233,6 +240,7 @@ python packages for two DSLs, one referencing the other.</p>
 
 
 <h3 id="9595init9595py">__init__.py</h3>
+<p>The entry point for the DSL "compiler" (it just outputs some model data)...</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">mydsl.metamodel</span> <span class="kn">import</span> <span class="n">get_metamodel</span>
 
@@ -251,12 +259,28 @@ python packages for two DSLs, one referencing the other.</p>
 </pre></div>
 
 
+<h3 id="setuppy">setup.py</h3>
+<p>The installer configuration (see 
+<a href="../textx_project_setup/">textx_project_setupx.md</a> for more details).</p>
+<div class="codehilite"><pre><span></span><span class="o">...</span>
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mydsl&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+      <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+          <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="s1">&#39;mydslc=mydsl:mydslc&#39;</span><span class="p">,</span>
+          <span class="p">]</span>
+      <span class="p">},</span>
+<span class="o">...</span>
+</pre></div>
+
+
 <h3 id="create-installer">Create installer</h3>
 <p>Create an installer to help pip find its dependencies:</p>
 <div class="codehilite"><pre><span></span>python setup.py  sdist
 </pre></div>
 
 
+<hr />
 <h3 id="mydsl1-a-model-referencing-the-greetings-from-mydsl">mydsl1 - a model referencing the "Greetings" from mydsl</h3>
 <h4 id="file-layout_1">File layout</h4>
 <div class="codehilite"><pre><span></span>├── mydsl1
@@ -277,6 +301,9 @@ this is resolved ("refrenced_metamodels").</p>
 
 
 <h3 id="metamodelpy_1">metamodel.py</h3>
+<p>The metamodel is created based on the grammar, the metamodel to be
+referenced and some scope providers (to allow to "import" other model
+files)...</p>
 <div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">textx</span> <span class="kn">import</span> <span class="n">metamodel_from_file</span>
 <span class="kn">import</span> <span class="nn">textx.scoping</span> <span class="kn">as</span> <span class="nn">scoping</span>
 <span class="kn">import</span> <span class="nn">textx.scoping.providers</span> <span class="kn">as</span> <span class="nn">scoping_providers</span>
@@ -307,6 +334,7 @@ this is resolved ("refrenced_metamodels").</p>
 
 
 <h3 id="9595init9595py_1">__init__.py</h3>
+<p>The entry point for the DSL "compiler" (it just outputs some model data)...</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">from</span> <span class="nn">mydsl1.metamodel</span> <span class="kn">import</span> <span class="n">get_metamodel</span>
 
@@ -325,6 +353,26 @@ this is resolved ("refrenced_metamodels").</p>
 </pre></div>
 
 
+<h3 id="setuppy_1">setup.py</h3>
+<p>The installer configuration (see 
+<a href="../textx_project_setup/">textx_project_setupx.md</a> for more details).
+The language "mydsl1" depends on "mydsl".</p>
+<div class="codehilite"><pre><span></span><span class="o">...</span>
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mydsl1&#39;</span><span class="p">,</span>
+<span class="o">...</span>
+      <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;textx&quot;</span><span class="p">,</span><span class="s2">&quot;arpeggio&quot;</span><span class="p">,</span><span class="s2">&quot;mydsl&quot;</span><span class="p">],</span>
+<span class="o">...</span>
+      <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+          <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="s1">&#39;mydsl1c=mydsl1:mydsl1c&#39;</span><span class="p">,</span>
+          <span class="p">]</span>
+      <span class="p">},</span>
+<span class="o">...</span>
+</pre></div>
+
+
+<hr />
+<h2 id="usage">Usage</h2>
 <h3 id="install-both-dsls-and-compilers">Install both DSLs and compilers</h3>
 <p>The option "find-links" is used to point to the local version of 
 mydsl (created above; setup.py of "mydsl1" includes this dependency):</p>
@@ -332,7 +380,6 @@ mydsl (created above; setup.py of "mydsl1" includes this dependency):</p>
 </pre></div>
 
 
-<h2 id="usage">Usage</h2>
 <h3 id="model-file-datamydsl">Model file data.mydsl</h3>
 <div class="codehilite"><pre><span></span><span class="n">Hello</span> <span class="n">Pi</span><span class="o">!</span>
 <span class="n">Hello</span> <span class="n">Tim</span><span class="o">!</span>

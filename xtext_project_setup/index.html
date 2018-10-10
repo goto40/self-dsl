@@ -210,6 +210,7 @@
 <li>Optional: How to start a build of your toolchain with maven at the 
    commmandline</li>
 </ul>
+<p>Get more help: <a href="../references/#xtext">(Xtext)</a>.</p>
 <h2 id="step-1-create-a-new-xtext-project">Step 1: Create a new Xtext Project</h2>
 <p>Follow section "Create A New Xtext Project"
 in <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
@@ -286,6 +287,39 @@ completion). Enter the following example:</p>
 the src folder. This file contains a unittest. Uncomment the test code and
 run the test. </p>
 <p>Note: You need to generate the xtext artefact before (see above).</p>
+<p>You may extend the default test code by adding the following:</p>
+<div class="codehilite"><pre><span></span><span class="nd">@Inject</span> <span class="n">extension</span>
+<span class="n">ParseHelper</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">&gt;</span> <span class="n">parseHelper</span>
+<span class="nd">@Inject</span> <span class="n">extension</span>
+<span class="n">ValidationTestHelper</span> <span class="n">validationHelper</span>
+</pre></div>
+
+
+<p>The you can easily check that no errors occured while parsing:</p>
+<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="n">xtext</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">mydsl</span><span class="o">.</span><span class="n">tests</span>
+
+<span class="o">...</span>
+
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">XtextRunner</span><span class="o">)</span>
+<span class="nd">@InjectWith</span><span class="o">(</span><span class="n">MyDslInjectorProvider</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">MyDslParsingTest</span> <span class="o">{</span>
+    <span class="nd">@Inject</span> <span class="n">extension</span>
+    <span class="n">ParseHelper</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">&gt;</span> <span class="n">parseHelper</span>
+    <span class="nd">@Inject</span> <span class="n">extension</span>
+    <span class="n">ValidationTestHelper</span> <span class="n">validationHelper</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">def</span> <span class="kt">void</span> <span class="nf">loadModel</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">val</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseHelper</span><span class="o">.</span><span class="n">parse</span><span class="o">(</span><span class="s">&#39;&#39;&#39;</span>
+<span class="s">            Hello Xtext!</span>
+<span class="s">        &#39;&#39;&#39;</span><span class="o">)</span>
+        <span class="n">Assert</span><span class="o">.</span><span class="n">assertNotNull</span><span class="o">(</span><span class="n">result</span><span class="o">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">assertNoErrors</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
 <h2 id="optional-step-5-build-meta-model-using-maven">Optional step 5: Build meta model using maven</h2>
 <p>When maven is selected as build tool, you can also use maven (instead of
 eclipse) to build your project on the command line: Go to the "parent" 
