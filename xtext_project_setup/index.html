@@ -204,13 +204,13 @@
 <p>In this section you will learn</p>
 <ul>
 <li>How to create a new XText Project.</li>
-<li>How to run you toolchain (edtior and parser).</li>
+<li>How to run you toolchain (editor and parser).</li>
 <li>What Project structures are created.</li>
 <li>Run a unittest testing the parser.</li>
 <li>Optional: How to start a build of your toolchain with maven at the 
-   commmandline</li>
+   commandline</li>
 </ul>
-<p>Get more help: <a href="../references/#xtext">(Xtext)</a>.</p>
+<p>Get more help: <a href="../references/#xtexthelp">(Xtext Help)</a>.</p>
 <h2 id="step-1-create-a-new-xtext-project">Step 1: Create a new Xtext Project</h2>
 <p>Follow section "Create A New Xtext Project"
 in <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
@@ -218,7 +218,7 @@ in <a href="../references/#xtext15min">(Xtext 15 Minutes Tutorial)</a>.</p>
 suggest the following details for the other examples
 discussed on this site:
 <img alt="model.dot" src="../images/xtext_new_project2.png" title="xtext_new_project2.png" /></p>
-<p>The result are a set of projects: we are mainly interrested in the
+<p>The result are a set of projects: we are mainly interested in the
 first project, which contains the grammar.</p>
 <h2 id="step-2-exploring-the-new-domain-model-language">Step 2: Exploring the new domain model language</h2>
 <p>The example grammar (automatically created after project
@@ -283,10 +283,10 @@ completion). Enter the following example:</p>
 
 
 <h2 id="step-5-add-unittests">Step 5: Add Unittests</h2>
-<p>In the test project you can add a unitests. Locate the single file in
+<p>In the test project you can add a unittests. Locate the single file in
 the src folder. This file contains a unittest. Uncomment the test code and
 run the test. </p>
-<p>Note: You need to generate the xtext artefact before (see above).</p>
+<p>Note: You need to generate the xtext artifact before (see above).</p>
 <p>You may extend the default test code by adding the following:</p>
 <div class="codehilite"><pre><span></span><span class="nd">@Inject</span> <span class="n">extension</span>
 <span class="n">ParseHelper</span><span class="o">&lt;</span><span class="n">Model</span><span class="o">&gt;</span> <span class="n">parseHelper</span>
@@ -295,7 +295,7 @@ run the test. </p>
 </pre></div>
 
 
-<p>The you can easily check that no errors occured while parsing:</p>
+<p>The you can easily check that no errors occurred while parsing:</p>
 <div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="n">xtext</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">mydsl</span><span class="o">.</span><span class="n">tests</span>
 
 <span class="o">...</span>
@@ -330,8 +330,8 @@ subproject.</p>
 <p>See also: <a href="../references/#maven">(Maven)</a>.</p>
 <p>Hint: When using the Xtext version shipped with the Photon eclipse version 
 in September 2018, I got an error reported by maven which I solved by inserting 
-a small snippted to correct
-a version (everythiong between &lt;dependencies> and &lt;/dependencies>,
+a small snippet to correct
+a version (everything between &lt;dependencies> and &lt;/dependencies>,
 see <a href="https://github.com/eclipse/xtext/issues/1231">https://github.com/eclipse/xtext/issues/1231</a>.</p>
 <div class="codehilite"><pre><span></span><span class="nt">&lt;plugin&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.eclipse.xtend<span class="nt">&lt;/groupId&gt;</span>
