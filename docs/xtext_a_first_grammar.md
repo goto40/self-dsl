@@ -56,7 +56,7 @@ Can you interpret the following snippet:
 
     ::antlr
     // ...
-    Model: customers+=Customer* computers+=Computer* owns+=Owns*;
+    Model: customers+=Customer* computers+=Computer* owns+=Own*;
     Computer: 'computer' name=ID;
     Customer: 'customer' name=ID;
     Own: 'the' computer=[Computer] 
