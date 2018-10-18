@@ -11,7 +11,8 @@
 
 Then, you can install the plugin from the exported archive in an eclipse
 installation (You can, e.g., copy your eclipse folder, start the copy, install
-your plugin and give the eclipse to another person).
+your plugin and give the eclipse to another person). Installation is done
+using the menu: "Help/Install New Software".
 
 Notes: (1) When installing the plugin, it may be useful to disable 
 "Contact all update sites..." (this caused problems in some examples). 
