@@ -45,6 +45,14 @@ existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
         ...
     	Greeting: 'Hello' '-->' ref=[existingDsl::Greeting];
 
+ * For the standalone setup in Main.java (command line version), you need to run the following code before ```Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
+```:
+
+        org.xtext.example.mydsl.MyDslStandaloneSetup stse_ref = new org.xtext.example.mydsl.MyDslStandaloneSetup();
+        Injector i_ref = stse_ref.createInjector();
+        stse_ref.register(i_ref);
+
+    (TODO: explain why).
 
 Note: Do not forget to have the "Build Automatically" enabled in the eclipse 
 menu "Project".
