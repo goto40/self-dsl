@@ -52,7 +52,5 @@ existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
         Injector i_ref = stse_ref.createInjector();
         stse_ref.register(i_ref);
 
-    (TODO: explain why).
-
 Note: Do not forget to have the "Build Automatically" enabled in the eclipse 
 menu "Project".
