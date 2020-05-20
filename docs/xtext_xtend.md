@@ -16,7 +16,7 @@ a method "toFirstUpper".
 
 A simple possibility to achieve such an extension is to define a locally
 visible method "__f(__TypeX x, __...)__" (see [Xtend documentation](references.md)).
-With this, TypeX is extened by a method __f(...)__.
+With this, TypeX is extended by a method __f(...)__.
 
     ::xtend
 	def printNTimes(String s, int n) {
@@ -46,7 +46,7 @@ an "if obj instanceof TYPE" is called to determine which version has to be calle
   * „==“ vs. „===“ (analogous „!=“ vs. „!==“):
     * „==“ uses the method "equals" to determine the result.
     * „===“ checks if the identical object is referenced (like a pointer comparison).
-  * It is possible to check if an optional modell element is present or not
+  * It is possible to check if an optional model element is present or not
     by comparing it to null.
   * It is possible to check if a model element is not yet loaded
     (eIsProxy==true).
@@ -68,7 +68,7 @@ Lists can be accessed, e.g., via "head" (the first element) or "get(index)"
 ## Filter and map functions, lambdas and passing lambdas
 
 Filter functions can be used to filter a list (like the unix command grep). 
-Map funtions can be used to transform a list of elements (like the unix 
+Map functions can be used to transform a list of elements (like the unix 
 command sed):
 
     ::xtend 
@@ -84,9 +84,9 @@ Details:
   * "filter(LAMBDA)" filters the list using the "LAMBDA" as selector (if the
      LAMBDA returns true, the element is returned).
   * "map(LAMBDA)" transforms each element using the "LAMBDA".
-  * Functions expecting a lambda can be called ommiting the brackets "(...)".
+  * Functions expecting a lambda can be called omitting the brackets "(...)".
   * Lambda have the following syntax 
      * "[a | a.name]" is the same as "[name]" or "[it.name]" ("it" is the 
-        default parametername).
-     * "return" can be ommited: the last command yields the return value.
+        default parameter name).
+     * "return" can be omitted: the last command yields the return value.
         

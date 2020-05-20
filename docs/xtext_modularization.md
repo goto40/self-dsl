@@ -10,7 +10,7 @@ This topic is covered in [xtext_scoping.md](xtext_scoping.md).
 
 ## Referencing Model Elements form other Meta Models
 
-When you have ab existing metamodel (an Xtext language, e.g., 
+When you have an existing metamodel (an Xtext language, e.g., 
 "org.xtext.example.mydsl"), you can create another language referencing this
 existing language.
 

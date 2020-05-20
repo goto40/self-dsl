@@ -9,7 +9,7 @@ In this section you will learn
  * What Project structures are created.
  * Run a unittest testing the parser.
  * Optional: How to start a build of your toolchain with maven at the 
-   commandline
+   command line
 
 Get more help: ::namedref::(references.md#xtexthelp).
 
@@ -149,8 +149,8 @@ eclipse) to build your project on the command line: Go to the "parent"
 project and run "mvn package".
 
 Maven will download all required packages in "~/.m2" (locally) and then build 
-your subprojects. The output is located in the folder "target" of each 
-subproject.
+your sub-projects. The output is located in the folder "target" of each 
+sub-project.
 
 See also: ::namedref::(references.md#maven).
 

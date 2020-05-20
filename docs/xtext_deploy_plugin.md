@@ -1,4 +1,4 @@
-# Deploy your DSL as eclispe plugin
+# Deploy your DSL as eclipse plugin
 
 ## Manual way to export and install a plugin
 
