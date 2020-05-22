@@ -9,22 +9,21 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>A First Grammar - self-dsl</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "A First Grammar";
     var mkdocs_page_input_path = "xtext_a_first_grammar.md";
-    var mkdocs_page_url = "/xtext_a_first_grammar/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +37,7 @@
         <a href=".." class="icon icon-home"> self-dsl</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -251,7 +250,7 @@ are added to the model.</p>
 <h2 id="step-3-more-examples">Step 3: More examples</h2>
 <p>Can you interpret the following snippet:</p>
 <div class="codehilite"><pre><span></span><span class="c">// ...</span><span class="w"></span>
-<span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">customers</span><span class="o">+=</span><span class="no">Customer</span><span class="o">*</span><span class="w"> </span><span class="nv">computers</span><span class="o">+=</span><span class="no">Computer</span><span class="o">*</span><span class="w"> </span><span class="nv">owns</span><span class="o">+=</span><span class="no">Owns</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="nl">Model</span><span class="p">:</span><span class="w"> </span><span class="nv">customers</span><span class="o">+=</span><span class="no">Customer</span><span class="o">*</span><span class="w"> </span><span class="nv">computers</span><span class="o">+=</span><span class="no">Computer</span><span class="o">*</span><span class="w"> </span><span class="nv">owns</span><span class="o">+=</span><span class="no">Own</span><span class="o">*</span><span class="p">;</span><span class="w"></span>
 <span class="nl">Computer</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;computer&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
 <span class="nl">Customer</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;customer&#39;</span><span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="no">ID</span><span class="p">;</span><span class="w"></span>
 <span class="nl">Own</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;the&#39;</span><span class="w"> </span><span class="nv">computer</span><span class="o">=</span><span class="p">[</span><span class="x">Computer</span><span class="p">]</span><span class="w"> </span>
@@ -331,9 +330,8 @@ section "Optional: View Diagram of Xtext Grammar"
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>

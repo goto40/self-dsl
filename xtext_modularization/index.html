@@ -9,22 +9,21 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Modularization - self-dsl</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Modularization";
     var mkdocs_page_input_path = "xtext_modularization.md";
-    var mkdocs_page_url = "/xtext_modularization/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +37,7 @@
         <a href=".." class="icon icon-home"> self-dsl</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -198,7 +197,7 @@ model data into smaller parts.</p>
 <h2 id="modularization-within-the-same-meta-model">Modularization within the same Meta Model</h2>
 <p>This topic is covered in <a href="../xtext_scoping/">xtext_scoping.md</a>.</p>
 <h2 id="referencing-model-elements-form-other-meta-models">Referencing Model Elements form other Meta Models</h2>
-<p>When you have ab existing metamodel (an Xtext language, e.g., 
+<p>When you have an existing metamodel (an Xtext language, e.g., 
 "org.xtext.example.mydsl"), you can create another language referencing this
 existing language.</p>
 <p>In the new language (in eclipse a new project, created side-by-side to the 
@@ -238,6 +237,15 @@ existing language, e.g., "org.xtext.example.mydsl1.MyDsl1"; details see
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="s2">&quot;http://www.xtext.org/example/mydsl/MyDsl&quot;</span> <span class="k">as</span> <span class="n">existingDsl</span>
 <span class="o">...</span>
 <span class="n">Greeting</span><span class="p">:</span> <span class="s1">&#39;Hello&#39;</span> <span class="s1">&#39;--&gt;&#39;</span> <span class="n">ref</span><span class="o">=</span><span class="p">[</span><span class="n">existingDsl</span><span class="p">::</span><span class="n">Greeting</span><span class="p">];</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>For the standalone setup in Main.java (command line version), you need to run the following code before <code>Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();</code>:</p>
+<div class="codehilite"><pre><span></span>org.xtext.example.mydsl.MyDslStandaloneSetup stse_ref = new org.xtext.example.mydsl.MyDslStandaloneSetup();
+Injector i_ref = stse_ref.createInjector();
+stse_ref.register(i_ref);
 </pre></div>
 
 
@@ -289,9 +297,8 @@ menu "Project".</p>
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>
