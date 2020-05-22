@@ -39,7 +39,7 @@ first section "Writing a Code Generator With Xtend" (until
     * **Special commands** like "IF" or "FOR" can be used if placed between 
       "«" and "»" 
       ("«" and "»" can be entered using CTRL-< and CTRL-> within eclipse).
-    * It is also possible to **insert local variable constants** (typically model 
+    * It is also possible to **insert local variable values** (typically model 
       data, e.g. '''the name of the entity is «entity_var.name»''').
     * Tabs are inserted in an intelligent way, such that **indentation** associated
       with generator logic (e.g., after an "«IF»") are not inserted into the
@@ -55,7 +55,7 @@ first section "Writing a Code Generator With Xtend" (until
 
 Note:
 
-  * This following example als illustrates how to get the
+  * This following example also illustrates how to get the
     root of the model (val model=...). This object can be passed to
     a function generating some text from it.
     
