@@ -3,7 +3,7 @@
 Xtend is highly optimized to be used
 for code generation. It has a optimized template engine (e.g., with
 automatic indentation support) and
-is fully integrated in the Eclipse IDE (auto completition
+is fully integrated in the Eclipse IDE (auto completion
 for model data).
 
 Here we highlight some information when walking through
@@ -39,8 +39,8 @@ first section "Writing a Code Generator With Xtend" (until
     * **Special commands** like "IF" or "FOR" can be used if placed between 
       "«" and "»" 
       ("«" and "»" can be entered using CTRL-< and CTRL-> within eclipse).
-    * Is is also possible to **insert local variable contensts** (typically model 
-      data, e.g. '''the name of the entitiy is «entity_var.name»''').
+    * It is also possible to **insert local variable constants** (typically model 
+      data, e.g. '''the name of the entity is «entity_var.name»''').
     * Tabs are inserted in an intelligent way, such that **indentation** associated
       with generator logic (e.g., after an "«IF»") are not inserted into the
       output (such indentation is visually highlighted in the editor).
@@ -56,7 +56,7 @@ first section "Writing a Code Generator With Xtend" (until
 Note:
 
   * This following example als illustrates how to get the
-    root of the model (val model=...). This object can be passsed to
+    root of the model (val model=...). This object can be passed to
     a function generating some text from it.
     
         ::xtend

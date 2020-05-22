@@ -11,7 +11,7 @@ in corresponding sections for TextX and Xtext of this documentation.
 ## Introductory example
 
 An example: A meta model for a programming language defines that, e.g.,
-variables can be defined. The model, in turn, is a concrete programm
+variables can be defined. The model, in turn, is a concrete program
 with many variable definitions.
 
 
@@ -150,7 +150,7 @@ class Owns {
 }
 ::end-uml::
 
-Note: non-owning knowlegde of other objects is called __aggregation__. Simple
+Note: non-owning knowledge of other objects is called __aggregation__. Simple
 relationships can be presented by a simple link (without attributes and without
 own rule/class definition).
 
@@ -245,7 +245,7 @@ allows a __modularization of the meta model and, thus, the glossary__.
 ## Interoperability with other toolsets or software components
 
 In larger projects external databases or models may need to be referenced.
-Such external sources of information may be, e.g., am existing database of
+Such external sources of information may be, e.g., an existing database of
 requirements, some JSON or XML file or similar things. Interoperability with
 these sources of information allow to link the model to that source.
 
@@ -276,7 +276,7 @@ consistency__ defined by the grammar and scoping.
   * Error in the structure
     result in classical syntax errors ("__expected__ 'XY' instead of 'AB'").
   * Scoping, in turn, defines the possible references in some context and,
-    thus, yields errors of the catergory "referenced element 'XY' __not found__.".
+    thus, yields errors of the category "referenced element 'XY' __not found__.".
   * The __validation__ described in this section is about additional
     __logical checks__, once the model is correctly parsed and all
     references resolved. This additional checks typically have a

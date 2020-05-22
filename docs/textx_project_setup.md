@@ -36,7 +36,7 @@ We have chosen a distribution as follows:
  * simple_dsl contain all dsl related logic:
     * codegen.py: code generation.
     * metamodel.py: the meta model (grammar, scoping and validation config;
-      the user classes are also stored herem but could be moved
+      the user classes are also stored here but could be moved
       elsewhere for more complex projects.   
     * validation.py: validation logic.
     * console/*.py: console programs (configured in setup.py).

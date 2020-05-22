@@ -41,7 +41,7 @@ generated code from the model.
             List<Resource> all_resources = new ArrayList<Resource>();
             all_resources.add(resource);
         
-            // Load all other requried resources
+            // Load all other required resources
             for(String m:all_other_filenames) {
                 if (!m.equals(main_model_filename)) {
                     Resource other = set.getResource(URI.createFileURI(m), true);
@@ -113,7 +113,7 @@ using a few lines of code.
         java -jar org.example.domainmodel.standalone/target/org.example.domainmodel.standalone-1.0.0-SNAPSHOT.jar *.dmodel
 
 Note: 
- * no need to add (import) the standalone project into the ecplise 
+ * no need to add (import) the standalone project into the eclipse 
     workspace.
  * You can use the standalone code generator as "compiler" in a Makefile
     (like gcc). It will perform a model syntax check, a model validation and a 
