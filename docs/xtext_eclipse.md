@@ -1,6 +1,6 @@
 # Xtext and Eclipse
 
-Xtext is integrated in Eclispe.
+Xtext is integrated in Eclipse.
 To run this tutorial (using Xtext) you need to install Eclipse with the 
 appropriate plugins.
 
